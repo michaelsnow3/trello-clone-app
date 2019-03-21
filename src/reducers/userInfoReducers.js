@@ -2,10 +2,12 @@ import {
   REQUEST_USER_INFO_PENDING,
   REQUEST_USER_INFO_SUCCESS,
   REQUEST_USER_INFO_FAILED 
-} from './constants'
+} from '../constants/userInfoConstants'
 
 const initialStateUserInfo = {
-  userInfo: null,
+  userId: null,
+  username: null,
+  boards: [],
   error: null,
   isPending: true,
 }
@@ -15,7 +17,13 @@ export const setUserInfo = (state=initialStateUserInfo, action={}) => {
     case REQUEST_USER_INFO_PENDING:
       return { ...state, isPending: true }
     case REQUEST_USER_INFO_SUCCESS:
-      return { ...state, isPending: false, userInfo: action.payload }
+      return { 
+        ...state, 
+        isPending: false, 
+        userId: action.userId, 
+        username: action.username,
+        boards: action.boards
+      }
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload }
     default:

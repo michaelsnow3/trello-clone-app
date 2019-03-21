@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
-import { setUserInfo } from './reducers'
+import { setUserInfo } from './reducers/userInfoReducers'
 
 import './index.css';
 

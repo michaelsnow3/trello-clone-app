@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setUserInfo } from '../../actions';
+import { setUserInfo } from '../../actions/userInfoActions';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,17 +19,16 @@ const mapDispatchToProps = (dispatch) => {
 
 function Login({ userInfo, setUserInfo }) {
 
-  // login post request
-  const onLogin = () => {
+  let username = userInfo && userInfo.username
+
+  const handleLogin = () => {
     setUserInfo()
   }
-
-  let username = userInfo && userInfo.username
 
   return(
     <div>
       <h1>Login</h1>
-      <button onClick={onLogin}>Login</button>
+      <button onClick={handleLogin}>Login</button>
       <h1>{username}</h1>
     </div>
   );
