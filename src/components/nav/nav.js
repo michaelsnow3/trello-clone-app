@@ -1,12 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './nav.css'
+
+// import components
+import Login from '../login/login';
 
 function Index() {
   return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
 }
 
 function Users() {
@@ -17,22 +17,14 @@ function Nav() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about/">About</Link>
-            </li>
-            <li>
-              <Link to="/users/">Users</Link>
-            </li>
-          </ul>
+        <nav className="navbar">
+          <Link to="/">Home</Link>
+          <Link to="/login/">login</Link>
+          <Link to="/users/">Users</Link>
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/about/" component={About} />
+        <Route path="/login/" component={Login} />
         <Route path="/users/" component={Users} />
       </div>
     </Router>

@@ -1,0 +1,11 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: #a9ecf9;
+  height: 40px;
+  align-items: center;
+}
+
+a {
+  margin-left: 10px
+}
