@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Board from '../board/Board'
-// import { setUserInfo } from '../../actions/userInfoActions';
+
+import './ListBoards.css'
+
+// import components
+import Board from '../board/Board';
 
 const mapStateToProps = state => {
   return {
@@ -20,7 +23,7 @@ function Login({ boards }) {
     return acc
   }, [])
   return (
-    <div>
+    <div className='boardListContainer'>
       {userBoards}
     </div>
   );

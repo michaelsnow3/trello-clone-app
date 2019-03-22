@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './nav.css';
 
@@ -6,21 +7,27 @@ import './nav.css';
 import Login from '../login/Login';
 import listBoards from '../listBoards/ListBoards';
 
+const mapStateToProps = state => {
+  return {
+    username: state.userInfo.username
+  };
+};
+
 function Users() {
   return <h2>Users</h2>;
 }
 
-function Nav() {
+function Nav({ username }) {
   return (
     <Router>
       <div>
         <nav className="navbar">
-          <Link to="/listBoards">Boards</Link>
+          <Link to={`/${username}/boards`}>Boards</Link>
           <Link to="/login/">login</Link>
           <Link to="/users/">Users</Link>
         </nav>
 
-        <Route path="/listBoards" component={listBoards} />
+        <Route path={`/${username}/boards`} component={listBoards} />
         <Route path="/login/" component={Login} />
         <Route path="/users/" component={Users} />
       </div>
@@ -28,4 +35,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default connect(mapStateToProps)(Nav);

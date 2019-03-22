@@ -1,13 +1,20 @@
 import React from 'react';
-import './Board.css'
+import './Board.css';
 
 function Board({ board }) {
-  let boardTitle = board.title
-  return(
-    <div className='container'>
+  const boardTitle = board.title;
+  const boardClass = board.favourite
+    ? 'boardContainer favourite'
+    : 'boardContainer';
+
+  const handleBoardClick = () => {
+    console.log(boardTitle);
+  };
+  return (
+    <div className={boardClass} onClick={handleBoardClick}>
       {boardTitle}
     </div>
-  )
+  );
 }
 
-export default Board
+export default Board;
