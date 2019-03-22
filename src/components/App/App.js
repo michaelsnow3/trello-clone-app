@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 // import components
-import Nav from '../nav/Nav';
+import Nav from '../Nav/Nav';
 
 function App() {
   return (

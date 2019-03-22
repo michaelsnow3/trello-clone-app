@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './nav.css';
+import './Nav.css';
 
 // import components
-import Login from '../login/Login';
-import listBoards from '../listBoards/ListBoards';
+import Login from '../Login/Login';
+import listBoards from '../ListBoards/ListBoards';
+import DisplayBoard from '../DisplayBoard/DisplayBoard'
 
 const mapStateToProps = state => {
   return {
@@ -30,6 +31,7 @@ function Nav({ username }) {
         <Route path={`/${username}/boards`} component={listBoards} />
         <Route path="/login/" component={Login} />
         <Route path="/users/" component={Users} />
+        <Route path="/board/" component={DisplayBoard} />
       </div>
     </Router>
   );

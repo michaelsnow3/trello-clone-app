@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './ListBoards.css'
 
 // import components
-import Board from '../board/Board';
+import Board from '../Board/Board';
 
 const mapStateToProps = state => {
   return {
