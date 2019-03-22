@@ -1,32 +1,32 @@
-import { 
+import {
   REQUEST_USER_INFO_PENDING,
   REQUEST_USER_INFO_SUCCESS,
-  REQUEST_USER_INFO_FAILED 
-} from '../constants/userInfoConstants'
+  REQUEST_USER_INFO_FAILED
+} from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
   userId: null,
   username: null,
   boards: [],
   error: null,
-  isPending: true,
-}
+  isPending: true
+};
 
-export const setUserInfo = (state=initialStateUserInfo, action={}) => {
+export const userInfo = (state = initialStateUserInfo, action = {}) => {
   switch (action.type) {
     case REQUEST_USER_INFO_PENDING:
-      return { ...state, isPending: true }
+      return { ...state, isPending: true };
     case REQUEST_USER_INFO_SUCCESS:
-      return { 
-        ...state, 
-        isPending: false, 
-        userId: action.userId, 
+      return {
+        ...state,
+        isPending: false,
+        userId: action.userId,
         username: action.username,
         boards: action.boards
-      }
+      };
     case REQUEST_USER_INFO_FAILED:
-      return { ...state, error: action.payload }
+      return { ...state, error: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};

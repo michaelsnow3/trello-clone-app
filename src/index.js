@@ -7,19 +7,22 @@ import { createLogger } from 'redux-logger';
 
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
-import { setUserInfo } from './reducers/userInfoReducers'
+import { userInfo } from './reducers/userInfoReducers';
 
 import './index.css';
 
-const logger = createLogger()
+const logger = createLogger();
 
-const rootReducers = combineReducers({ setUserInfo })
+const rootReducers = combineReducers({ userInfo });
 
-const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger))
+const store = createStore(
+  rootReducers,
+  applyMiddleware(thunkMiddleware, logger)
+);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
