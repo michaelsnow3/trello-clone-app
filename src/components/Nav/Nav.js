@@ -6,7 +6,7 @@ import './Nav.css';
 // import components
 import Login from '../Login/Login';
 import listBoards from '../ListBoards/ListBoards';
-import DisplayBoard from '../DisplayBoard/DisplayBoard'
+import DisplayBoard from '../DisplayBoard/DisplayBoard';
 
 const mapStateToProps = state => {
   return {

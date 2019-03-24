@@ -6,7 +6,7 @@ const initialStateActiveBoard = {
   activeBoard: null
 };
 
-export const userInfo = (state = initialStateActiveBoard, action = {}) => {
+export const boardInfo = (state = initialStateActiveBoard, action = {}) => {
   switch (action.type) {
     case SET_ACTIVE_BOARD:
       return { ...state, activeBoard: action.payload };

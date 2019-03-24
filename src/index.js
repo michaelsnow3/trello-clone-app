@@ -7,13 +7,16 @@ import { createLogger } from 'redux-logger';
 
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
+
+// import reducers
 import { userInfo } from './reducers/userInfoReducers';
+import { boardInfo } from './reducers/activeBoardReducers';
 
 import './index.css';
 
 const logger = createLogger();
 
-const rootReducers = combineReducers({ userInfo });
+const rootReducers = combineReducers({ userInfo, boardInfo });
 
 const store = createStore(
   rootReducers,

@@ -16,7 +16,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 function Login({ username, setUserInfo }) {
-
   const handleLogin = () => {
     setUserInfo();
   };

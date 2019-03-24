@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function DisplayBoard() {
-  return(
-    <h1>DisplayBoard</h1>
-  )
+const mapStateToProps = state => ({ activeBoard: state.boardInfo.activeBoard });
+
+function DisplayBoard({ activeBoard }) {
+  return <h1>{activeBoard.title}</h1>;
 }
 
-export default DisplayBoard;
+export default connect(mapStateToProps)(DisplayBoard);
