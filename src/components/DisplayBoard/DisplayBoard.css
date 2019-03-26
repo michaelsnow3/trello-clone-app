@@ -1,0 +1,11 @@
+.boardLists {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.boardTitle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}

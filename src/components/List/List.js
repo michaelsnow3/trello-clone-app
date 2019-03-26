@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './List.css'
+
 const List = ({ list }) => {
   console.log(list)
   return (
-    <div>{list.listTitle}</div>
+    <div className='listContainer'>{list.listTitle}</div>
   )
 }
 
