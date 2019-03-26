@@ -1,11 +1,11 @@
 import { BOARD_TITLE_CHANGE } from '../constants/addBoardConstants';
 
-const boardTitleState = {
+const initialStateBoardTitle = {
   value: ''
 };
 
 export const handleBoardTitleChange = (
-  state = boardTitleState,
+  state = initialStateBoardTitle,
   action = {}
 ) => {
   switch (action.type) {

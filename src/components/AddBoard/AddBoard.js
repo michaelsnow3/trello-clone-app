@@ -5,22 +5,41 @@ import './AddBoard.css';
 
 // import actions
 import { handleBoardTitleChange } from '../../actions/addBoardActions';
+import { updateBoards } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
   return {
-    boardTitleValue: state.handleBoardTitleChange.value
+    boardTitleValue: state.handleBoardTitleChange.value,
+    userId: state.userInfo.userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateBoards: boards => dispatch(updateBoards(boards)),
     handleBoardTitleChange: value => dispatch(handleBoardTitleChange(value))
   };
 };
 
-const AddBoard = ({ boardTitleValue, handleBoardTitleChange }) => {
+const AddBoard = ({
+  boardTitleValue,
+  handleBoardTitleChange,
+  userId,
+  updateBoards
+}) => {
   const handleAddBoard = () => {
-    console.log('add board click');
+    fetch(`http://localhost:8888/board/new/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        boardTitleValue,
+        userId
+      })
+    })
+      .then(data => data.json())
+      .then(boards => updateBoards(boards));
   };
 
   const handleTextChange = event => {

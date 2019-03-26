@@ -1,7 +1,8 @@
 import {
   REQUEST_USER_INFO_PENDING,
   REQUEST_USER_INFO_SUCCESS,
-  REQUEST_USER_INFO_FAILED
+  REQUEST_USER_INFO_FAILED,
+  UPDATE_BOARDS
 } from '../constants/userInfoConstants';
 
 export const setUserInfo = () => dispatch => {
@@ -28,4 +29,8 @@ export const setUserInfo = () => dispatch => {
     .catch(error =>
       dispatch({ type: REQUEST_USER_INFO_FAILED, payload: error })
     );
+};
+
+export const updateBoards = boards => {
+  return { type: UPDATE_BOARDS, payload: boards };
 };
