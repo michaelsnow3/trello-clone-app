@@ -1,0 +1,1 @@
+export const BOARD_TITLE_CHANGE = 'BOARD_TITLE_CHANGE';

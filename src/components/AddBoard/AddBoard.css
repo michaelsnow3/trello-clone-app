@@ -1,11 +1,21 @@
 .addBoardContainer {
   height: 75px;
-  width: 100px;
+  width: 140px;
   border: 1px solid black;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgb(171, 250, 237);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.addBoardContainer:hover {
+  cursor: pointer;
+}
+
+.addBoardInput {
+  width: 90%;
+  text-align: center;
 }

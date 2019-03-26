@@ -6,6 +6,11 @@
   margin-left: 5px;
   margin-right: 5px;
 }
+
+.boardContainer:hover {
+  cursor: pointer;
+}
+
 .favourite {
   font-weight: bold;
 }

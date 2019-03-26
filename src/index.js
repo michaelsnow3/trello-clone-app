@@ -12,12 +12,18 @@ import * as serviceWorker from './serviceWorker';
 import { userInfo } from './reducers/userInfoReducers';
 import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
+import { handleBoardTitleChange } from './reducers/addBoardReducers';
 
 import './index.css';
 
 const logger = createLogger();
 
-const rootReducers = combineReducers({ userInfo, boardInfo, boardContent });
+const rootReducers = combineReducers({
+  userInfo,
+  boardInfo,
+  boardContent,
+  handleBoardTitleChange
+});
 
 const store = createStore(
   rootReducers,

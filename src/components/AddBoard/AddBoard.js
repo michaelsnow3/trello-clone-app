@@ -1,13 +1,45 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
-import './AddBoard.css'
+import './AddBoard.css';
 
-const AddBoard = () => {
+// import actions
+import { handleBoardTitleChange } from '../../actions/addBoardActions';
+
+const mapStateToProps = state => {
+  return {
+    boardTitleValue: state.handleBoardTitleChange.value
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleBoardTitleChange: value => dispatch(handleBoardTitleChange(value))
+  };
+};
+
+const AddBoard = ({ boardTitleValue, handleBoardTitleChange }) => {
+  const handleAddBoard = () => {
+    console.log('add board click');
+  };
+
+  const handleTextChange = event => {
+    handleBoardTitleChange(event.target.value);
+  };
+
   return (
-  <div className='addBoardContainer'>
-    <div className='addBoardText'>add board</div>
-  </div>
-  )
-}
+    <div className="addBoardContainer">
+      <input
+        className="addBoardInput"
+        value={boardTitleValue}
+        onChange={handleTextChange}
+      />
+      <button onClick={handleAddBoard}>add board</button>
+    </div>
+  );
+};
 
-export default AddBoard
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddBoard);
