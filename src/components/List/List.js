@@ -6,8 +6,6 @@ import './List.css';
 import Card from '../Card/Card';
 
 const List = ({ list }) => {
-  console.log(list);
-
   const listCards = list.listCards.reduce((acc, card, i) => {
     acc.push(<Card key={i} card={card} />);
     return acc;
