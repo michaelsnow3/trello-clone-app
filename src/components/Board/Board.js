@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function Board({ board, setBoardInfo, setBoardContent }) {
+const Board = ({ board, setBoardInfo, setBoardContent, boardLists }) => {
   const boardTitle = board.title;
   const boardClass = board.favourite
     ? 'boardContainer favourite'
