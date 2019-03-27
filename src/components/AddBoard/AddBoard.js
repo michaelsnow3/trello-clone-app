@@ -28,6 +28,9 @@ const AddBoard = ({
   updateBoards
 }) => {
   const handleAddBoard = () => {
+    // return if board has no title
+    if (!boardTitleValue.length) return;
+    
     fetch(`http://localhost:8888/board/new/`, {
       method: 'POST',
       headers: {
