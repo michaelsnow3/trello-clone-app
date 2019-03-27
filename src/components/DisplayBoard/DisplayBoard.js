@@ -5,6 +5,7 @@ import './DisplayBoard.css';
 
 // import components
 import List from '../List/List';
+import AddList from '../AddList/AddList'
 
 const mapStateToProps = state => ({
   activeBoard: state.boardInfo.activeBoard,
@@ -13,11 +14,14 @@ const mapStateToProps = state => ({
 
 function DisplayBoard({ activeBoard, boardLists }) {
   let boardTitle = activeBoard && activeBoard.title;
+  let boardId = activeBoard && activeBoard.id;
 
   const boardListComponents = boardLists.reduce((acc, list, i) => {
     acc.push(<List key={i} list={list} />);
     return acc;
   }, []);
+
+  boardListComponents.push(<AddList boardId={boardId} key={-1}/>)
 
   return (
     <div>

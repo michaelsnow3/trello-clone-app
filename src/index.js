@@ -13,6 +13,7 @@ import { userInfo, getUserBoards } from './reducers/userInfoReducers';
 import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
 import { handleBoardTitleChange } from './reducers/addBoardReducers';
+import { handleListTitleChange } from './reducers/addListReducers'
 
 import './index.css';
 
@@ -23,7 +24,8 @@ const rootReducers = combineReducers({
   getUserBoards,
   boardInfo,
   boardContent,
-  handleBoardTitleChange
+  handleBoardTitleChange,
+  handleListTitleChange
 });
 
 const store = createStore(

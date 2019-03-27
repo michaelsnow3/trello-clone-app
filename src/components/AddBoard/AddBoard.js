@@ -37,7 +37,8 @@ const AddBoard = ({ boardTitleValue, handleBoardTitleChange, userId, getUserBoar
         userId
       })
     }).then(data => data.json())
-    .then(() => getUserBoards(userId));
+    .then(() => getUserBoards(userId))
+    .catch(error => console.log('error adding/fetching user boards', error))
   };
 
   const handleTextChange = event => {
