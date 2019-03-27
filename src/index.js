@@ -12,8 +12,7 @@ import * as serviceWorker from './serviceWorker';
 import { userInfo, getUserBoards } from './reducers/userInfoReducers';
 import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
-import { handleBoardTitleChange } from './reducers/addBoardReducers';
-import { handleListTitleChange } from './reducers/addListReducers'
+import { handleBoardTitleChange, handleListTitleChange } from './reducers/onValueChangeReducers';
 
 import './index.css';
 

@@ -1,1 +1,0 @@
-export const LIST_TITLE_CHANGE = 'LIST_TITLE_CHANGE'

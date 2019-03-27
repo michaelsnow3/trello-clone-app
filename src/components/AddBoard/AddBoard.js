@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './AddBoard.css';
 
 // import actions
-import { handleBoardTitleChange } from '../../actions/addBoardActions';
+import { handleBoardTitleChange } from '../../actions/onValueChangeActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {

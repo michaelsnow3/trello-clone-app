@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './AddList.css';
 
 // import actions
-import { handleListTitleChange } from '../../actions/addListActions';
+import { handleListTitleChange } from '../../actions/onValueChangeActions';
 import { setBoardContent } from '../../actions/boardContentActions';
 
 const mapStateToProps = state => {
