@@ -5,7 +5,7 @@ import './Nav.css';
 
 // import components
 import Login from '../Login/Login';
-import listBoards from '../ListBoards/ListBoards';
+import ListBoards from '../ListBoards/ListBoards';
 import DisplayBoard from '../DisplayBoard/DisplayBoard';
 
 const mapStateToProps = state => {
@@ -28,7 +28,7 @@ function Nav({ username }) {
           <Link to="/users/">Users</Link>
         </nav>
 
-        <Route path={`/${username}/boards`} component={listBoards} />
+        <Route path={`/${username}/boards`} component={ListBoards} />
         <Route path="/login/" component={Login} />
         <Route path="/users/" component={Users} />
         <Route path="/board/" component={DisplayBoard} />

@@ -5,7 +5,6 @@ import './AddBoard.css';
 
 // import actions
 import { handleBoardTitleChange } from '../../actions/addBoardActions';
-import { updateBoards } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +15,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateBoards: boards => dispatch(updateBoards(boards)),
     handleBoardTitleChange: value => dispatch(handleBoardTitleChange(value))
   };
 };
@@ -24,8 +22,7 @@ const mapDispatchToProps = dispatch => {
 const AddBoard = ({
   boardTitleValue,
   handleBoardTitleChange,
-  userId,
-  updateBoards
+  userId
 }) => {
   const handleAddBoard = () => {
     // return if board has no title
@@ -42,7 +39,7 @@ const AddBoard = ({
       })
     })
       .then(data => data.json())
-      .then(boards => updateBoards(boards));
+      // .then(() => getUserBoards(userId));
   };
 
   const handleTextChange = event => {

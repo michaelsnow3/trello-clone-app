@@ -9,11 +9,19 @@ import AddBoard from '../AddBoard/AddBoard';
 
 const mapStateToProps = state => {
   return {
-    boards: state.userInfo.boards
+    boards: state.getUserBoards.boards,
+    isPending: state.getUserBoards.isPending,
+    userId: state.userInfo.userId
   };
 };
 
-function Login({ boards }) {
+function ListBoards({ boards, getUserBoards, userId, isPending }) {
+
+  // return loading until user boards have been fetched
+  if (isPending) {
+    return <div>Loading...</div>
+  }
+
   let userBoards = boards.reduce((acc, board, i) => {
     // add add board card to the front of the array
     if (i === 0) acc.push(<AddBoard key={-1} />);
@@ -28,4 +36,4 @@ function Login({ boards }) {
   );
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, null)(ListBoards);

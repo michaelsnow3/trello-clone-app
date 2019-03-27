@@ -9,7 +9,7 @@ import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
 // import reducers
-import { userInfo } from './reducers/userInfoReducers';
+import { userInfo, getUserBoards } from './reducers/userInfoReducers';
 import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
 import { handleBoardTitleChange } from './reducers/addBoardReducers';
@@ -20,6 +20,7 @@ const logger = createLogger();
 
 const rootReducers = combineReducers({
   userInfo,
+  getUserBoards,
   boardInfo,
   boardContent,
   handleBoardTitleChange

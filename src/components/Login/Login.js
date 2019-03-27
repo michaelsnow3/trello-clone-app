@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// import actions
 import { setUserInfo } from '../../actions/userInfoActions';
+import { getUserBoards } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
   return {
@@ -11,13 +14,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserInfo: () => dispatch(setUserInfo())
+    setUserInfo: getUserBoards => setUserInfo(getUserBoards)(dispatch),
+    getUserBoards: userId => getUserBoards(userId)(dispatch)  
   };
 };
 
-function Login({ username, setUserInfo }) {
+function Login({ username, setUserInfo, getUserBoards }) {
   const handleLogin = () => {
-    setUserInfo();
+    setUserInfo(getUserBoards);
   };
 
   return (

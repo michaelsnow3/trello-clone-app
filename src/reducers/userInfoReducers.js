@@ -2,13 +2,14 @@ import {
   REQUEST_USER_INFO_PENDING,
   REQUEST_USER_INFO_SUCCESS,
   REQUEST_USER_INFO_FAILED,
-  UPDATE_BOARDS
+  REQUEST_BOARD_INFO_PENDING,
+  REQUEST_BOARD_INFO_SUCCESS,
+  REQUEST_BOARD_INFO_FAILED
 } from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
   userId: null,
   username: null,
-  boards: [],
   error: null,
   isPending: true
 };
@@ -27,8 +28,29 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
       };
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload };
-    case UPDATE_BOARDS:
-      return { ...state, boards: action.payload };
+    default:
+      return state;
+  }
+};
+
+const initialStateUserBoards = {
+  boards: [],
+  error: null,
+  isPending: true
+}
+
+export const getUserBoards = (state = initialStateUserBoards, action = {}) => {
+  switch (action.type) {
+    case REQUEST_BOARD_INFO_PENDING:
+      return { ...state, isPending: true };
+    case REQUEST_BOARD_INFO_SUCCESS:
+      return {
+        ...state,
+        boards: action.payload,
+        isPending: false
+      };
+    case REQUEST_BOARD_INFO_FAILED:
+      return { ...state, error: action.payload, isPending: false };
     default:
       return state;
   }
