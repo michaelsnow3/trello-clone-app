@@ -1,6 +1,6 @@
 .addBoardContainer {
   height: 75px;
-  width: 140px;
+  width: 210px;
   border: 1px solid black;
   background-color: rgb(171, 250, 237);
   display: flex;
@@ -9,6 +9,7 @@
   justify-content: space-evenly;
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: 25px;
 }
 
 .addBoardContainer:hover {

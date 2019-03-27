@@ -1,6 +1,8 @@
 .boardListContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 25px;
+  justify-content: flex-start;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 } 
