@@ -1,4 +1,4 @@
-import { TARGET_CARD } from '../constants/moveCardConstants';
+import { SET_TARGET_CARD, CLEAR_TARGET_CARD } from '../constants/moveCardConstants';
 
 const moveCardInitialState = {
   targetCard: null,
@@ -7,12 +7,18 @@ const moveCardInitialState = {
 
 export const moveCard = (state = moveCardInitialState, action = {}) => {
   switch (action.type) {
-    case TARGET_CARD:
+    case SET_TARGET_CARD:
       return {
         ...state,
         targetCard: action.payload.targetCard,
         currentList: action.payload.currentList
       };
+    case CLEAR_TARGET_CARD: 
+      return {
+        ...state,
+        targetCard: null,
+        currentList: null
+      }
     default:
       return state;
   }

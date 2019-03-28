@@ -9,6 +9,7 @@ import AddCard from '../AddCard/AddCard';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
+import { clearTargetCard } from '../../actions/moveCardActions';
 
 const mapStateToProps = state => {
   return {
@@ -20,11 +21,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
+    clearTargetCard: () => dispatch(clearTargetCard())
   };
 };
 
-const List = ({ list, boardId, targetCard, currentList, setBoardContent, activeBoard }) => {
+const List = ({
+  list,
+  boardId,
+  targetCard,
+  currentList,
+  setBoardContent,
+  activeBoard,
+  clearTargetCard
+}) => {
   const handleListClick = list => {
     if (currentList && currentList !== list) {
       fetch(`http://localhost:8888/card/move`, {
@@ -36,10 +46,10 @@ const List = ({ list, boardId, targetCard, currentList, setBoardContent, activeB
           newList: list,
           targetCard
         })
-      })
-      .then(() => {
-        setBoardContent(activeBoard.id)
-      })
+      }).then(() => {
+        setBoardContent(activeBoard.id);
+        clearTargetCard()
+      });
     }
   };
 
