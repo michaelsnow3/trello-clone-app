@@ -14,8 +14,9 @@ import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
 import {
   handleBoardTitleChange,
-  handleListTitleChange,
+  handleListTitleChange
 } from './reducers/onValueChangeReducers';
+import { moveCard } from './reducers/moveCardReducers';
 
 import './index.css';
 
@@ -28,6 +29,7 @@ const rootReducers = combineReducers({
   boardContent,
   handleBoardTitleChange,
   handleListTitleChange,
+  moveCard
 });
 
 const store = createStore(
