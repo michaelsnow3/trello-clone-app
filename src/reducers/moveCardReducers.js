@@ -1,16 +1,18 @@
-import { TARGET_CARD, NEW_LIST } from '../constants/moveCardConstants';
+import { TARGET_CARD } from '../constants/moveCardConstants';
 
 const moveCardInitialState = {
   targetCard: null,
-  newList: null
+  currentList: null
 };
 
 export const moveCard = (state = moveCardInitialState, action = {}) => {
   switch (action.type) {
     case TARGET_CARD:
-      return { ...state, targetCard: action.payload };
-    case NEW_LIST:
-      return { ...state, newList: action.payload };
+      return {
+        ...state,
+        targetCard: action.payload.targetCard,
+        currentList: action.payload.currentList
+      };
     default:
       return state;
   }

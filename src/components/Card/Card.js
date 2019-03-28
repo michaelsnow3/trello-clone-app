@@ -8,13 +8,13 @@ import { setTargetCard } from '../../actions/moveCardActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setTargetCard: card => dispatch(setTargetCard(card))
+    setTargetCard: (card, list) => dispatch(setTargetCard(card, list))
   };
 };
 
-const Card = ({ card, setTargetCard }) => {
+const Card = ({ card, list, setTargetCard }) => {
   let handleCardClick = () => {
-    setTargetCard(card);
+    setTargetCard(card, list);
   };
   return (
     <div onClick={handleCardClick} className="cardContainer">
