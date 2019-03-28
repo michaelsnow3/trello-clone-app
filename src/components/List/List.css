@@ -1,5 +1,13 @@
 .listContainer {
-  background-color: aqua;
+  background-color: rgb(213, 228, 219);
   width: 20%;
-  margin: 20px
+  margin: 20px;
+  flex: 1, auto;
+  border-radius: 5px;
 }
+ .listTitle {
+   font-weight: bold;
+   border-bottom: 1px solid black;
+   padding: 5px;
+   margin-bottom: 5px;
+  }

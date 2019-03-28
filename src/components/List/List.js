@@ -15,7 +15,7 @@ const List = ({ list, boardId }) => {
 
   return (
     <div className="listContainer">
-      {list.listTitle}
+      <div className='listTitle'>{list.listTitle}</div>
       <div>{listCards}</div>
     </div>
   );

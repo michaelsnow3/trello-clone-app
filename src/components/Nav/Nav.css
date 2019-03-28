@@ -1,11 +1,17 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  background-color: #a9ecf9;
+  background-color: #2899af;
   height: 40px;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 a {
-  margin-left: 10px
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
