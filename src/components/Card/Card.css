@@ -2,4 +2,10 @@
   background-color: white;
   border-radius: 3px;
   margin: 10px;
+  overflow-wrap: break-word;
+}
+.cardText {
+  text-align: start;
+  padding-left: 10px;
+  padding-right: 10px;
 }
