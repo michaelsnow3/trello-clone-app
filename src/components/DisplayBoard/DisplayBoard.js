@@ -17,7 +17,7 @@ function DisplayBoard({ activeBoard, boardLists }) {
   let boardId = activeBoard && activeBoard.id;
 
   const boardListComponents = boardLists.reduce((acc, list, i) => {
-    acc.push(<List key={i} list={list} />);
+    acc.push(<List key={i} list={list} boardId={boardId} />);
     return acc;
   }, []);
 

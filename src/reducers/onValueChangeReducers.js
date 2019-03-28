@@ -1,4 +1,7 @@
-import { LIST_TITLE_CHANGE, BOARD_TITLE_CHANGE } from '../constants/onValueChangeConstants';
+import {
+  LIST_TITLE_CHANGE,
+  BOARD_TITLE_CHANGE
+} from '../constants/onValueChangeConstants';
 
 const initialStateListTitle = {
   value: ''

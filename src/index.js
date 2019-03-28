@@ -12,7 +12,10 @@ import * as serviceWorker from './serviceWorker';
 import { userInfo, getUserBoards } from './reducers/userInfoReducers';
 import { boardInfo } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
-import { handleBoardTitleChange, handleListTitleChange } from './reducers/onValueChangeReducers';
+import {
+  handleBoardTitleChange,
+  handleListTitleChange,
+} from './reducers/onValueChangeReducers';
 
 import './index.css';
 
@@ -24,7 +27,7 @@ const rootReducers = combineReducers({
   boardInfo,
   boardContent,
   handleBoardTitleChange,
-  handleListTitleChange
+  handleListTitleChange,
 });
 
 const store = createStore(
