@@ -60,7 +60,7 @@ const List = ({
   listCards.push(<AddCard key={-1} boardId={boardId} listId={list.listId} />);
 
   return (
-    <div className="listContainer" onClick={() => handleListClick(list)}>
+    <div className="listContainer" onDragOver={() => handleListClick(list)}>
       <div className="listTitle">{list.listTitle}</div>
       <div>{listCards}</div>
     </div>

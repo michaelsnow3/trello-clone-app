@@ -17,7 +17,7 @@ const Card = ({ card, list, setTargetCard }) => {
     setTargetCard(card, list);
   };
   return (
-    <div onClick={handleCardClick} className="cardContainer">
+    <div onMouseDown={handleCardClick} className="cardContainer" draggable>
       {card.title}
     </div>
   );
