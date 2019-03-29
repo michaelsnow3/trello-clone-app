@@ -3,14 +3,24 @@ import { connect } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
+// import actions
+import { getUserBoards } from '../../actions/userInfoActions';
+
 const mapStateToProps = state => {
   return {
     activeBoard: state.boardInfo.activeBoard,
-    username: state.userInfo.username
+    username: state.userInfo.username,
+    userId: state.userInfo.userId
   };
 };
 
-const BoardMenu = ({ activeBoard, username }) => {
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserBoards: userId => getUserBoards(userId)(dispatch)  
+  };
+};
+
+const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
   let [redirect, setRedirect] = useState(false)
   const handleBoardEdit = () => {
     console.log('edit');
@@ -25,6 +35,9 @@ const BoardMenu = ({ activeBoard, username }) => {
       body: JSON.stringify({
         boardId
       })
+    })
+    .then(() => {
+      getUserBoards(userId)
     })
       .then(() => {
         setRedirect(true);
@@ -51,5 +64,5 @@ const BoardMenu = ({ activeBoard, username }) => {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(BoardMenu);
