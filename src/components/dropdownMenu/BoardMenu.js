@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+
+import './menus.css';
 
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
@@ -16,15 +18,40 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserBoards: userId => getUserBoards(userId)(dispatch)  
+    getUserBoards: userId => getUserBoards(userId)(dispatch)
   };
 };
 
 const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
-  let [redirect, setRedirect] = useState(false)
+  let [redirect, setRedirect] = useState(false);
+  let [veryfyAlert, setVerifyAlert] = useState(false);
+
   const handleBoardEdit = () => {
     console.log('edit');
   };
+
+  const handleAlertClose = () => {
+    setVerifyAlert(false);
+  };
+
+  const deleteVerification = () => {
+    if (veryfyAlert) {
+      return (
+        <div className="boardAlertContainer">
+          <Alert dismissible variant="danger" onClose={handleAlertClose}>
+            <Alert.Heading>Delete Board?</Alert.Heading>
+            <div onClick={handleBoardDelete} className="boardAlertText">
+              Yes
+            </div>
+            <div onClick={handleAlertClose} className="boardAlertText">
+              No
+            </div>
+          </Alert>
+        </div>
+      );
+    }
+  };
+
   const handleBoardDelete = () => {
     let boardId = activeBoard.id;
     fetch(`http://localhost:8888/board/del/`, {
@@ -36,9 +63,9 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
         boardId
       })
     })
-    .then(() => {
-      getUserBoards(userId)
-    })
+      .then(() => {
+        getUserBoards(userId);
+      })
       .then(() => {
         setRedirect(true);
       })
@@ -49,14 +76,17 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
     if (redirect) {
       return <Redirect to={`/${username}/boards`} />;
     }
-  }
+  };
 
   return (
     <div>
+      {deleteVerification()}
       {renderRedirect()}
       <DropdownButton id="dropdown-basic-button" title="Settings">
         <Dropdown.Item onClick={handleBoardEdit}>Edit Title</Dropdown.Item>
-        <Dropdown.Item onClick={handleBoardDelete}>Delete Board</Dropdown.Item>
+        <Dropdown.Item onClick={() => setVerifyAlert(true)}>
+          Delete Board
+        </Dropdown.Item>
       </DropdownButton>
     </div>
   );
