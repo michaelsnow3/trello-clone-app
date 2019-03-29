@@ -2,6 +2,10 @@
   background-color: rgb(213, 228, 219);
   width: 20%;
   margin: 20px;
-  flex: 1, auto;
   border-radius: 5px;
+}
+
+.addListInput {
+  margin-left: 15px;
+  margin-right: 15px;
 }

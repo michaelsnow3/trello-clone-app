@@ -6,15 +6,9 @@
   padding-top: 50px;
 }
 
-/* .boardTitle {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-} */
+.boardTitle {
+  margin-right: 15px;
+}
 
 .boardHeader {
   margin-top: 20px;
@@ -35,3 +29,4 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
+

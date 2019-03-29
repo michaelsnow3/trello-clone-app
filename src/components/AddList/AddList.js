@@ -47,11 +47,12 @@ const AddList = ({ listTitleValue, handleListTitleChange, boardId, setBoardConte
 
   return (
     <div className="addListContainer">
+    <div className="addListInput">
       <input
-        className="addListInput"
         value={listTitleValue}
         onChange={handleTextChange}
       />
+      </div>
       <button onClick={handleAddList}>add list</button>
     </div>
   );

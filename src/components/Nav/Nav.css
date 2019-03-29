@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   background-color: #2899af;
   height: 40px;
   align-items: center;
@@ -9,7 +10,7 @@
   width: 100%;
 }
 
-a {
+nav a {
   margin-left: 10px;
   color: white;
   text-decoration: none;

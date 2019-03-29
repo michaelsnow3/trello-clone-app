@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
