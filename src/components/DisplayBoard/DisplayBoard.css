@@ -6,7 +6,7 @@
   padding-top: 50px;
 }
 
-.boardTitle {
+/* .boardTitle {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 2rem;
@@ -14,4 +14,24 @@
   position: fixed;
   text-align: center;
   width: 100%;
+} */
+
+.boardHeader {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.boardSettings {
+  height: 1.5rem;
+  width: 1.5rem;
+  align-self: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
