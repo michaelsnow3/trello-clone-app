@@ -1,6 +1,5 @@
 import {
-  SET_TARGET_CARD,
-  CLEAR_TARGET_CARD
+  SET_TARGET_CARD
 } from '../constants/moveCardConstants';
 
 export const setTargetCard = (targetCard, currentList) => {
@@ -10,10 +9,5 @@ export const setTargetCard = (targetCard, currentList) => {
       targetCard,
       currentList
     }
-  };
-};
-export const clearTargetCard = (targetCard, currentList) => {
-  return {
-    type: CLEAR_TARGET_CARD
   };
 };

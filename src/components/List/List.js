@@ -9,7 +9,7 @@ import AddCard from '../AddCard/AddCard';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
-import { clearTargetCard } from '../../actions/moveCardActions';
+import { setTargetCard } from '../../actions/moveCardActions';
 
 const mapStateToProps = state => {
   return {
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-    clearTargetCard: () => dispatch(clearTargetCard())
+    setTargetCard: (targetCard, currentList) => dispatch(setTargetCard(targetCard, currentList)),
   };
 };
 
@@ -33,10 +33,10 @@ const List = ({
   currentList,
   setBoardContent,
   activeBoard,
-  clearTargetCard
+  setTargetCard
 }) => {
-  const handleListClick = list => {
-    if (currentList && currentList !== list) {
+  const handleListDragOver = list => {
+    if (currentList && currentList.listId !== list.listId) {
       fetch(`http://localhost:8888/card/move`, {
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ const List = ({
         })
       }).then(() => {
         setBoardContent(activeBoard.id);
-        clearTargetCard()
+        setTargetCard(targetCard, list)
       });
     }
   };
@@ -60,7 +60,7 @@ const List = ({
   listCards.push(<AddCard key={-1} boardId={boardId} listId={list.listId} />);
 
   return (
-    <div className="listContainer" onDragOver={() => handleListClick(list)}>
+    <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
       <div className="listTitle">{list.listTitle}</div>
       <div>{listCards}</div>
     </div>

@@ -1,2 +1,1 @@
 export const SET_TARGET_CARD = 'SET_TARGET_CARD';
-export const CLEAR_TARGET_CARD = 'CLEAR_TARGET_CARD';
