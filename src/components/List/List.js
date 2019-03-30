@@ -41,17 +41,15 @@ const List = ({
 }) => {
   const handleListDragOver = list => {
     if (currentList && currentList.listId !== list.listId) {
-
       let body = {
         newList: list,
         targetCard
-      }
+      };
 
-      postFetch('/card/move', body)
-        .then(() => {
-          setBoardContent(activeBoard.id);
-          setTargetCard(targetCard, list);
-        });
+      postFetch('/card/move', body).then(() => {
+        setBoardContent(activeBoard.id);
+        setTargetCard(targetCard, list);
+      });
     }
   };
 
@@ -65,7 +63,7 @@ const List = ({
     <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
       <div className="listHeader">
         <div className="listTitle">{list.listTitle}</div>
-        <ListMenu />
+        <ListMenu listId={list.listId} boardId={boardId} />
       </div>
       <div className="listCards">{listCards}</div>
     </div>
