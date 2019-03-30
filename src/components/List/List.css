@@ -1,13 +1,23 @@
 .listContainer {
   background-color: rgb(213, 228, 219);
-  width: 20%;
   margin: 20px;
   flex: 1, auto;
   border-radius: 5px;
 }
  .listTitle {
-   font-weight: bold;
-   border-bottom: 1px solid black;
-   padding: 5px;
-   margin-bottom: 5px;
-  }
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+
+.listHeader {
+  display: flex;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  margin-bottom: 5px;
+  /* align-items: center; */
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-around;
+}

@@ -6,6 +6,7 @@ import './List.css';
 // import components
 import Card from '../Card/Card';
 import AddCard from '../AddCard/AddCard';
+import ListMenu from '../dropdownMenu/ListMenu';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
@@ -22,7 +23,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-    setTargetCard: (targetCard, currentList) => dispatch(setTargetCard(targetCard, currentList)),
+    setTargetCard: (targetCard, currentList) =>
+      dispatch(setTargetCard(targetCard, currentList))
   };
 };
 
@@ -48,7 +50,7 @@ const List = ({
         })
       }).then(() => {
         setBoardContent(activeBoard.id);
-        setTargetCard(targetCard, list)
+        setTargetCard(targetCard, list);
       });
     }
   };
@@ -61,8 +63,11 @@ const List = ({
 
   return (
     <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
-      <div className="listTitle">{list.listTitle}</div>
-      <div>{listCards}</div>
+      <div className="listHeader">
+        <div className="listTitle">{list.listTitle}</div>
+        <ListMenu />
+      </div>
+      <div className='listCards'>{listCards}</div>
     </div>
   );
 };
