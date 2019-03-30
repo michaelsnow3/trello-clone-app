@@ -1,5 +1,6 @@
 import {
-  SET_ACTIVE_BOARD
+  SET_ACTIVE_BOARD,
+  TOGGLE_SETTINGS_MENU
 } from '../constants/activeBoardConstants';
 
 const initialStateActiveBoard = {
@@ -14,3 +15,18 @@ export const boardInfo = (state = initialStateActiveBoard, action = {}) => {
       return state;
   }
 };
+
+const initialStateSettingsMenu = {
+  showMenu: false,
+  menuType: ''
+}
+
+export const settingsMenu = (state = initialStateSettingsMenu, action = {} ) => {
+  switch(action.type) {
+    case TOGGLE_SETTINGS_MENU:
+      return {...state, showMenu: !state.showMenu, menuType: action.payload.menuType}
+    default: 
+      return state
+  }
+}
+

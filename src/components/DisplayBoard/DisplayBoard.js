@@ -6,7 +6,7 @@ import './DisplayBoard.css';
 // import components
 import List from '../List/List';
 import AddList from '../AddList/AddList';
-import BoardMenu from '../dropdownMenu/BoardMenu'
+import SettingsMenu from '../componentSettings/SettingsMenu'
 
 
 const mapStateToProps = state => ({
@@ -29,8 +29,8 @@ function DisplayBoard({ activeBoard, boardLists }) {
     <div>
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
-        <BoardMenu />
       </div>
+      <SettingsMenu />
       <div className="boardLists">{boardListComponents}</div>
     </div>
   );

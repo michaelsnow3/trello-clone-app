@@ -11,7 +11,7 @@ import * as serviceWorker from './serviceWorker';
 
 // import reducers
 import { userInfo, getUserBoards } from './reducers/userInfoReducers';
-import { boardInfo } from './reducers/activeBoardReducers';
+import { boardInfo, settingsMenu } from './reducers/activeBoardReducers';
 import { boardContent } from './reducers/boardContentReducers';
 import {
   handleBoardTitleChange,
@@ -30,7 +30,8 @@ const rootReducers = combineReducers({
   boardContent,
   handleBoardTitleChange,
   handleListTitleChange,
-  moveCard
+  moveCard,
+  settingsMenu
 });
 
 const store = createStore(

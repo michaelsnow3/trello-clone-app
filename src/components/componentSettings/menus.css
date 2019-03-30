@@ -1,0 +1,62 @@
+.alertOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.alertText {
+  font-size: 1rem;
+}
+
+.alertText:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.alertHeaderText {
+  font-size: 1.5em;
+}
+
+.settingsIcon {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 4rem;
+}
+
+.listAlert{
+  z-index: 10;
+}
+
+.settingsMenu {
+  background-color: rgb(71, 163, 163);
+  border: 1px solid black;
+  border-radius: 3px;
+  position: fixed;
+  left: 30%;
+  width: 40%;
+  height: 8rem;
+  margin-top: 10%;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 10000;
+}
+
+.settingsOption {
+  width: 100%;
+}
+
+.settingsOption:hover {
+  font-weight: bold;
+}
+.settingsClose {
+  font-size: 1rem;
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+
+.settingsClose:hover {
+  font-weight: bold;
+}

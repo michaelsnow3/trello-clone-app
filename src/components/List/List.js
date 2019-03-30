@@ -6,7 +6,7 @@ import './List.css';
 // import components
 import Card from '../Card/Card';
 import AddCard from '../AddCard/AddCard';
-import ListMenu from '../dropdownMenu/ListMenu';
+import ListSettings from '../componentSettings/ListSettings'
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
@@ -63,7 +63,7 @@ const List = ({
     <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
       <div className="listHeader">
         <div className="listTitle">{list.listTitle}</div>
-        <ListMenu listId={list.listId} boardId={boardId} />
+        <ListSettings listId={list.listId} boardId={boardId} />
       </div>
       <div className="listCards">{listCards}</div>
     </div>
