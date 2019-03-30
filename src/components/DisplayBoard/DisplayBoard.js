@@ -6,15 +6,29 @@ import './DisplayBoard.css';
 // import components
 import List from '../List/List';
 import AddList from '../AddList/AddList';
-import SettingsMenu from '../componentSettings/SettingsMenu'
+import SettingsMenu from '../componentSettings/SettingsMenu';
 
+// import actions
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 const mapStateToProps = state => ({
   activeBoard: state.boardInfo.activeBoard,
-  boardLists: state.boardContent.boardLists
+  boardLists: state.boardContent.boardLists,
+  showMenu: state.settingsMenu.showMenu
 });
 
-function DisplayBoard({ activeBoard, boardLists }) {
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu())
+  };
+};
+
+function DisplayBoard({
+  activeBoard,
+  boardLists,
+  showMenu,
+  toggleSettingsMenu
+}) {
   let boardTitle = activeBoard && activeBoard.title;
   let boardId = activeBoard && activeBoard.id;
 
@@ -23,17 +37,27 @@ function DisplayBoard({ activeBoard, boardLists }) {
     return acc;
   }, []);
 
-  boardListComponents.push(<AddList boardId={boardId} key={-1}/>)
+  const settingsMenuComponent = () => {
+    if (showMenu) {
+      return <SettingsMenu />;
+    }
+  };
+
+  boardListComponents.push(<AddList boardId={boardId} key={-1} />);
 
   return (
     <div>
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
+        <div onClick={toggleSettingsMenu}>toggle menu!!!!!!!!!!</div>
       </div>
-      <SettingsMenu />
+      {settingsMenuComponent()}
       <div className="boardLists">{boardListComponents}</div>
     </div>
   );
 }
 
-export default connect(mapStateToProps)(DisplayBoard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DisplayBoard);
