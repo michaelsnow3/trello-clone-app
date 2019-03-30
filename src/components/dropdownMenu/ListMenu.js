@@ -27,6 +27,9 @@ const ListMenu = ({ listId, boardId, setBoardContent }) => {
       .then(() => {
         setBoardContent(boardId);
       })
+      .then(() => {
+        toggleShowAlert()
+      })
       .catch(error => console.log('error deleting board', error));
   };
 
