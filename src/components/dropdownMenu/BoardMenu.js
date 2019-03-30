@@ -8,6 +8,8 @@ import './menus.css';
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
 
+import {postFetch} from '../../fetchRequests'
+
 const mapStateToProps = state => {
   return {
     activeBoard: state.boardInfo.activeBoard,
@@ -69,15 +71,7 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
 
   const handleBoardDelete = () => {
     let boardId = activeBoard.id;
-    fetch(`http://localhost:8888/board/del/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        boardId
-      })
-    })
+      postFetch('/board/del/', {boardId})
       .then(() => {
         getUserBoards(userId);
       })

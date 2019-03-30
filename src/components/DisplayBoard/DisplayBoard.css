@@ -3,16 +3,16 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 50px;
+  padding-top: 4rem;
 }
 
 .boardTitle {
-  margin-right: 15px;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .boardHeader {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
   font-size: 2rem;
   font-weight: bold;
   position: fixed;

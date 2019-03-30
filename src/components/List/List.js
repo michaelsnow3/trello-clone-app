@@ -12,6 +12,8 @@ import ListMenu from '../dropdownMenu/ListMenu';
 import { setBoardContent } from '../../actions/boardContentActions';
 import { setTargetCard } from '../../actions/moveCardActions';
 
+import { postFetch } from '../../fetchRequests';
+
 const mapStateToProps = state => {
   return {
     targetCard: state.moveCard.targetCard,
@@ -39,19 +41,17 @@ const List = ({
 }) => {
   const handleListDragOver = list => {
     if (currentList && currentList.listId !== list.listId) {
-      fetch(`http://localhost:8888/card/move`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          newList: list,
-          targetCard
-        })
-      }).then(() => {
-        setBoardContent(activeBoard.id);
-        setTargetCard(targetCard, list);
-      });
+
+      let body = {
+        newList: list,
+        targetCard
+      }
+
+      postFetch('/card/move', body)
+        .then(() => {
+          setBoardContent(activeBoard.id);
+          setTargetCard(targetCard, list);
+        });
     }
   };
 
@@ -67,7 +67,7 @@ const List = ({
         <div className="listTitle">{list.listTitle}</div>
         <ListMenu />
       </div>
-      <div className='listCards'>{listCards}</div>
+      <div className="listCards">{listCards}</div>
     </div>
   );
 };

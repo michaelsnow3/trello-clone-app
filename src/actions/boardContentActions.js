@@ -4,14 +4,11 @@ import {
   REQUEST_BOARD_CONTENT_FAILED
 } from '../constants/boardContentConstants';
 
+import {getFetch} from '../fetchRequests'
+
 export const setBoardContent = boardId => dispatch => {
   dispatch({ type: REQUEST_BOARD_CONTENT_PENDING });
-  fetch(`http://localhost:8888/board/${boardId}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  getFetch(`/board/${boardId}`)
     .then(data => data.json())
     .then(data =>
       dispatch({

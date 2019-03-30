@@ -7,6 +7,8 @@ import './AddBoard.css';
 import { handleBoardTitleChange } from '../../actions/onValueChangeActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
+import { postFetch } from '../../fetchRequests';
+
 const mapStateToProps = state => {
   return {
     boardTitleValue: state.handleBoardTitleChange.value,
@@ -21,24 +23,24 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const AddBoard = ({ boardTitleValue, handleBoardTitleChange, userId, getUserBoards }) => {
+const AddBoard = ({
+  boardTitleValue,
+  handleBoardTitleChange,
+  userId,
+  getUserBoards
+}) => {
   const handleAddBoard = () => {
-
     // return if board has no title
     if (!boardTitleValue.length) return;
 
-    fetch(`http://localhost:8888/board/new/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        boardTitleValue,
-        userId
-      })
-    }).then(data => data.json())
-    .then(() => getUserBoards(userId))
-    .catch(error => console.log('error adding/fetching user boards', error))
+    let body = {
+      boardTitleValue,
+      userId
+    }
+    postFetch('/board/new/', body)
+      .then(data => data.json())
+      .then(() => getUserBoards(userId))
+      .catch(error => console.log('error adding/fetching user boards', error));
   };
 
   const handleTextChange = event => {

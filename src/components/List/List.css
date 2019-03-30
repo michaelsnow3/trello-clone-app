@@ -1,6 +1,6 @@
 .listContainer {
   background-color: rgb(213, 228, 219);
-  margin: 20px;
+  margin: 1rem;
   flex: 1, auto;
   border-radius: 5px;
 }
@@ -16,7 +16,6 @@
   border-bottom: 1px solid black;
   padding: 5px;
   margin-bottom: 5px;
-  /* align-items: center; */
   height: 2.5rem;
   display: flex;
   justify-content: space-around;

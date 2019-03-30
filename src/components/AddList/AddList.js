@@ -7,6 +7,8 @@ import './AddList.css';
 import { handleListTitleChange } from '../../actions/onValueChangeActions';
 import { setBoardContent } from '../../actions/boardContentActions';
 
+import { postFetch } from '../../fetchRequests'
+
 const mapStateToProps = state => {
   return {
     listTitleValue: state.handleListTitleChange.value
@@ -25,16 +27,12 @@ const AddList = ({ listTitleValue, handleListTitleChange, boardId, setBoardConte
     // return if list has no title
     if (!listTitleValue.length) return;
 
-    fetch(`http://localhost:8888/list/new/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        listTitleValue,
-        boardId
-      })
-    })
+    let body = {
+      listTitleValue,
+      boardId
+    }
+
+    postFetch('/list/new/', body)
       .then(() => {
         setBoardContent(boardId)
       })

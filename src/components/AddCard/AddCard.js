@@ -6,6 +6,8 @@ import './AddCard.css';
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
 
+import { postFetch } from '../../fetchRequests'
+
 const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch)
@@ -18,16 +20,11 @@ const AddCard = ({ boardId, listId, setBoardContent }) => {
     // return if list has no title
     if (!titleValue.length) return;
 
-    fetch(`http://localhost:8888/card/new/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        titleValue,
-        listId
-      })
-    })
+    let body = {
+      titleValue,
+      listId
+    }
+    postFetch('/card/new/', body)
       .then(() => {
         setBoardContent(boardId);
       })
