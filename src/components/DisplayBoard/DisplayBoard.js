@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './DisplayBoard.css';
+import editIcon from '../componentSettings/editIcon.png'
 
 // import components
 import List from '../List/List';
@@ -11,6 +12,9 @@ import SettingsMenu from '../componentSettings/SettingsMenu';
 // import actions
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
+// import constants
+import {BOARD} from '../../constants/activeBoardConstants'
+
 const mapStateToProps = state => ({
   activeBoard: state.boardInfo.activeBoard,
   boardLists: state.boardContent.boardLists,
@@ -19,7 +23,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleSettingsMenu: () => dispatch(toggleSettingsMenu())
+    toggleSettingsMenu: (menuType) => dispatch(toggleSettingsMenu(menuType))
   };
 };
 
@@ -49,7 +53,7 @@ function DisplayBoard({
     <div>
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
-        <div onClick={toggleSettingsMenu}>toggle menu!!!!!!!!!!</div>
+        <img onClick={() => toggleSettingsMenu(BOARD)} src={editIcon} className='boardEditIcon' alt='edit icon'/>
       </div>
       {settingsMenuComponent()}
       <div className="boardLists">{boardListComponents}</div>

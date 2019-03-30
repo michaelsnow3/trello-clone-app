@@ -30,3 +30,12 @@
   margin-right: 1rem;
 }
 
+.boardEditIcon {
+  height: 2rem;
+  width: 2rem;
+  align-self: center;
+}
+
+.boardEditIcon:hover {
+  cursor: pointer;
+}

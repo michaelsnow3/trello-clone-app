@@ -1,14 +1,53 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { BOARD, LIST, CARD } from '../../constants/activeBoardConstants';
 
-const SettingsMenu = () => {
+// import components
+import BoardMenu from '../componentSettings/BoardMenu';
+
+// import actions
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+
+const mapStateToProps = state => {
+  return {
+    menuType: state.settingsMenu.menuType
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu())
+  };
+};
+
+const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
+  // set active menu to selected menu type
+  let activeMenu = false;
+  switch (menuType) {
+    case BOARD:
+      activeMenu = <BoardMenu />;
+      break;
+    case LIST:
+      activeMenu = <BoardMenu />;
+      break;
+    case CARD:
+      activeMenu = <BoardMenu />;
+      break;
+    default:
+      activeMenu = false;
+      break;
+  }
   return (
-    <div className='settingsMenu'>
-      <div className='settingsOption'>option1</div>
-      <div className='settingsOption'>option2</div>
-      <div className='settingsOption'>option3</div>
-      <div className="settingsClose">close</div>
+    <div className="settingsMenu">
+      {activeMenu}
+      <div className="settingsClose" onClick={toggleSettingsMenu}>
+        close
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default SettingsMenu;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsMenu);

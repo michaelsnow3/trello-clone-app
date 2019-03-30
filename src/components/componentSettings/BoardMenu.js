@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Dropdown, DropdownButton, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 import './menus.css';
@@ -8,7 +8,7 @@ import './menus.css';
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
 
-import {postFetch} from '../../fetchRequests'
+import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
@@ -43,7 +43,7 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
         <div className="boardAlertContainer">
           <Alert dismissible variant="danger" onClose={handleAlertClose}>
             <Alert.Heading>Delete Board?</Alert.Heading>
-            <div className='alertOptions'>
+            <div className="alertOptions">
               <div onClick={handleBoardDelete} className="alertText">
                 Yes
               </div>
@@ -54,24 +54,23 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
           </Alert>
         </div>
       );
-    }
-    else {
-      return (
-      <div className="boardMenuContainer">
-        <DropdownButton id="dropdown-basic-button" title="Settings">
-          <Dropdown.Item onClick={handleBoardEdit}>Edit Title</Dropdown.Item>
-          <Dropdown.Item onClick={() => setVerifyAlert(true)}>
-            Delete Board
-          </Dropdown.Item>
-        </DropdownButton>
-      </div>
+    }else {
+      return(
+        <div>
+          <div className="settingsOption" onClick={() => setVerifyAlert(true)}>
+            delete board
+          </div>
+          <div className="settingsOption" onClick={handleBoardEdit}>
+            edit board title
+          </div>
+        </div>
       )
     }
   };
 
   const handleBoardDelete = () => {
     let boardId = activeBoard.id;
-      postFetch('/board/del/', {boardId})
+    postFetch('/board/del/', { boardId })
       .then(() => {
         getUserBoards(userId);
       })
