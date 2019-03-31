@@ -8,14 +8,29 @@ import { postFetch } from '../../fetchRequests';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
+    activeBoard: state.boardInfo.activeBoard,
+    listId: state.settingsMenu.targetId
   };
 };
 
-const ListMenu = ({ listId, boardId, setBoardContent }) => {
+const mapDispatchToProps = dispatch => {
+  return {
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu('', null))
+  };
+};
+
+const ListMenu = ({
+  listId,
+  activeBoard,
+  setBoardContent,
+  toggleSettingsMenu
+}) => {
+  let boardId = activeBoard.id;
   let [showAlert, setShowAlert] = useState(false);
 
   const handleDeleteList = () => {
@@ -27,7 +42,8 @@ const ListMenu = ({ listId, boardId, setBoardContent }) => {
         setBoardContent(boardId);
       })
       .then(() => {
-        toggleShowAlert()
+        toggleShowAlert();
+        toggleSettingsMenu();
       })
       .catch(error => console.log('error deleting board', error));
   };
@@ -76,6 +92,6 @@ const ListMenu = ({ listId, boardId, setBoardContent }) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ListMenu);

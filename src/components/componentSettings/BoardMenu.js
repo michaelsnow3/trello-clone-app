@@ -7,6 +7,7 @@ import './menus.css';
 
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 import { postFetch } from '../../fetchRequests';
 
@@ -20,25 +21,53 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserBoards: userId => getUserBoards(userId)(dispatch)
+    getUserBoards: userId => getUserBoards(userId)(dispatch),
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu('', null))
   };
 };
 
-const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
+const BoardMenu = ({
+  activeBoard,
+  username,
+  userId,
+  getUserBoards,
+  toggleSettingsMenu
+}) => {
   let [redirect, setRedirect] = useState(false);
-  let [veryfyAlert, setVerifyAlert] = useState(false);
+  let [showAlert, setShowAlert] = useState(false);
 
   const handleBoardEdit = () => {
     console.log('edit');
   };
 
   const handleAlertClose = () => {
-    setVerifyAlert(false);
+    setShowAlert(false);
+  };
+
+  const handleBoardDelete = () => {
+    let boardId = activeBoard.id;
+    postFetch('/board/del/', { boardId })
+      .then(() => {
+        getUserBoards(userId);
+      })
+      .then(() => {
+        setRedirect(true);
+      })
+      .then(() => {
+        toggleSettingsMenu()
+      })
+      .catch(error => console.log('error deleting board', error));
+  };
+
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to={`/${username}/boards`} />;
+    }
   };
 
   // display alert message or button
   const deleteVerification = () => {
-    if (veryfyAlert) {
+    if (showAlert) {
       return (
         <div className="boardAlertContainer">
           <Alert dismissible variant="danger" onClose={handleAlertClose}>
@@ -57,7 +86,7 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
     } else {
       return (
         <div>
-          <div className="settingsOption" onClick={() => setVerifyAlert(true)}>
+          <div className="settingsOption" onClick={() => setShowAlert(true)}>
             delete board
           </div>
           <div className="settingsOption" onClick={handleBoardEdit}>
@@ -65,24 +94,6 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
           </div>
         </div>
       );
-    }
-  };
-
-  const handleBoardDelete = () => {
-    let boardId = activeBoard.id;
-    postFetch('/board/del/', { boardId })
-      .then(() => {
-        getUserBoards(userId);
-      })
-      .then(() => {
-        setRedirect(true);
-      })
-      .catch(error => console.log('error deleting board', error));
-  };
-
-  const renderRedirect = () => {
-    if (redirect) {
-      return <Redirect to={`/${username}/boards`} />;
     }
   };
 
