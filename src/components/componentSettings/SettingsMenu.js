@@ -5,6 +5,7 @@ import { BOARD, LIST, CARD } from '../../constants/activeBoardConstants';
 // import components
 import BoardMenu from '../componentSettings/BoardMenu';
 import ListMenu from '../componentSettings/ListMenu';
+import CardMenu from '../componentSettings/CardMenu';
 
 // import actions
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
@@ -32,7 +33,7 @@ const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
       activeMenu = <ListMenu />;
       break;
     case CARD:
-      activeMenu = <BoardMenu />;
+      activeMenu = <CardMenu />;
       break;
     default:
       activeMenu = false;

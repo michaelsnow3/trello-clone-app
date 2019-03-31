@@ -4,9 +4,20 @@
   margin: 10px;
   overflow-wrap: break-word;
   max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:  center;
 }
 .cardText {
   text-align: start;
   padding-left: 10px;
   padding-right: 10px;
+  width: 90%;
+}
+
+.cardEditIcon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
 }

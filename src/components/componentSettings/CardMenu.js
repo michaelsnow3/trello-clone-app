@@ -13,7 +13,7 @@ import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 const mapStateToProps = state => {
   return {
     activeBoard: state.boardInfo.activeBoard,
-    listId: state.settingsMenu.targetId
+    cardId: state.settingsMenu.targetId
   };
 };
 
@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ListMenu = ({
-  listId,
+const CardMenu = ({
+  cardId,
   activeBoard,
   setBoardContent,
   toggleSettingsMenu
@@ -33,11 +33,11 @@ const ListMenu = ({
   let boardId = activeBoard.id;
   let [showAlert, setShowAlert] = useState(false);
 
-  const handleDeleteList = () => {
+  const handleDeleteCard = () => {
     let body = {
-      listId
+      cardId
     };
-    postFetch('/list/del/', body)
+    postFetch('/card/del/', body)
       .then(() => {
         setBoardContent(boardId);
       })
@@ -45,7 +45,7 @@ const ListMenu = ({
         toggleShowAlert();
         toggleSettingsMenu();
       })
-      .catch(error => console.log('error deleting list', error));
+      .catch(error => console.log('error deleting card', error));
   };
 
   const toggleShowAlert = () => {
@@ -56,16 +56,16 @@ const ListMenu = ({
     if (showAlert) {
       return (
         <Alert
-          className="listAlert"
+          className="cardAlert"
           dismissible
           variant="danger"
           onClose={toggleShowAlert}
         >
           <Alert.Heading className="alertHeaderText">
-            Delete List?
+            Delete Card?
           </Alert.Heading>
           <div className="alertOptions">
-            <div onClick={handleDeleteList} className="alertText">
+            <div onClick={handleDeleteCard} className="alertText">
               Yes
             </div>
             <div onClick={toggleShowAlert} className="alertText">
@@ -78,10 +78,10 @@ const ListMenu = ({
       return (
         <div>
           <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
-            delete list
+            delete card
           </div>
           <div className="settingsOption" onClick={console.log('edit')}>
-            edit list title
+            edit card title
           </div>
         </div>
       );
@@ -94,4 +94,4 @@ const ListMenu = ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListMenu);
+)(CardMenu);
