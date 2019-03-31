@@ -3,7 +3,6 @@ import { Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './menus.css';
-import trashIcon from './trashIcon.png';
 
 import { postFetch } from '../../fetchRequests';
 
@@ -61,12 +60,14 @@ const ListMenu = ({ listId, boardId, setBoardContent }) => {
       );
     } else {
       return (
-        <img
-          onClick={toggleShowAlert}
-          src={trashIcon}
-          alt="settingsIcon"
-          className="settingsIcon"
-        />
+        <div>
+          <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
+            delete list
+          </div>
+          <div className="settingsOption" onClick={console.log('edit')}>
+            edit list title
+          </div>
+        </div>
       );
     }
   };

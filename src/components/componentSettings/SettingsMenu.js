@@ -4,6 +4,7 @@ import { BOARD, LIST, CARD } from '../../constants/activeBoardConstants';
 
 // import components
 import BoardMenu from '../componentSettings/BoardMenu';
+import ListMenu from '../componentSettings/ListMenu';
 
 // import actions
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
@@ -28,7 +29,7 @@ const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
       activeMenu = <BoardMenu />;
       break;
     case LIST:
-      activeMenu = <BoardMenu />;
+      activeMenu = <ListMenu />;
       break;
     case CARD:
       activeMenu = <BoardMenu />;
@@ -40,7 +41,7 @@ const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
   return (
     <div className="settingsMenu">
       {activeMenu}
-      <div className="settingsClose" onClick={toggleSettingsMenu}>
+      <div className="settingsClose" onClick={() => toggleSettingsMenu(false)}>
         close
       </div>
     </div>

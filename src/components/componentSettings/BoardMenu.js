@@ -54,8 +54,8 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
           </Alert>
         </div>
       );
-    }else {
-      return(
+    } else {
+      return (
         <div>
           <div className="settingsOption" onClick={() => setVerifyAlert(true)}>
             delete board
@@ -64,7 +64,7 @@ const BoardMenu = ({ activeBoard, username, userId, getUserBoards }) => {
             edit board title
           </div>
         </div>
-      )
+      );
     }
   };
 

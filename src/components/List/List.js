@@ -2,15 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './List.css';
+import editIcon from '../componentSettings/editIcon.png'
 
 // import components
 import Card from '../Card/Card';
 import AddCard from '../AddCard/AddCard';
-import ListSettings from '../componentSettings/ListSettings'
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
 import { setTargetCard } from '../../actions/moveCardActions';
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+
+// import constants
+import { LIST } from '../../constants/activeBoardConstants'
 
 import { postFetch } from '../../fetchRequests';
 
@@ -26,7 +30,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch),
     setTargetCard: (targetCard, currentList) =>
-      dispatch(setTargetCard(targetCard, currentList))
+      dispatch(setTargetCard(targetCard, currentList)),
+      toggleSettingsMenu: () => dispatch(toggleSettingsMenu(LIST))
   };
 };
 
@@ -37,7 +42,8 @@ const List = ({
   currentList,
   setBoardContent,
   activeBoard,
-  setTargetCard
+  setTargetCard,
+  toggleSettingsMenu
 }) => {
   const handleListDragOver = list => {
     if (currentList && currentList.listId !== list.listId) {
@@ -63,7 +69,7 @@ const List = ({
     <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
       <div className="listHeader">
         <div className="listTitle">{list.listTitle}</div>
-        <ListSettings listId={list.listId} boardId={boardId} />
+        <img src={editIcon} alt='edit icon' className='listEditIcon' onClick={toggleSettingsMenu}/>
       </div>
       <div className="listCards">{listCards}</div>
     </div>

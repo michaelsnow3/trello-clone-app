@@ -7,6 +7,6 @@ export const setBoardInfo = board => {
   return { type: SET_ACTIVE_BOARD, payload: board };
 };
 
-export const toggleSettingsMenu = menuType => {
-  return { type: TOGGLE_SETTINGS_MENU, payload: { menuType } };
+export const toggleSettingsMenu = (menuType, targetId) => {
+  return { type: TOGGLE_SETTINGS_MENU, payload: { menuType, targetId } };
 };

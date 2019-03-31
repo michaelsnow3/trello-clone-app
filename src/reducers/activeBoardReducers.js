@@ -18,15 +18,20 @@ export const boardInfo = (state = initialStateActiveBoard, action = {}) => {
 
 const initialStateSettingsMenu = {
   showMenu: false,
-  menuType: ''
-}
+  menuType: '',
+  targetId: null
+};
 
-export const settingsMenu = (state = initialStateSettingsMenu, action = {} ) => {
-  switch(action.type) {
+export const settingsMenu = (state = initialStateSettingsMenu, action = {}) => {
+  switch (action.type) {
     case TOGGLE_SETTINGS_MENU:
-      return {...state, showMenu: !state.showMenu, menuType: action.payload.menuType}
-    default: 
-      return state
+      return {
+        ...state,
+        showMenu: !state.showMenu,
+        menuType: action.payload.menuType,
+        targetId: action.payload.targetId
+      };
+    default:
+      return state;
   }
-}
-
+};
