@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './List.css';
@@ -60,6 +60,11 @@ const List = ({
   toggleSettingsMenu,
   boardLists
 }) => {
+
+  useEffect(() => {
+    return updateListDatabase
+  })
+
   const handleListDragOver = list => {
     if (
       componentType === DRAG_CARD &&
@@ -92,11 +97,18 @@ const List = ({
         return acc;
       }, []);
 
-      let updatedTargetList = {...targetComponent, listPosition: newPosition}
-      setTargetComponent(updatedTargetList, list, DRAG_LIST)
+      let updatedTargetList = { ...targetComponent, listPosition: newPosition };
+      setTargetComponent(updatedTargetList, list, DRAG_LIST);
 
-      updateListPosition(updatedBoardLists)
+      updateListPosition(updatedBoardLists);
     }
+  };
+
+  const updateListDatabase = () => {
+    let body = {
+      boardLists
+    };
+    postFetch('/list/update/', body);
   };
 
   const handleEditClick = () => {
