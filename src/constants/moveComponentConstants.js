@@ -1,1 +1,2 @@
 export const SET_TARGET_CARD = 'SET_TARGET_CARD';
+export const SET_TARGET_LIST = 'SET_TARGET_LIST';

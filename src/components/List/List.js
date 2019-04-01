@@ -9,7 +9,7 @@ import Card from '../Card/Card';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
-import { setTargetCard } from '../../actions/moveCardActions';
+import { setTargetCard, setTargetList } from '../../actions/dragComponentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 // import constants
@@ -31,7 +31,8 @@ const mapDispatchToProps = dispatch => {
     setTargetCard: (targetCard, currentList) =>
       dispatch(setTargetCard(targetCard, currentList)),
     toggleSettingsMenu: (menuType, targetId) =>
-      dispatch(toggleSettingsMenu(menuType, targetId))
+      dispatch(toggleSettingsMenu(menuType, targetId)),
+    setTargetList: (targetList, hoveredList) => dispatch(setTargetList(targetList, hoveredList))
   };
 };
 
@@ -42,6 +43,7 @@ const List = ({
   setBoardContent,
   activeBoard,
   setTargetCard,
+  setTargetList,
   toggleSettingsMenu
 }) => {
   const handleListDragOver = list => {
@@ -62,13 +64,17 @@ const List = ({
     toggleSettingsMenu(LIST, list.listId);
   };
 
+  const handleListClick = () => {
+    setTargetList(list, list)
+  }
+
   const listCards = list.listCards.reduce((acc, card, i) => {
     acc.push(<Card key={i} card={card} list={list} />);
     return acc;
   }, []);
 
   return (
-    <div className="listContainer" onDragOver={() => handleListDragOver(list)}>
+    <div className="listContainer" onDragOver={() => handleListDragOver(list)} onMouseDown={handleListClick} draggable>
       <div className="listHeader">
         <div className="listTitle">{list.listTitle}</div>
         <img

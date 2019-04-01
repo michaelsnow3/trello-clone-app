@@ -5,7 +5,7 @@ import './Card.css';
 import editIcon from '../componentSettings/editIcon.png';
 
 // import actions
-import { setTargetCard } from '../../actions/moveCardActions';
+import { setTargetCard } from '../../actions/dragComponentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 // import constants
