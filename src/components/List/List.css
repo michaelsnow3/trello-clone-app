@@ -22,6 +22,11 @@
 }
 
 .listEditIcon {
+  display: none;
+}
+
+.listContainer:hover .listEditIcon{
+  display: block;
   height: 1.5rem;
   width: 1.5rem;
   margin-right: 1rem;
