@@ -6,8 +6,9 @@ import './AddList.css';
 // import actions
 import { handleListTitleChange } from '../../actions/onValueChangeActions';
 import { setBoardContent } from '../../actions/boardContentActions';
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
-import { postFetch } from '../../fetchRequests'
+import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
@@ -18,11 +19,18 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleListTitleChange: value => dispatch(handleListTitleChange(value)),
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu(null, null))
   };
 };
 
-const AddList = ({ listTitleValue, handleListTitleChange, boardId, setBoardContent }) => {
+const AddList = ({
+  listTitleValue,
+  handleListTitleChange,
+  boardId,
+  setBoardContent,
+  toggleSettingsMenu
+}) => {
   const handleAddList = () => {
     // return if list has no title
     if (!listTitleValue.length) return;
@@ -30,11 +38,12 @@ const AddList = ({ listTitleValue, handleListTitleChange, boardId, setBoardConte
     let body = {
       listTitleValue,
       boardId
-    }
+    };
 
     postFetch('/list/new/', body)
       .then(() => {
-        setBoardContent(boardId)
+        setBoardContent(boardId);
+        toggleSettingsMenu();
       })
       .catch(error => console.log('error adding user list', error));
   };
@@ -45,11 +54,8 @@ const AddList = ({ listTitleValue, handleListTitleChange, boardId, setBoardConte
 
   return (
     <div className="addListContainer">
-    <div className="addListInput">
-      <input
-        value={listTitleValue}
-        onChange={handleTextChange}
-      />
+      <div className="addListInput">
+        <input value={listTitleValue} onChange={handleTextChange} />
       </div>
       <button onClick={handleAddList}>add list</button>
     </div>

@@ -5,9 +5,19 @@ import { Redirect } from 'react-router-dom';
 
 import './menus.css';
 
+// import components
+import AddList from '../AddList/AddList';
+import EditBoard from '../EditBoard/EditBoard';
+
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+
+// import constants
+import {
+  ADD_LIST,
+  EDIT_BOARD_TITLE
+} from '../../constants/editOptionConstants';
 
 import { postFetch } from '../../fetchRequests';
 
@@ -35,17 +45,15 @@ const BoardMenu = ({
 }) => {
   let [redirect, setRedirect] = useState(false);
   let [showAlert, setShowAlert] = useState(false);
+  let [showInput, setShowInput] = useState('');
 
-  const handleBoardEdit = () => {
-    console.log('edit');
-  };
+  const boardId = activeBoard.id;
 
   const handleAlertClose = () => {
     setShowAlert(false);
   };
 
   const handleBoardDelete = () => {
-    let boardId = activeBoard.id;
     postFetch('/board/del/', { boardId })
       .then(() => {
         getUserBoards(userId);
@@ -54,7 +62,7 @@ const BoardMenu = ({
         setRedirect(true);
       })
       .then(() => {
-        toggleSettingsMenu()
+        toggleSettingsMenu();
       })
       .catch(error => console.log('error deleting board', error));
   };
@@ -64,6 +72,29 @@ const BoardMenu = ({
       return <Redirect to={`/${username}/boards`} />;
     }
   };
+
+  const editBoardOption =
+    showInput === EDIT_BOARD_TITLE ? (
+      <EditBoard boardId={boardId} />
+    ) : (
+      <div
+        onClick={() => setShowInput(EDIT_BOARD_TITLE)}
+        className="settingsOption"
+      >
+        Edit Board Title
+      </div>
+    );
+  const addListOption =
+    showInput === ADD_LIST ? (
+      <AddList boardId={boardId} className="inputOption" />
+    ) : (
+      <div
+        onClick={() => setShowInput(ADD_LIST)}
+        className="settingsOption"
+      >
+        Add List
+      </div>
+    );
 
   // display alert message or button
   const deleteVerification = () => {
@@ -89,9 +120,8 @@ const BoardMenu = ({
           <div className="settingsOption" onClick={() => setShowAlert(true)}>
             delete board
           </div>
-          <div className="settingsOption" onClick={handleBoardEdit}>
-            edit board title
-          </div>
+          {editBoardOption}
+          {addListOption}
         </div>
       );
     }

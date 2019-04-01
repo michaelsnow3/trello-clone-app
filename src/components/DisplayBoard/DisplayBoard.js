@@ -6,7 +6,6 @@ import editIcon from '../componentSettings/editIcon.png';
 
 // import components
 import List from '../List/List';
-import AddList from '../AddList/AddList';
 import SettingsMenu from '../componentSettings/SettingsMenu';
 
 // import actions
@@ -46,8 +45,6 @@ function DisplayBoard({
       return <SettingsMenu />;
     }
   };
-
-  boardListComponents.push(<AddList boardId={boardId} key={-1} />);
 
   return (
     <div>

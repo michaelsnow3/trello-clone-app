@@ -17,12 +17,6 @@
   font-size: 1.5em;
 }
 
-.settingsIcon {
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-left: 4rem;
-}
-
 .listAlert{
   z-index: 10;
 }
@@ -34,12 +28,11 @@
   position: fixed;
   left: 30%;
   width: 40%;
-  height: 8rem;
-  margin-top: 10%;
+  margin-top: 15%;
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   z-index: 10000;
 }
