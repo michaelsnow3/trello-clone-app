@@ -5,23 +5,27 @@ import './Card.css';
 import editIcon from '../componentSettings/editIcon.png';
 
 // import actions
-import { setTargetComponent} from '../../actions/moveComponentActions';
+import { setTargetComponent } from '../../actions/moveComponentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 // import constants
 import { CARD } from '../../constants/activeBoardConstants';
-import { DRAG_CARD } from '../../constants/moveComponentConstants'
+import { DRAG_CARD } from '../../constants/moveComponentConstants';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setTargetComponent: (targetComponent, hoveredComponent, componentType) => dispatch(setTargetComponent(targetComponent, hoveredComponent, componentType)),
+    setTargetComponent: (targetComponent, hoveredComponent, componentType) =>
+      dispatch(
+        setTargetComponent(targetComponent, hoveredComponent, componentType)
+      ),
     toggleSettingsMenu: (menuType, targetId) =>
       dispatch(toggleSettingsMenu(menuType, targetId))
   };
 };
 
 const Card = ({ card, list, setTargetComponent, toggleSettingsMenu }) => {
-  let handleCardClick = () => {
+  let handleCardClick = event => {
+    event.stopPropagation();
     setTargetComponent(card, list, DRAG_CARD);
   };
 
@@ -30,11 +34,16 @@ const Card = ({ card, list, setTargetComponent, toggleSettingsMenu }) => {
   };
 
   const handleMouseUp = () => {
-    setTargetComponent(null, null, null)
-  }
+    setTargetComponent(null, null, null);
+  };
 
   return (
-    <div onMouseDown={handleCardClick} onMouseUp={handleMouseUp} className="cardContainer" draggable>
+    <div
+      onMouseDown={handleCardClick}
+      onMouseUp={handleMouseUp}
+      className="cardContainer"
+      draggable
+    >
       <div className="cardText">{card.title}</div>
       <img
         src={editIcon}
