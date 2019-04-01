@@ -10,6 +10,9 @@ import { postFetch } from '../../fetchRequests';
 import { setBoardContent } from '../../actions/boardContentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
+// import components
+import EditCard from '../EditCard/EditCard';
+
 const mapStateToProps = state => {
   return {
     activeBoard: state.boardInfo.activeBoard,
@@ -32,6 +35,7 @@ const CardMenu = ({
 }) => {
   let boardId = activeBoard.id;
   let [showAlert, setShowAlert] = useState(false);
+  let [showInput, setShowInput] = useState(false);
 
   const handleDeleteCard = () => {
     let body = {
@@ -50,6 +54,17 @@ const CardMenu = ({
 
   const toggleShowAlert = () => {
     setShowAlert(!showAlert);
+  };
+
+  const editCardTitleOption = () => {
+    if (showInput) {
+      return <EditCard boardId={boardId} cardId={cardId} />;
+    }
+    return (
+      <div className="settingsOption" onClick={() => setShowInput(true)}>
+        edit card title
+      </div>
+    );
   };
 
   const showAlertComponent = () => {
@@ -80,9 +95,7 @@ const CardMenu = ({
           <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
             delete card
           </div>
-          <div className="settingsOption" onClick={console.log('edit')}>
-            edit card title
-          </div>
+          {editCardTitleOption()}
         </div>
       );
     }
