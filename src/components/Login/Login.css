@@ -1,0 +1,28 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginFromTitle {
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
+.loginInputGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+  margin: 0.5rem;
+}
+
+.loginFormInput {
+  width: 65%;
+  border-radius: 5px;
+}
+
+.loginFormButton {
+  margin-top: 0.5rem;
+}

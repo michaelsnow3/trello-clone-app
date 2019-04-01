@@ -7,6 +7,7 @@ import './Nav.css';
 import Login from '../Login/Login';
 import ListBoards from '../ListBoards/ListBoards';
 import DisplayBoard from '../DisplayBoard/DisplayBoard';
+import Home from '../Home/Home'
 
 const mapStateToProps = state => {
   return {
@@ -32,6 +33,7 @@ function Nav({ username }) {
         <Route path="/login/" component={Login} />
         <Route path="/users/" component={Users} />
         <Route path="/board/" component={DisplayBoard} />
+        <Route path="/" exact component={Home} />
       </div>
     </Router>
   );
