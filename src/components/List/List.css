@@ -37,3 +37,7 @@
 .listDropZone {
   height: 100%;
 }
+
+.listCards {
+  padding-bottom: 0.25rem;
+}
