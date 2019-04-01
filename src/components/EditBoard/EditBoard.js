@@ -52,7 +52,7 @@ const EditBoard = ({
   return (
     <div className="editBoardContainer">
       <div className="editBoardInput">
-        <input value={editBoardValue} onChange={handleTextChange} />
+        <input value={editBoardValue} onChange={handleTextChange} autoFocus />
       </div>
       <button onClick={handleEditBoard}>Edit Title</button>
     </div>

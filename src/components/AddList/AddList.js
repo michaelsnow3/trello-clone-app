@@ -44,6 +44,7 @@ const AddList = ({
       .then(() => {
         setBoardContent(boardId);
         toggleSettingsMenu();
+        handleListTitleChange('')
       })
       .catch(error => console.log('error adding user list', error));
   };
@@ -55,7 +56,7 @@ const AddList = ({
   return (
     <div className="addListContainer">
       <div className="addListInput">
-        <input value={listTitleValue} onChange={handleTextChange} />
+        <input autoFocus value={listTitleValue} onChange={handleTextChange} />
       </div>
       <button onClick={handleAddList}>add list</button>
     </div>

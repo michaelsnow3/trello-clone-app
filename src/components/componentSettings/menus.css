@@ -22,7 +22,7 @@
 }
 
 .settingsMenu {
-  background-color: rgb(71, 163, 163);
+  background-color: rgb(104, 216, 216);
   border: 1px solid black;
   border-radius: 3px;
   position: fixed;
@@ -35,6 +35,7 @@
   justify-content: space-around;
   align-items: center;
   z-index: 10000;
+  padding-top: 1rem;
 }
 
 .settingsOption {
@@ -45,7 +46,7 @@
   font-weight: bold;
 }
 .settingsClose {
-  font-size: 1rem;
+  font-size: 1.25rem;
   align-self: flex-end;
   margin-right: 1rem;
 }
