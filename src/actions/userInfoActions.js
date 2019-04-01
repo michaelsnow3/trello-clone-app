@@ -34,7 +34,7 @@ export const setUserInfo = (getUserBoards) => dispatch => {
 
 export const getUserBoards = userId => dispatch => {
   dispatch({ type: REQUEST_BOARD_INFO_PENDING });
-  getFetch(`/boards/${userId}`)
+  getFetch(`/board/all/${userId}`)
     .then(data => data.json())
     .then(data => {
       dispatch({ type: REQUEST_BOARD_INFO_SUCCESS, payload: data.boards });
