@@ -48,8 +48,13 @@ const EditCard = ({
   };
   return (
     <div className="editCardContainer">
-      <input autoFocus onChange={handleInputChange} value={cardTitleValue} />
-      <button onClick={handleEditCardTitle}>edit title</button>
+      <textarea
+        autoFocus
+        onChange={handleInputChange}
+        value={cardTitleValue}
+        className="editCardInput"
+      />
+      <button className='editCardButton' onClick={handleEditCardTitle}>edit title</button>
     </div>
   );
 };
