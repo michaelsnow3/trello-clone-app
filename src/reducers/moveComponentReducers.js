@@ -1,37 +1,21 @@
-import { SET_TARGET_CARD, SET_TARGET_LIST } from '../constants/moveComponentConstants';
+import { SET_TARGET } from '../constants/moveComponentConstants';
 
-const moveCardInitialState = {
-  targetCard: null,
-  currentList: null
+const moveComponentInitialState = {
+  targetComponent: null,
+  hoveredComponent: null,
+  componentType: null
 };
 
-export const moveCard = (state = moveCardInitialState, action = {}) => {
+export const moveComponent = (state = moveComponentInitialState, action = {}) => {
   switch (action.type) {
-    case SET_TARGET_CARD:
+    case SET_TARGET:
       return {
         ...state,
-        targetCard: action.payload.targetCard,
-        currentList: action.payload.currentList
+        targetComponent: action.payload.targetComponent,
+        hoveredComponent: action.payload.hoveredComponent,
+        componentType: action.payload.componentType
       };
     default:
       return state;
   }
 };
-
-const moveListInitialState = {
-  targetList: null,
-  hoveredList: null
-};
-
-export const moveList = (state = moveListInitialState, action = {}) => {
-  switch (action.type) {
-    case SET_TARGET_LIST:
-      return {
-        ...state,
-        targetList: action.payload.targetList,
-        hoveredList: action.payload.hoveredList
-      };
-    default:
-      return state;
-  }
-}

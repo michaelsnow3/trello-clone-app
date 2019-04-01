@@ -1,2 +1,3 @@
-export const SET_TARGET_CARD = 'SET_TARGET_CARD';
-export const SET_TARGET_LIST = 'SET_TARGET_LIST';
+export const SET_TARGET = 'SET_TARGET_CARD';
+export const DRAG_CARD = 'DRAG_CARD';
+export const DRAG_LIST = 'DRAG_LIST';

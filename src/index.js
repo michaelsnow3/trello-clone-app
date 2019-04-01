@@ -17,7 +17,7 @@ import {
   handleBoardTitleChange,
   handleListTitleChange
 } from './reducers/onValueChangeReducers';
-import { moveCard, moveList } from './reducers/moveComponentReducers';
+import { moveComponent } from './reducers/moveComponentReducers';
 
 import './index.css';
 
@@ -30,8 +30,7 @@ const rootReducers = combineReducers({
   boardContent,
   handleBoardTitleChange,
   handleListTitleChange,
-  moveCard,
-  moveList,
+  moveComponent,
   settingsMenu
 });
 

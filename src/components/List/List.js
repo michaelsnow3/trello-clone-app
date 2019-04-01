@@ -6,21 +6,21 @@ import editIcon from '../componentSettings/editIcon.png';
 
 // import components
 import Card from '../Card/Card';
-
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
-import { setTargetCard, setTargetList } from '../../actions/dragComponentActions';
+import { setTargetComponent } from '../../actions/moveComponentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 // import constants
 import { LIST } from '../../constants/activeBoardConstants';
+import {DRAG_CARD, DRAG_LIST} from '../../constants/moveComponentConstants'
 
 import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
-    targetCard: state.moveCard.targetCard,
-    currentList: state.moveCard.currentList,
+    targetComponent: state.moveComponent.targetComponent,
+    hoveredComponent: state.moveComponent.hoveredComponent,
     activeBoard: state.boardInfo.activeBoard
   };
 };
@@ -28,35 +28,37 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-    setTargetCard: (targetCard, currentList) =>
-      dispatch(setTargetCard(targetCard, currentList)),
+    setTargetComponent: (targetComponent, hoveredComponent, componentType) =>
+      dispatch(setTargetComponent(targetComponent, hoveredComponent, componentType)),
     toggleSettingsMenu: (menuType, targetId) =>
       dispatch(toggleSettingsMenu(menuType, targetId)),
-    setTargetList: (targetList, hoveredList) => dispatch(setTargetList(targetList, hoveredList))
   };
 };
 
 const List = ({
   list,
-  targetCard,
-  currentList,
+  targetComponent,
+  hoveredComponent,
   setBoardContent,
   activeBoard,
-  setTargetCard,
-  setTargetList,
+  setTargetComponent,
   toggleSettingsMenu
 }) => {
   const handleListDragOver = list => {
-    if (currentList && currentList.listId !== list.listId) {
+    if (hoveredComponent && hoveredComponent.listId !== list.listId) {
+      console.log(targetComponent, hoveredComponent)
       let body = {
         newList: list,
-        targetCard
+        targetCard: targetComponent
       };
 
       postFetch('/card/move', body).then(() => {
         setBoardContent(activeBoard.id);
-        setTargetCard(targetCard, list);
+        setTargetComponent(targetComponent, list, DRAG_CARD);
       });
+    }
+    else if(!hoveredComponent){
+      console.log('list hover')
     }
   };
 
@@ -65,7 +67,7 @@ const List = ({
   };
 
   const handleListClick = () => {
-    setTargetList(list, list)
+    // setTargetList(list, list)
   }
 
   const listCards = list.listCards.reduce((acc, card, i) => {
