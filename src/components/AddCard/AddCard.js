@@ -40,7 +40,8 @@ const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
 
   return (
     <div className="addCardContainer">
-      <input
+      <textarea
+        autoFocus
         className="addCardInput"
         value={titleValue}
         onChange={handleTextChange}
