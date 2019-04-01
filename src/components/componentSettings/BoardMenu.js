@@ -73,7 +73,7 @@ const BoardMenu = ({
     }
   };
 
-  const editBoardOption =
+  const editBoardTitleOption =
     showInput === EDIT_BOARD_TITLE ? (
       <EditBoard boardId={boardId} />
     ) : (
@@ -120,7 +120,7 @@ const BoardMenu = ({
           <div className="settingsOption" onClick={() => setShowAlert(true)}>
             Delete Board
           </div>
-          {editBoardOption}
+          {editBoardTitleOption}
           {addListOption}
         </div>
       );

@@ -33,7 +33,7 @@ const EditBoard = ({
   const [editBoardValue, setEditBoardValue] = useState('');
 
   const handleEditBoard = () => {
-    if(!editBoardValue) return
+    if (!editBoardValue) return;
     let body = {
       boardId,
       title: editBoardValue

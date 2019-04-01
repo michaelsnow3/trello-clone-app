@@ -14,6 +14,7 @@ import { EDIT_LIST_TITLE, ADD_CARD } from '../../constants/editOptionConstants';
 
 // import components
 import AddCard from '../AddCard/AddCard';
+import EditList from '../EditList/EditList';
 
 const mapStateToProps = state => {
   return {
@@ -69,6 +70,20 @@ const ListMenu = ({
     );
   };
 
+  const editListTitleOption = () => {
+    if (showInput === EDIT_LIST_TITLE) {
+      return <EditList boardId={boardId} listId={listId} />;
+    }
+    return (
+      <div
+        onClick={() => setShowInput(EDIT_LIST_TITLE)}
+        className="settingsOption"
+      >
+        Edit List Title
+      </div>
+    );
+  };
+
   const showAlertComponent = () => {
     if (showAlert) {
       return (
@@ -97,9 +112,7 @@ const ListMenu = ({
           <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
             Delete List
           </div>
-          <div className="settingsOption" onClick={console.log('edit')}>
-            Edit List Title
-          </div>
+          {editListTitleOption()}
           {addCardOption()}
         </div>
       );
