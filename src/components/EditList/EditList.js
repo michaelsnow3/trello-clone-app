@@ -35,11 +35,12 @@ const EditList = ({
 
   const handleEditListTitle = () => {
     let body = { listId, title: listTitleValue };
-    postFetch('/list/edit/title', body).then(() => {
-      toggleSettingsMenu();
-      setBoardContent(boardId);
-      setListTitleValue('');
-    });
+    postFetch('/list/edit/title', body)
+      .then(() => setListTitleValue(''))
+      .then(() => {
+        toggleSettingsMenu();
+        setBoardContent(boardId);
+      });
   };
 
   const handleInputChange = event => {
