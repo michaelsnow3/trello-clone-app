@@ -6,7 +6,6 @@ import editIcon from '../componentSettings/editIcon.png';
 
 // import components
 import Card from '../Card/Card';
-import AddCard from '../AddCard/AddCard';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
@@ -38,7 +37,6 @@ const mapDispatchToProps = dispatch => {
 
 const List = ({
   list,
-  boardId,
   targetCard,
   currentList,
   setBoardContent,
@@ -68,7 +66,6 @@ const List = ({
     acc.push(<Card key={i} card={card} list={list} />);
     return acc;
   }, []);
-  listCards.push(<AddCard key={-1} boardId={boardId} listId={list.listId} />);
 
   return (
     <div className="listContainer" onDragOver={() => handleListDragOver(list)}>

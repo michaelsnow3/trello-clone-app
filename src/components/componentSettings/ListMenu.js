@@ -9,6 +9,11 @@ import { postFetch } from '../../fetchRequests';
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+// import constants
+import { EDIT_LIST_TITLE, ADD_CARD } from '../../constants/editOptionConstants';
+
+// import components
+import AddCard from '../AddCard/AddCard';
 
 const mapStateToProps = state => {
   return {
@@ -32,6 +37,7 @@ const ListMenu = ({
 }) => {
   let boardId = activeBoard.id;
   let [showAlert, setShowAlert] = useState(false);
+  let [showInput, setShowInput] = useState('');
 
   const handleDeleteList = () => {
     let body = {
@@ -50,6 +56,17 @@ const ListMenu = ({
 
   const toggleShowAlert = () => {
     setShowAlert(!showAlert);
+  };
+
+  const addCardOption = () => {
+    if (showInput === ADD_CARD) {
+      return <AddCard boardId={boardId} listId={listId} />;
+    }
+    return (
+      <div onClick={() => setShowInput(ADD_CARD)} className="settingsOption">
+        Add Card
+      </div>
+    );
   };
 
   const showAlertComponent = () => {
@@ -78,11 +95,12 @@ const ListMenu = ({
       return (
         <div>
           <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
-            delete list
+            Delete List
           </div>
           <div className="settingsOption" onClick={console.log('edit')}>
-            edit list title
+            Edit List Title
           </div>
+          {addCardOption()}
         </div>
       );
     }

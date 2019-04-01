@@ -5,16 +5,18 @@ import './AddCard.css';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
+import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
-import { postFetch } from '../../fetchRequests'
+import { postFetch } from '../../fetchRequests';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
+    toggleSettingsMenu: () => dispatch(toggleSettingsMenu(null, null))
   };
 };
 
-const AddCard = ({ boardId, listId, setBoardContent }) => {
+const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
   let [titleValue, setTitleValue] = useState('');
   const handleAddCard = () => {
     // return if list has no title
@@ -23,10 +25,11 @@ const AddCard = ({ boardId, listId, setBoardContent }) => {
     let body = {
       titleValue,
       listId
-    }
+    };
     postFetch('/card/new/', body)
       .then(() => {
         setBoardContent(boardId);
+        toggleSettingsMenu()
       })
       .catch(error => console.log('error adding user card', error));
   };

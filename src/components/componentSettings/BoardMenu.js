@@ -118,7 +118,7 @@ const BoardMenu = ({
       return (
         <div>
           <div className="settingsOption" onClick={() => setShowAlert(true)}>
-            delete board
+            Delete Board
           </div>
           {editBoardOption}
           {addListOption}

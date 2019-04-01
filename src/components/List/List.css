@@ -3,6 +3,7 @@
   margin: 1rem;
   flex: 1, auto;
   border-radius: 5px;
+  min-height: 5rem;
 }
  .listTitle {
   font-weight: bold;
@@ -22,12 +23,13 @@
 }
 
 .listEditIcon {
-  display: none;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  visibility: hidden;
 }
 
 .listContainer:hover .listEditIcon{
-  display: block;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-right: 1rem;
+  visibility: inherit;
 }
