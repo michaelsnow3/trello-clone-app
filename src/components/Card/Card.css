@@ -21,3 +21,14 @@
   width: 1rem;
   margin-right: 0.5rem;
 }
+
+
+.cardEditIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  visibility: hidden;
+}
+
+.cardContainer:hover .cardEditIcon{
+  visibility: inherit;
+}
