@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import './List.css';
@@ -60,12 +60,8 @@ const List = ({
   toggleSettingsMenu,
   boardLists
 }) => {
-
-  useEffect(() => {
-    return updateListDatabase
-  })
-
-  const handleListDragOver = list => {
+  const handleListDragOver = (list, event) => {
+    event.preventDefault();
     if (
       componentType === DRAG_CARD &&
       hoveredComponent.listId !== list.listId
@@ -126,21 +122,22 @@ const List = ({
 
   return (
     <div
-      className="listContainer"
-      onDragOver={() => handleListDragOver(list)}
-      onMouseDown={handleListClick}
-      draggable
+      className="listDropZone"
+      onDragOver={(event) => handleListDragOver(list, event)}
+      onDropCapture={updateListDatabase}
     >
-      <div className="listHeader">
-        <div className="listTitle">{list.listTitle}</div>
-        <img
-          src={editIcon}
-          alt="edit icon"
-          className="listEditIcon"
-          onClick={handleEditClick}
-        />
+      <div className="listContainer" onMouseDown={handleListClick} draggable>
+        <div className="listHeader">
+          <div className="listTitle">{list.listTitle}</div>
+          <img
+            src={editIcon}
+            alt="edit icon"
+            className="listEditIcon"
+            onClick={handleEditClick}
+          />
+        </div>
+        <div className="listCards">{listCards}</div>
       </div>
-      <div className="listCards">{listCards}</div>
     </div>
   );
 };

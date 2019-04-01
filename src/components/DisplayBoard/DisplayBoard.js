@@ -51,7 +51,7 @@ function DisplayBoard({
   };
 
   return (
-    <div>
+    <div className="displayBoardContainer">
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
         <img

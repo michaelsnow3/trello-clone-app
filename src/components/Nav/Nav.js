@@ -21,7 +21,7 @@ function Users() {
 function Nav({ username }) {
   return (
     <Router>
-      <div>
+      <div className='navPages'>
         <nav className="navbar">
           <Link to={`/${username}/boards`}>Boards</Link>
           <Link to="/login/">login</Link>

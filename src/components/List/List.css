@@ -33,3 +33,7 @@
 .listContainer:hover .listEditIcon{
   visibility: inherit;
 }
+
+.listDropZone {
+  height: 100%;
+}
