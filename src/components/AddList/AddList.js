@@ -12,7 +12,8 @@ import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
-    listTitleValue: state.handleListTitleChange.value
+    listTitleValue: state.handleListTitleChange.value,
+    boardLists: state.boardContent.boardLists
   };
 };
 
@@ -28,6 +29,7 @@ const AddList = ({
   listTitleValue,
   handleListTitleChange,
   boardId,
+  boardLists,
   setBoardContent,
   toggleSettingsMenu
 }) => {
@@ -36,15 +38,16 @@ const AddList = ({
     if (!listTitleValue.length) return;
 
     let body = {
-      listTitleValue,
-      boardId
+      title: listTitleValue,
+      boardId,
+      position: boardLists.length
     };
 
     postFetch('/list/new/', body)
       .then(() => {
         setBoardContent(boardId);
         toggleSettingsMenu();
-        handleListTitleChange('')
+        handleListTitleChange('');
       })
       .catch(error => console.log('error adding user list', error));
   };
