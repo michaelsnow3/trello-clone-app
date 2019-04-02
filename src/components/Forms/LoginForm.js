@@ -7,17 +7,17 @@ import './userForm.css';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import { setUserInfo } from '../../actions/userInfoActions';
+import { getUserInfo } from '../../actions/userInfoActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserInfo: getUserBoards => setUserInfo(getUserBoards)(dispatch),
+    setUserInfo: getUserBoards => getUserInfo(getUserBoards)(dispatch),
     getUserBoards: userId => getUserBoards(userId)(dispatch)
   };
 };
 
-function LoginForm({ setUserInfo, getUserBoards }) {
+function LoginForm({ getUserInfo, getUserBoards }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);

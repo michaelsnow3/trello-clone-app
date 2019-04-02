@@ -7,17 +7,18 @@ import './userForm.css';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import { setUserInfo } from '../../actions/userInfoActions';
+import { userRegister } from '../../actions/userInfoActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserInfo: getUserBoards => setUserInfo(getUserBoards)(dispatch),
+    userRegister: (userId, username) =>
+      dispatch(userRegister(userId, username)),
     getUserBoards: userId => getUserBoards(userId)(dispatch)
   };
 };
 
-function Register({ setUserInfo, getUserBoards }) {
+function Register({ userRegister, getUserBoards }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -40,6 +41,7 @@ function Register({ setUserInfo, getUserBoards }) {
           setShowAlert('Username Exists');
           return;
         }
+        userRegister(userInfo.userId, userInfo.username);
       });
   };
 

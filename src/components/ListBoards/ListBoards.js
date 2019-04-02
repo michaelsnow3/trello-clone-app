@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './ListBoards.css';
@@ -6,6 +6,9 @@ import './ListBoards.css';
 // import components
 import Board from '../Board/Board';
 import AddBoard from '../AddBoard/AddBoard';
+
+// import actions
+import { getUserBoards } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
   return {
@@ -15,11 +18,14 @@ const mapStateToProps = state => {
   };
 };
 
-function ListBoards({ boards, getUserBoards, userId, isPending }) {
+const mapDispatchToProps = dispatch => {
+  return { getUserBoards: userId => getUserBoards(userId)(dispatch) };
+};
 
+function ListBoards({ boards, getUserBoards, userId, isPending }) {
   // return loading until user boards have been fetched
   if (isPending) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   let userBoards = boards.reduce((acc, board, i) => {
@@ -36,4 +42,7 @@ function ListBoards({ boards, getUserBoards, userId, isPending }) {
   );
 }
 
-export default connect(mapStateToProps, null)(ListBoards);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListBoards);

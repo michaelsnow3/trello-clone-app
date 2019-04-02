@@ -4,29 +4,26 @@ import {
   REQUEST_USER_INFO_FAILED,
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
-  REQUEST_BOARD_INFO_FAILED
+  REQUEST_BOARD_INFO_FAILED,
+  USER_REGISTER
 } from '../constants/userInfoConstants';
 
-import {getFetch, postFetch} from '../fetchRequests'
+import { getFetch, postFetch } from '../fetchRequests';
 
-export const setUserInfo = (getUserBoards) => dispatch => {
+export const getUserInfo = (username, getUserBoards) => dispatch => {
   dispatch({ type: REQUEST_USER_INFO_PENDING });
-  let body = {
-    username: 'mike',
-    passwordHash: 'asdf'
-  }
-  postFetch('/user/login', body)
+
+  getFetch(`/user/:${username}`)
     .then(data => data.json())
     .then(data => {
-      getUserBoards(data.userId)
+      getUserBoards(data.userId);
       dispatch({
         type: REQUEST_USER_INFO_SUCCESS,
         userId: data.userId,
         username: data.username,
         boards: data.boards
-      })
-    }
-    )
+      });
+    })
     .catch(error =>
       dispatch({ type: REQUEST_USER_INFO_FAILED, payload: error })
     );
@@ -42,4 +39,14 @@ export const getUserBoards = userId => dispatch => {
     .catch(error =>
       dispatch({ type: REQUEST_BOARD_INFO_FAILED, payload: error })
     );
+};
+
+export const userRegister = (userId, username) => {
+  return {
+    type: USER_REGISTER,
+    payload: {
+      userId,
+      username
+    }
+  };
 };

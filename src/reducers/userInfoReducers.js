@@ -4,7 +4,8 @@ import {
   REQUEST_USER_INFO_FAILED,
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
-  REQUEST_BOARD_INFO_FAILED
+  REQUEST_BOARD_INFO_FAILED,
+  USER_REGISTER
 } from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
@@ -28,6 +29,9 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
       };
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload };
+    case USER_REGISTER:
+      let { userId, username } = action.payload;
+      return { ...state, userId, username, isPending: false };
     default:
       return state;
   }
@@ -37,7 +41,7 @@ const initialStateUserBoards = {
   boards: [],
   error: null,
   isPending: true
-}
+};
 
 export const getUserBoards = (state = initialStateUserBoards, action = {}) => {
   switch (action.type) {
