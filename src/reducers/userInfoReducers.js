@@ -31,7 +31,7 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
       return { ...state, error: action.payload };
     case USER_REGISTER:
       let { userId, username } = action.payload;
-      return { ...state, userId, username, isPending: false };
+      return { ...state, userId, username };
     default:
       return state;
   }

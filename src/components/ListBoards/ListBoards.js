@@ -23,18 +23,20 @@ const mapDispatchToProps = dispatch => {
 };
 
 function ListBoards({ boards, getUserBoards, userId, isPending }) {
+  useEffect(() => {
+    getUserBoards(userId);
+  }, [userId, getUserBoards]);
+
   // return loading until user boards have been fetched
   if (isPending) {
     return <div>Loading...</div>;
   }
 
-  let userBoards = boards.reduce((acc, board, i) => {
-    // add add board card to the front of the array
-    if (i === 0) acc.push(<AddBoard key={-1} />);
+  let userBoards = [<AddBoard key={-1} />];
 
-    acc.push(<Board board={board} key={i} />);
-    return acc;
-  }, []);
+  boards.forEach((board, i) => {
+    userBoards.push(<Board board={board} key={i} />);
+  });
   return (
     <div>
       <div className="boardListContainer">{userBoards}</div>
