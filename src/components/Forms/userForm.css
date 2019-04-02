@@ -1,34 +1,38 @@
-.loginForm {
+.userForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.loginFromTitle {
+.userFormTitle {
   margin-bottom: 2rem;
   margin-top: 0.5rem;
 }
 
-.loginInputGroup {
+.userFormInputGroup {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 35%;
+  width: 30%;
   margin: 0.5rem;
 }
 
-.loginFormInput {
+.userFormInput {
   width: 65%;
   border-radius: 5px;
 }
 
-.loginFormButton {
+.userFormLabel {
+  margin: 0;
+}
+
+.userFormButton {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.loginAlert {
+.userFormAlert {
   height: 6rem;
   width: 40%;
   margin: 10% auto;
@@ -38,6 +42,6 @@
   align-items: center;
 }
 
-.loginAlertHeading {
+.userFormAlertHeading {
   font-size: 1.5rem;
 }

@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Nav.css';
 
 // import components
-import Login from '../Login/Login';
+import LoginForm from '../Forms/LoginForm';
 import ListBoards from '../ListBoards/ListBoards';
 import DisplayBoard from '../DisplayBoard/DisplayBoard';
-import Home from '../Home/Home'
+import Home from '../Home/Home';
+import Register from '../Forms/Register';
 
 const mapStateToProps = state => {
   return {
@@ -15,23 +16,19 @@ const mapStateToProps = state => {
   };
 };
 
-function Users() {
-  return <h2>Users</h2>;
-}
-
 function Nav({ username }) {
   return (
     <Router>
-      <div className='navPages'>
+      <div className="navPages">
         <nav className="navbar">
           <Link to={`/${username}/boards`}>Boards</Link>
-          <Link to="/login/">login</Link>
-          <Link to="/users/">Users</Link>
+          <Link to="/login/">Login</Link>
+          <Link to="/Register/">Register</Link>
         </nav>
 
         <Route path={`/${username}/boards`} component={ListBoards} />
-        <Route path="/login/" component={Login} />
-        <Route path="/users/" component={Users} />
+        <Route path="/login/" component={LoginForm} />
+        <Route path="/Register/" component={Register} />
         <Route path="/board/" component={DisplayBoard} />
         <Route path="/" exact component={Home} />
       </div>

@@ -2,20 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Alert } from 'react-bootstrap';
 
-import './Login.css';
+import './userForm.css';
 
 import { postFetch } from '../../fetchRequests';
 
 // import actions
 import { setUserInfo } from '../../actions/userInfoActions';
 import { getUserBoards } from '../../actions/userInfoActions';
-
-const mapStateToProps = state => {
-  return {
-    username: state.userInfo.username,
-    isPending: state.userInfo.isPending
-  };
-};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -24,7 +17,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function Login({ username, setUserInfo, getUserBoards }) {
+function LoginForm({ setUserInfo, getUserBoards }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -48,55 +41,20 @@ function Login({ username, setUserInfo, getUserBoards }) {
       });
   };
 
-  const loginForm = (
-    <div className="loginForm">
-      <h1 className="loginFromTitle">Login</h1>
-
-      <div className="loginInputGroup">
-        <h4 className="loginFormLabel">Username</h4>
-        <input
-          value={usernameValue}
-          className="loginFormInput"
-          placeholder="username"
-          onChange={event => handleValueChange(event, setUsernameValue)}
-        />
-      </div>
-
-      <div className="loginInputGroup">
-        <h4 className="loginFormLabel">Password</h4>
-        <input
-          value={passwordValue}
-          className="loginFormInput"
-          placeholder="password"
-          type="password"
-          onChange={event => handleValueChange(event, setPasswordValue)}
-        />
-      </div>
-      <Button
-        onClick={verifyLogin}
-        variant="primary"
-        type="submit"
-        className="loginFormButton"
-      >
-        Submit
-      </Button>
-    </div>
-  );
-
   const incorrectInputAlert = () => {
     if (showAlert) {
       return (
         <Alert
-          className="loginAlert"
+          className="userFormAlert"
           dismissible
           variant="warning"
           onClose={() => setShowAlert(false)}
         >
-          <Alert.Heading className='loginAlertHeading'>Incorrect username or password</Alert.Heading>
+          <Alert.Heading className="userFormAlertHeading">
+            Incorrect username or password
+          </Alert.Heading>
         </Alert>
       );
-    } else {
-      return loginForm;
     }
   };
 
@@ -104,10 +62,46 @@ function Login({ username, setUserInfo, getUserBoards }) {
     setValue(event.target.value);
   };
 
-  return <div>{incorrectInputAlert()}</div>;
+  return (
+    <div>
+      {incorrectInputAlert()}
+      <form className="userForm">
+        <h1 className="userFormTitle">Login</h1>
+
+        <div className="userFormInputGroup">
+          <h4 className="userFormLabel">Username</h4>
+          <input
+            value={usernameValue}
+            className="userFormInput"
+            placeholder="username"
+            onChange={event => handleValueChange(event, setUsernameValue)}
+          />
+        </div>
+
+        <div className="userFormInputGroup">
+          <h4 className="userFormLabel">Password</h4>
+          <input
+            value={passwordValue}
+            className="userFormInput"
+            placeholder="password"
+            type="password"
+            onChange={event => handleValueChange(event, setPasswordValue)}
+          />
+        </div>
+        <Button
+          onClick={verifyLogin}
+          variant="primary"
+          type="submit"
+          className="userFormButton"
+        >
+          Submit
+        </Button>
+      </form>
+    </div>
+  );
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
-)(Login);
+)(LoginForm);
