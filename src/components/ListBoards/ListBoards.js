@@ -47,7 +47,7 @@ function ListBoards({ boards, getUserBoards, userId, isPending }) {
 
   let userBoards = [<AddBoard key={-1} />];
 
-  if (userId) {
+  if (userId && !isPending) {
     boards.forEach((board, i) => {
       userBoards.push(<Board board={board} key={i} />);
     });
