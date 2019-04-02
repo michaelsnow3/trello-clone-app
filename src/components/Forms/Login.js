@@ -4,41 +4,23 @@ import { Button, Alert } from 'react-bootstrap';
 
 import './userForm.css';
 
-import { postFetch } from '../../fetchRequests';
-
 // import actions
-import { getUserInfo } from '../../actions/userInfoActions';
-import { getUserBoards } from '../../actions/userInfoActions';
+import { userLogin } from '../../actions/userInfoActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserInfo: getUserBoards => getUserInfo(getUserBoards)(dispatch),
-    getUserBoards: userId => getUserBoards(userId)(dispatch)
+    userLogin: (username, password) => userLogin(username, password)(dispatch)
   };
 };
 
-function LoginForm({ getUserInfo, getUserBoards }) {
+function LoginForm({ userLogin }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
-  const verifyLogin = () => {
-    let body = {
-      username: usernameValue,
-      password: passwordValue
-    };
-    postFetch('/user/login/', body)
-      .then(data => data.json())
-      .then(userInfo => {
-        if (userInfo) {
-          console.log(userInfo);
-          // input correct
-          // setUserInfo(() => getUserBoards(userId))
-        } else {
-          // input incorrect
-          return setShowAlert(true);
-        }
-      });
+  const handleLogin = event => {
+    event.preventDefault();
+    userLogin(usernameValue, passwordValue);
   };
 
   const incorrectInputAlert = () => {
@@ -89,7 +71,7 @@ function LoginForm({ getUserInfo, getUserBoards }) {
           />
         </div>
         <Button
-          onClick={verifyLogin}
+          onClick={event => handleLogin(event)}
           variant="primary"
           type="submit"
           className="userFormButton"

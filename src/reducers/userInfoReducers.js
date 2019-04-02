@@ -24,8 +24,7 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
         ...state,
         isPending: false,
         userId: action.userId,
-        username: action.username,
-        boards: action.boards
+        username: action.username
       };
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload };

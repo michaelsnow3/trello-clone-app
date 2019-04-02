@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Nav.css';
 
 // import components
-import LoginForm from '../Forms/LoginForm';
+import LoginForm from '../Forms/Login';
 import ListBoards from '../ListBoards/ListBoards';
 import DisplayBoard from '../DisplayBoard/DisplayBoard';
 import Home from '../Home/Home';

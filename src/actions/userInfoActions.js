@@ -10,18 +10,17 @@ import {
 
 import { getFetch, postFetch } from '../fetchRequests';
 
-export const getUserInfo = (username, getUserBoards) => dispatch => {
+export const userLogin = (username, password) => dispatch => {
   dispatch({ type: REQUEST_USER_INFO_PENDING });
+  let body = { username, password };
 
-  getFetch(`/user/:${username}`)
+  postFetch(`/user/login/`, body)
     .then(data => data.json())
     .then(data => {
-      getUserBoards(data.userId);
       dispatch({
         type: REQUEST_USER_INFO_SUCCESS,
         userId: data.userId,
-        username: data.username,
-        boards: data.boards
+        username: data.username
       });
     })
     .catch(error =>
