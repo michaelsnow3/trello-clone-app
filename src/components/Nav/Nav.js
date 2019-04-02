@@ -9,6 +9,7 @@ import ListBoards from '../ListBoards/ListBoards';
 import DisplayBoard from '../DisplayBoard/DisplayBoard';
 import Home from '../Home/Home';
 import Register from '../Forms/Register';
+import Logout from '../Logout/Logout';
 
 const mapStateToProps = state => {
   return {
@@ -21,14 +22,20 @@ function Nav({ username }) {
     <Router>
       <div className="navPages">
         <nav className="navbar">
-          <Link to={`/${username}/boards`}>Boards</Link>
-          <Link to="/login/">Login</Link>
-          <Link to="/Register/">Register</Link>
+          <div>
+            <Link to={`/${username}/boards`}>Boards</Link>
+            <Link to="/login/">Login</Link>
+            <Link to="/register/">Register</Link>
+          </div>
+          <div>
+            <Link to="/logout">Logout</Link>
+          </div>
         </nav>
 
         <Route path={`/${username}/boards`} component={ListBoards} />
         <Route path="/login/" component={LoginForm} />
-        <Route path="/Register/" component={Register} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/register/" component={Register} />
         <Route path="/board/" component={DisplayBoard} />
         <Route path="/" exact component={Home} />
       </div>

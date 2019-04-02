@@ -5,7 +5,8 @@ import {
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
-  USER_REGISTER
+  USER_REGISTER,
+  USER_LOGOUT
 } from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
@@ -31,6 +32,8 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
     case USER_REGISTER:
       let { userId, username } = action.payload;
       return { ...state, userId, username };
+    case USER_LOGOUT:
+      return { ...state, userId: null, username: null };
     default:
       return state;
   }

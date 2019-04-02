@@ -5,7 +5,8 @@ import {
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
-  USER_REGISTER
+  USER_REGISTER,
+  USER_LOGOUT
 } from '../constants/userInfoConstants';
 
 import { getFetch, postFetch } from '../fetchRequests';
@@ -48,4 +49,8 @@ export const userRegister = (userId, username) => {
       username
     }
   };
+};
+
+export const userLogout = () => {
+  return { type: USER_LOGOUT };
 };
