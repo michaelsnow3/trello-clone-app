@@ -36,7 +36,10 @@ function Register({ setUserInfo, getUserBoards }) {
     postFetch('/user/register/', body)
       .then(data => data.json())
       .then(userInfo => {
-        console.log(userInfo);
+        if (userInfo.error) {
+          setShowAlert('Username Exists');
+          return;
+        }
       });
   };
 
