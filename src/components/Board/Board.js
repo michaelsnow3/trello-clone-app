@@ -26,16 +26,21 @@ const Board = ({ board, setBoardInfo, setBoardContent }) => {
     history.push('/board');
   };
 
+  let parsedTitle = boardTitle.slice(0, 55)
+  if (boardTitle.length > 55) {
+    parsedTitle += '...'
+  }
+
   return (
     <Route
       render={({ history }) => (
         <div className={boardClass} onClick={() => handleBoardClick(history)}>
-          {boardTitle}
+          {parsedTitle}
         </div>
       )}
     />
   );
-}
+};
 
 export default connect(
   null,

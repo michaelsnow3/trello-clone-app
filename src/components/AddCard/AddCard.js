@@ -29,6 +29,8 @@ const AddCard = ({ boardId, listId, setBoardContent }) => {
       titleValue,
       listId
     };
+    setTitleValue('');
+
     postFetch('/card/new/', body)
       .then(() => {
         setBoardContent(boardId);

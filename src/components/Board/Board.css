@@ -1,5 +1,5 @@
 .boardContainer {
-  min-height: 5rem;
+  height: 5rem;
   width: 150px;
   border: 1px solid black;
   background-color: rgb(147, 214, 147);
