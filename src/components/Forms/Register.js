@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Alert } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 import './userForm.css';
 
@@ -10,6 +11,12 @@ import { postFetch } from '../../fetchRequests';
 import { userRegister } from '../../actions/userInfoActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
+const mapStateToProps = state => {
+  return {
+    username: state.userInfo.username
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     userRegister: (userId, username) =>
@@ -18,7 +25,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function Register({ userRegister, getUserBoards }) {
+function Register({ userRegister, username }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -43,6 +50,12 @@ function Register({ userRegister, getUserBoards }) {
         }
         userRegister(userInfo.userId, userInfo.username);
       });
+  };
+
+  const renderRedirect = () => {
+    if (username) {
+      return <Redirect to={`/${username}/boards`} />;
+    }
   };
 
   const incorrectInputAlert = () => {
@@ -101,10 +114,15 @@ function Register({ userRegister, getUserBoards }) {
     setValue(event.target.value);
   };
 
-  return <div>{incorrectInputAlert()}</div>;
+  return (
+    <div>
+      {renderRedirect()}
+      {incorrectInputAlert()}
+    </div>
+  );
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Register);

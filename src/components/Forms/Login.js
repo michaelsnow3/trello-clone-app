@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Alert } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 import './userForm.css';
 
 // import actions
 import { userLogin } from '../../actions/userInfoActions';
+
+const mapStateToProps = state => {
+  return {username: state.userInfo.username}
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -13,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function LoginForm({ userLogin }) {
+function LoginForm({ userLogin, username }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -44,8 +49,15 @@ function LoginForm({ userLogin }) {
     setValue(event.target.value);
   };
 
+  const renderRedirect = () => {
+    if(username) {
+      return <Redirect to={`/${username}/boards`} />
+    }
+  }
+
   return (
     <div>
+      {renderRedirect()}
       {incorrectInputAlert()}
       <form className="userForm">
         <h1 className="userFormTitle">Login</h1>
@@ -86,6 +98,6 @@ function LoginForm({ userLogin }) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
