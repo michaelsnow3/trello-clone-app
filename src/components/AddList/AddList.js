@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap'
 
 import './AddList.css';
 
 // import actions
 import { handleListTitleChange } from '../../actions/onValueChangeActions';
 import { setBoardContent } from '../../actions/boardContentActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 import { postFetch } from '../../fetchRequests';
 
@@ -21,8 +20,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleListTitleChange: value => dispatch(handleListTitleChange(value)),
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-    toggleSettingsMenu: () => dispatch(toggleSettingsMenu(null, null))
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
   };
 };
 
@@ -31,8 +29,7 @@ const AddList = ({
   handleListTitleChange,
   boardId,
   boardLists,
-  setBoardContent,
-  toggleSettingsMenu
+  setBoardContent
 }) => {
   const handleAddList = () => {
     // return if list has no title

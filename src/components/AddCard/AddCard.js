@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 import './AddCard.css';
 
 // import actions
 import { setBoardContent } from '../../actions/boardContentActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
-
 import { postFetch } from '../../fetchRequests';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-    toggleSettingsMenu: () => dispatch(toggleSettingsMenu(null, null))
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
   };
 };
 
-const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
+const AddCard = ({ boardId, listId, setBoardContent }) => {
   let [titleValue, setTitleValue] = useState('');
+  let [showInput, setShowInput] = useState(false);
+
   const handleAddCard = () => {
     // return if list has no title
-    if (!titleValue.length) return;
+    if (!titleValue.length) {
+      setShowInput(false);
+      return;
+    }
 
     let body = {
       titleValue,
@@ -29,7 +32,7 @@ const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
     postFetch('/card/new/', body)
       .then(() => {
         setBoardContent(boardId);
-        toggleSettingsMenu()
+        setShowInput(false);
       })
       .catch(error => console.log('error adding user card', error));
   };
@@ -37,6 +40,14 @@ const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
   const handleTextChange = event => {
     setTitleValue(event.target.value);
   };
+
+  if (!showInput) {
+    return (
+      <div onClick={() => setShowInput(true)} className="addCardPlaceholder">
+        add card
+      </div>
+    );
+  }
 
   return (
     <div className="addCardContainer">
@@ -46,7 +57,9 @@ const AddCard = ({ boardId, listId, setBoardContent, toggleSettingsMenu }) => {
         value={titleValue}
         onChange={handleTextChange}
       />
-      <button onClick={handleAddCard}>add card</button>
+      <Button className="addCardButton" onClick={handleAddCard}>
+        add
+      </Button>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import editIcon from '../componentSettings/editIcon.png';
 
 // import components
 import Card from '../Card/Card';
+import AddCard from '../AddCard/AddCard';
+
 // import actions
 import {
   setBoardContent,
@@ -120,10 +122,14 @@ const List = ({
     return acc;
   }, []);
 
+  listCards.push(
+    <AddCard key={-1} boardId={activeBoard.id} listId={list.listId} />
+  );
+
   return (
     <div
       className="listDropZone"
-      onDragOver={(event) => handleListDragOver(list, event)}
+      onDragOver={event => handleListDragOver(list, event)}
       onDropCapture={updateListDatabase}
     >
       <div className="listContainer" onMouseDown={handleListClick} draggable>

@@ -38,7 +38,7 @@ function DisplayBoard({
 
   const sortedBoardLists = boardLists.sort((a, b) => {
     return a.listPosition - b.listPosition;
-  });
+  })
 
   let boardListComponents = sortedBoardLists.reduce((acc, list, i) => {
     acc.push(<List key={i} list={list} boardId={boardId} />);

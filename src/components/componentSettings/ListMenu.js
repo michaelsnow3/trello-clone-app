@@ -10,10 +10,9 @@ import { postFetch } from '../../fetchRequests';
 import { setBoardContent } from '../../actions/boardContentActions';
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 // import constants
-import { EDIT_LIST_TITLE, ADD_CARD } from '../../constants/editOptionConstants';
+import { EDIT_LIST_TITLE } from '../../constants/editOptionConstants';
 
 // import components
-import AddCard from '../AddCard/AddCard';
 import EditList from '../EditList/EditList';
 
 const mapStateToProps = state => {
@@ -59,17 +58,6 @@ const ListMenu = ({
     setShowAlert(!showAlert);
   };
 
-  const addCardOption = () => {
-    if (showInput === ADD_CARD) {
-      return <AddCard boardId={boardId} listId={listId} />;
-    }
-    return (
-      <div onClick={() => setShowInput(ADD_CARD)} className="settingsOption">
-        Add Card
-      </div>
-    );
-  };
-
   const editListTitleOption = () => {
     if (showInput === EDIT_LIST_TITLE) {
       return <EditList boardId={boardId} listId={listId} />;
@@ -113,7 +101,6 @@ const ListMenu = ({
             Delete List
           </div>
           {editListTitleOption()}
-          {addCardOption()}
         </div>
       );
     }
