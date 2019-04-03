@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 import './menus.css';
 
 // import components
-import AddList from '../AddList/AddList';
 import EditBoard from '../EditBoard/EditBoard';
 
 // import actions
@@ -15,7 +14,6 @@ import { toggleSettingsMenu } from '../../actions/activeBoardActions';
 
 // import constants
 import {
-  ADD_LIST,
   EDIT_BOARD_TITLE
 } from '../../constants/editOptionConstants';
 
@@ -84,17 +82,6 @@ const BoardMenu = ({
         Edit Board Title
       </div>
     );
-  const addListOption =
-    showInput === ADD_LIST ? (
-      <AddList boardId={boardId} className="inputOption" />
-    ) : (
-      <div
-        onClick={() => setShowInput(ADD_LIST)}
-        className="settingsOption"
-      >
-        Add List
-      </div>
-    );
 
   // display alert message or button
   const deleteVerification = () => {
@@ -121,7 +108,6 @@ const BoardMenu = ({
             Delete Board
           </div>
           {editBoardTitleOption}
-          {addListOption}
         </div>
       );
     }

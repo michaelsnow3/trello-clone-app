@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 import './AddList.css';
 
@@ -46,7 +47,6 @@ const AddList = ({
     postFetch('/list/new/', body)
       .then(() => {
         setBoardContent(boardId);
-        toggleSettingsMenu();
         handleListTitleChange('');
       })
       .catch(error => console.log('error adding user list', error));
@@ -58,10 +58,18 @@ const AddList = ({
 
   return (
     <div className="addListContainer">
-      <div className="addListInput">
-        <input autoFocus value={listTitleValue} onChange={handleTextChange} />
+      <div>
+        <input
+          className="addListInput"
+          autoFocus
+          value={listTitleValue}
+          onChange={handleTextChange}
+          placeholder="list title"
+        />
       </div>
-      <button onClick={handleAddList}>add list</button>
+      <Button className="addListButton" onClick={handleAddList}>
+        add list
+      </Button>
     </div>
   );
 };

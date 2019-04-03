@@ -7,6 +7,7 @@ import editIcon from '../componentSettings/editIcon.png';
 // import components
 import List from '../List/List';
 import SettingsMenu from '../componentSettings/SettingsMenu';
+import AddList from '../AddList/AddList';
 
 // import actions
 import { toggleSettingsMenu } from '../../actions/activeBoardActions';
@@ -44,6 +45,8 @@ function DisplayBoard({
     return acc;
   }, []);
 
+  boardListComponents.push(<AddList key={-1} boardId={boardId} />)
+
   const settingsMenuComponent = () => {
     if (showMenu) {
       return <SettingsMenu />;
@@ -62,7 +65,7 @@ function DisplayBoard({
         />
       </div>
       {settingsMenuComponent()}
-      <div className="boardLists">{boardListComponents}</div>
+        <div className="boardLists">{boardListComponents}</div>
     </div>
   );
 }

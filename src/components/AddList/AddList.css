@@ -1,6 +1,23 @@
 .addListContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   font-size: 1rem;
+  min-height: 5rem;
+  background-color: rgb(48, 133, 172);
+  margin: 1rem;
+  padding: 1rem 0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addListInput {
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.addListButton {
+  background-color: rgb(145, 205, 212);
+  color: black;
 }
