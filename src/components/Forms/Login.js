@@ -57,6 +57,7 @@ function LoginForm({ userLogin }) {
             className="userFormInput"
             placeholder="username"
             onChange={event => handleValueChange(event, setUsernameValue)}
+            autoComplete="username"
           />
         </div>
 
@@ -68,6 +69,7 @@ function LoginForm({ userLogin }) {
             placeholder="password"
             type="password"
             onChange={event => handleValueChange(event, setPasswordValue)}
+            autoComplete="current-password"
           />
         </div>
         <Button

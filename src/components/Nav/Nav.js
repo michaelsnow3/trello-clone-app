@@ -18,19 +18,29 @@ const mapStateToProps = state => {
 };
 
 function Nav({ username }) {
+  const navbarComponent = () => {
+    if (username) {
+      // logged in
+      return (
+        <div className="loggedIn">
+          <Link to={`/${username}/boards`}>Boards</Link>
+          <Link to="/logout">Logout</Link>
+        </div>
+      );
+    } else {
+      // logged out
+      return (
+        <div>
+          <Link to="/login/">Login</Link>
+          <Link to="/register/">Register</Link>
+        </div>
+      );
+    }
+  };
   return (
     <Router>
       <div className="navPages">
-        <nav className="navbar">
-          <div>
-            <Link to={`/${username}/boards`}>Boards</Link>
-            <Link to="/login/">Login</Link>
-            <Link to="/register/">Register</Link>
-          </div>
-          <div>
-            <Link to="/logout">Logout</Link>
-          </div>
-        </nav>
+        <nav className='navbar'>{navbarComponent()}</nav>
 
         <Route path={`/${username}/boards`} component={ListBoards} />
         <Route path="/login/" component={LoginForm} />
