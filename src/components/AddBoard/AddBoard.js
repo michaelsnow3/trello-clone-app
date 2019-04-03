@@ -36,10 +36,13 @@ const AddBoard = ({
     let body = {
       boardTitleValue,
       userId
-    }
+    };
     postFetch('/board/new/', body)
       .then(data => data.json())
-      .then(() => getUserBoards(userId))
+      .then(() => {
+        getUserBoards(userId);
+        handleBoardTitleChange('');
+      })
       .catch(error => console.log('error adding/fetching user boards', error));
   };
 
