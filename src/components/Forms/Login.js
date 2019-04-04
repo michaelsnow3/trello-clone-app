@@ -9,8 +9,8 @@ import './userForm.css';
 import { userLogin } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
-  return {username: state.userInfo.username}
-}
+  return { username: state.userInfo.username };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function LoginForm({ userLogin, username }) {
+function LoginForm({ userLogin, username, cookies }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -50,10 +50,10 @@ function LoginForm({ userLogin, username }) {
   };
 
   const renderRedirect = () => {
-    if(username) {
-      return <Redirect to={`/${username}/boards`} />
+    if (username) {
+      return <Redirect to={`/${username}/boards`} />;
     }
-  }
+  };
 
   return (
     <div>

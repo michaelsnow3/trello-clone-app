@@ -17,7 +17,7 @@ const mapStateToProps = state => {
   };
 };
 
-function Nav({ username }) {
+function Nav({ username, cookies }) {
   const navbarComponent = () => {
     if (username) {
       // logged in
@@ -40,14 +40,17 @@ function Nav({ username }) {
   return (
     <Router>
       <div className="navPages">
-        <nav className='navbar'>{navbarComponent()}</nav>
+        <nav className="navbar">{navbarComponent()}</nav>
 
-        <Route path={`/${username}/boards`} component={ListBoards} />
+        <Route
+          path={`/${username}/boards`}
+          render={() => <ListBoards cookies={cookies} />}
+        />
         <Route path="/login/" component={LoginForm} />
         <Route path="/logout" component={Logout} />
         <Route path="/register/" component={Register} />
         <Route path="/board/" component={DisplayBoard} />
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact render={() => <Home cookies={cookies} />} />
       </div>
     </Router>
   );

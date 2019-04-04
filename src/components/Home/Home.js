@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Home = () => {
-  const [redirectPath, setRedirectPath] = useState('/login/');
-  const renderRedirect = () => {
-    if (redirectPath) {
-      return <Redirect to={redirectPath} />;
-    }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cookies: ownProps.cookies
   };
-
-  return renderRedirect();
 };
 
-export default Home;
+const mapDispatchToProps = dispatch => {};
+
+const Home = () => {
+  return <div>{'cookie'}</div>;
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
