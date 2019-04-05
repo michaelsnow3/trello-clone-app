@@ -8,6 +8,7 @@
   margin-top: 25px;
   font-size: 1rem;
   word-wrap: break-word;
+  position: relative;
 }
 
 .boardContainer:hover {
@@ -15,6 +16,12 @@
   background-color: rgb(173, 233, 173);
 }
 
-.favourite {
-  font-weight: bold;
+.favouriteStar {
+  height: 1rem;
+  width: 1rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

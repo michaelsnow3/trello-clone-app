@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const Home = ({ setUserInfo, redirectPath }) => {
-  const verifyUser = () => {
+  useEffect(() => {
     getFetch(`/user/verify/${localStorage.getItem('jwt')}`)
       .then(data => data.json())
       .then(userInfo => {
@@ -34,9 +34,7 @@ const Home = ({ setUserInfo, redirectPath }) => {
       .catch(() => {
         setUserInfo(null, null, `/login/`);
       });
-  };
-
-  verifyUser();
+  });
 
   const renderRedirect = path => {
     if (redirectPath) {

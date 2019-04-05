@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './Board.css';
 import { Route } from 'react-router-dom';
+
+import './Board.css';
+import emptyStarIcon from './emptyStarIcon.png';
+import goldStarIcon from './goldStarIcon.png';
 
 // import actions
 import { setBoardInfo } from '../../actions/activeBoardActions';
@@ -16,26 +19,29 @@ const mapDispatchToProps = dispatch => {
 
 const Board = ({ board, setBoardInfo, setBoardContent }) => {
   const boardTitle = board.title;
-  const boardClass = board.favourite
-    ? 'boardContainer favourite'
-    : 'boardContainer';
+
+  const starIcon = board.favourite ? goldStarIcon : emptyStarIcon;
 
   const handleBoardClick = history => {
     setBoardInfo(board);
     setBoardContent(board.id);
     history.push('/board');
   };
+  let parsedTitle = boardTitle.slice(0, 45);
 
-  let parsedTitle = boardTitle.slice(0, 55)
-  if (boardTitle.length > 55) {
-    parsedTitle += '...'
+  if (boardTitle.length > 45) {
+    parsedTitle += '...';
   }
 
   return (
     <Route
       render={({ history }) => (
-        <div className={boardClass} onClick={() => handleBoardClick(history)}>
+        <div
+          className="boardContainer"
+          onClick={() => handleBoardClick(history)}
+        >
           {parsedTitle}
+          <img className="favouriteStar" src={starIcon} alt="favourite star" />
         </div>
       )}
     />
