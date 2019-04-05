@@ -5,13 +5,14 @@ import {
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
-  USER_REGISTER,
+  SET_USER_INFO,
   USER_LOGOUT
 } from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
   userId: null,
   username: null,
+  redirectPath: null,
   error: null,
   isPending: true
 };
@@ -24,14 +25,18 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
       return {
         ...state,
         isPending: false,
-        userId: action.userId,
-        username: action.username
+        userId: action.payload.userId,
+        username: action.payload.username
       };
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload };
-    case USER_REGISTER:
-      let { userId, username } = action.payload;
-      return { ...state, userId, username };
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userId: action.payload.userId,
+        username: action.payload.username,
+        redirectPath: action.payload.redirectPath
+      };
     case USER_LOGOUT:
       return { ...state, userId: null, username: null };
     default:

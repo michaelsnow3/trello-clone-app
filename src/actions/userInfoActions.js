@@ -5,7 +5,7 @@ import {
   REQUEST_BOARD_INFO_PENDING,
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
-  USER_REGISTER,
+  SET_USER_INFO,
   USER_LOGOUT
 } from '../constants/userInfoConstants';
 
@@ -18,10 +18,13 @@ export const userLogin = (username, password) => dispatch => {
   postFetch(`/user/login/`, body)
     .then(data => data.json())
     .then(data => {
+      localStorage.setItem('jwt', data.token);
       dispatch({
         type: REQUEST_USER_INFO_SUCCESS,
-        userId: data.userId,
-        username: data.username
+        payload: {
+          userId: data.userId,
+          username: data.username
+        }
       });
     })
     .catch(error =>
@@ -41,12 +44,13 @@ export const getUserBoards = userId => dispatch => {
     );
 };
 
-export const userRegister = (userId, username) => {
+export const setUserInfo = (userId, username, redirectPath) => {
   return {
-    type: USER_REGISTER,
+    type: SET_USER_INFO,
     payload: {
       userId,
-      username
+      username,
+      redirectPath
     }
   };
 };
