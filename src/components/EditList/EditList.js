@@ -6,13 +6,13 @@ import './EditList.css';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
-import { setBoardContent } from '../../actions/boardContentActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
+import { setBoardContent } from '../../actions/boardActions';
 
 const mapStateToProps = state => {
   return {
     listId: state.settingsMenu.targetId,
-    activeBoard: state.boardInfo.activeBoard
+    activeBoard: state.activeBoard.board
   };
 };
 

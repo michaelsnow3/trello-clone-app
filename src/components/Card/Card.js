@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './Card.css';
-import editIcon from '../componentSettings/editIcon.png';
+import editIcon from '../ComponentMenus/editIcon.png';
 
 // import actions
 import { setTargetComponent } from '../../actions/moveComponentActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import { CARD } from '../../constants/activeBoardConstants';
+import { CARD } from '../../constants/boardConstants';
 import { DRAG_CARD } from '../../constants/moveComponentConstants';
 
 const mapDispatchToProps = dispatch => {

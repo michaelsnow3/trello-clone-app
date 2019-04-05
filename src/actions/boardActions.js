@@ -2,8 +2,10 @@ import {
   REQUEST_BOARD_CONTENT_PENDING,
   REQUEST_BOARD_CONTENT_SUCCESS,
   REQUEST_BOARD_CONTENT_FAILED,
-  UPDATE_LIST_POSITION
-} from '../constants/boardContentConstants';
+  UPDATE_LIST_POSITION,
+  SET_ACTIVE_BOARD,
+  TOGGLE_SETTINGS_MENU
+} from '../constants/boardConstants';
 
 import { getFetch } from '../fetchRequests';
 
@@ -24,4 +26,12 @@ export const setBoardContent = boardId => dispatch => {
 
 export const updateListPosition = boardLists => {
   return { type: UPDATE_LIST_POSITION, payload: { boardLists } };
+};
+
+export const setBoardInfo = board => {
+  return { type: SET_ACTIVE_BOARD, payload: { board } };
+};
+
+export const toggleSettingsMenu = (menuType, targetId) => {
+  return { type: TOGGLE_SETTINGS_MENU, payload: { menuType, targetId } };
 };

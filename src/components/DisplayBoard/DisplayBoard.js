@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './DisplayBoard.css';
-import editIcon from '../componentSettings/editIcon.png';
+import editIcon from '../ComponentMenus/editIcon.png';
 import emptyStarIcon from '../Board/emptyStarIcon.png';
 import goldStarIcon from '../Board/goldStarIcon.png';
 
@@ -10,17 +10,17 @@ import { postFetch } from '../../fetchRequests';
 
 // import components
 import List from '../List/List';
-import SettingsMenu from '../componentSettings/SettingsMenu';
+import SettingsMenu from '../ComponentMenus/SettingsMenu';
 import AddList from '../AddList/AddList';
 
 // import actions
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import { BOARD } from '../../constants/activeBoardConstants';
+import { BOARD } from '../../constants/boardConstants';
 
 const mapStateToProps = state => ({
-  activeBoard: state.boardInfo.activeBoard,
+  activeBoard: state.activeBoard.board,
   boardLists: state.boardContent.boardLists,
   showMenu: state.settingsMenu.showMenu
 });

@@ -7,18 +7,16 @@ import './menus.css';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import { setBoardContent } from '../../actions/boardContentActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
-// import constants
-import { EDIT_LIST_TITLE } from '../../constants/editOptionConstants';
+import { setBoardContent } from '../../actions/boardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import components
-import EditList from '../EditList/EditList';
+import EditCard from '../EditCard/EditCard';
 
 const mapStateToProps = state => {
   return {
-    activeBoard: state.boardInfo.activeBoard,
-    listId: state.settingsMenu.targetId
+    activeBoard: state.activeBoard.board,
+    cardId: state.settingsMenu.targetId
   };
 };
 
@@ -29,21 +27,21 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ListMenu = ({
-  listId,
+const CardMenu = ({
+  cardId,
   activeBoard,
   setBoardContent,
   toggleSettingsMenu
 }) => {
   let boardId = activeBoard.id;
   let [showAlert, setShowAlert] = useState(false);
-  let [showInput, setShowInput] = useState('');
+  let [showInput, setShowInput] = useState(false);
 
-  const handleDeleteList = () => {
+  const handleDeleteCard = () => {
     let body = {
-      listId
+      cardId
     };
-    postFetch('/list/del/', body)
+    postFetch('/card/del/', body)
       .then(() => {
         setBoardContent(boardId);
       })
@@ -51,23 +49,20 @@ const ListMenu = ({
         toggleShowAlert();
         toggleSettingsMenu();
       })
-      .catch(error => console.log('error deleting list', error));
+      .catch(error => console.log('error deleting card', error));
   };
 
   const toggleShowAlert = () => {
     setShowAlert(!showAlert);
   };
 
-  const editListTitleOption = () => {
-    if (showInput === EDIT_LIST_TITLE) {
-      return <EditList boardId={boardId} listId={listId} />;
+  const editCardTitleOption = () => {
+    if (showInput) {
+      return <EditCard boardId={boardId} cardId={cardId} />;
     }
     return (
-      <div
-        onClick={() => setShowInput(EDIT_LIST_TITLE)}
-        className="settingsOption"
-      >
-        Edit List Title
+      <div className="settingsOption" onClick={() => setShowInput(true)}>
+        edit card title
       </div>
     );
   };
@@ -76,16 +71,16 @@ const ListMenu = ({
     if (showAlert) {
       return (
         <Alert
-          className="listAlert"
+          className="cardAlert"
           dismissible
           variant="danger"
           onClose={toggleShowAlert}
         >
           <Alert.Heading className="alertHeaderText">
-            Delete List?
+            Delete Card?
           </Alert.Heading>
           <div className="alertOptions">
-            <div onClick={handleDeleteList} className="alertText">
+            <div onClick={handleDeleteCard} className="alertText">
               Yes
             </div>
             <div onClick={toggleShowAlert} className="alertText">
@@ -98,9 +93,9 @@ const ListMenu = ({
       return (
         <div>
           <div className="settingsOption" onClick={() => toggleShowAlert(true)}>
-            Delete List
+            delete card
           </div>
-          {editListTitleOption()}
+          {editCardTitleOption()}
         </div>
       );
     }
@@ -112,4 +107,4 @@ const ListMenu = ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListMenu);
+)(CardMenu);

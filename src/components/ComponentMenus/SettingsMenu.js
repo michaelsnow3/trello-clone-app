@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BOARD, LIST, CARD } from '../../constants/activeBoardConstants';
+import { BOARD, LIST, CARD } from '../../constants/boardConstants';
 
 // import components
-import BoardMenu from '../componentSettings/BoardMenu';
-import ListMenu from '../componentSettings/ListMenu';
-import CardMenu from '../componentSettings/CardMenu';
+import BoardMenu from '../ComponentMenus/BoardMenu';
+import ListMenu from '../ComponentMenus/ListMenu';
+import CardMenu from '../ComponentMenus/CardMenu';
 
 // import actions
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 const mapStateToProps = state => {
   return {

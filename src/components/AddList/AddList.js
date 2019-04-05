@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 
 import './AddList.css';
 
 // import actions
 import { handleListTitleChange } from '../../actions/onValueChangeActions';
-import { setBoardContent } from '../../actions/boardContentActions';
+import { setBoardContent } from '../../actions/boardActions';
 
 import { postFetch } from '../../fetchRequests';
 

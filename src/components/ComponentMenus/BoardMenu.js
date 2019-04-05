@@ -10,18 +10,16 @@ import EditBoard from '../EditBoard/EditBoard';
 
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import {
-  EDIT_BOARD_TITLE
-} from '../../constants/editOptionConstants';
+import { EDIT_BOARD_TITLE } from '../../constants/editOptionConstants';
 
 import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
-    activeBoard: state.boardInfo.activeBoard,
+    activeBoard: state.activeBoard.board,
     username: state.userInfo.username,
     userId: state.userInfo.userId
   };

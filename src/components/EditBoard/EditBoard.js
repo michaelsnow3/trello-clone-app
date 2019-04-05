@@ -4,16 +4,13 @@ import { connect } from 'react-redux';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import {
-  toggleSettingsMenu,
-  setBoardInfo
-} from '../../actions/activeBoardActions';
+import { toggleSettingsMenu, setBoardInfo } from '../../actions/boardActions';
 
 import './EditBoard.css';
 
 const mapStateToProps = state => {
   return {
-    activeBoard: state.boardInfo.activeBoard
+    activeBoard: state.activeBoard.board
   };
 };
 

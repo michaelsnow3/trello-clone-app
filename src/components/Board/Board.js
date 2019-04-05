@@ -7,8 +7,7 @@ import emptyStarIcon from './emptyStarIcon.png';
 import goldStarIcon from './goldStarIcon.png';
 
 // import actions
-import { setBoardInfo } from '../../actions/activeBoardActions';
-import { setBoardContent } from '../../actions/boardContentActions';
+import { setBoardInfo, setBoardContent } from '../../actions/boardActions';
 import { getUserBoards } from '../../actions/userInfoActions';
 
 import { postFetch } from '../../fetchRequests';

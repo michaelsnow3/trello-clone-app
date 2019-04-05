@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './List.css';
-import editIcon from '../componentSettings/editIcon.png';
+import editIcon from '../ComponentMenus/editIcon.png';
 
 // import components
 import Card from '../Card/Card';
@@ -12,12 +12,12 @@ import AddCard from '../AddCard/AddCard';
 import {
   setBoardContent,
   updateListPosition
-} from '../../actions/boardContentActions';
+} from '../../actions/boardActions';
 import { setTargetComponent } from '../../actions/moveComponentActions';
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import { LIST } from '../../constants/activeBoardConstants';
+import { LIST } from '../../constants/boardConstants';
 import { DRAG_CARD, DRAG_LIST } from '../../constants/moveComponentConstants';
 
 import { postFetch } from '../../fetchRequests';
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
     targetComponent: state.moveComponent.targetComponent,
     hoveredComponent: state.moveComponent.hoveredComponent,
     componentType: state.moveComponent.componentType,
-    activeBoard: state.boardInfo.activeBoard,
+    activeBoard: state.activeBoard.board,
     boardLists: state.boardContent.boardLists
   };
 };

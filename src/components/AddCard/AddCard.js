@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import './AddCard.css';
 
 // import actions
-import { setBoardContent } from '../../actions/boardContentActions';
+import { setBoardContent } from '../../actions/boardActions';
 import { postFetch } from '../../fetchRequests';
 
 const mapDispatchToProps = dispatch => {

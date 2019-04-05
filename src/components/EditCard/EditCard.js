@@ -6,13 +6,13 @@ import './EditCard.css';
 import { postFetch } from '../../fetchRequests';
 
 // import actions
-import { toggleSettingsMenu } from '../../actions/activeBoardActions';
-import { setBoardContent } from '../../actions/boardContentActions';
+import { toggleSettingsMenu } from '../../actions/boardActions';
+import { setBoardContent } from '../../actions/boardActions';
 
 const mapStateToProps = state => {
   return {
     cardId: state.settingsMenu.targetId,
-    activeBoard: state.boardInfo.activeBoard
+    activeBoard: state.activeBoard.board
   };
 };
 
@@ -54,7 +54,9 @@ const EditCard = ({
         value={cardTitleValue}
         className="editCardInput"
       />
-      <button className='editCardButton' onClick={handleEditCardTitle}>edit title</button>
+      <button className="editCardButton" onClick={handleEditCardTitle}>
+        edit title
+      </button>
     </div>
   );
 };

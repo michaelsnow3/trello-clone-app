@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './components/App/App';
@@ -11,8 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 // import reducers
 import { userInfo, getUserBoards } from './reducers/userInfoReducers';
-import { boardInfo, settingsMenu } from './reducers/activeBoardReducers';
-import { boardContent } from './reducers/boardContentReducers';
+import {
+  boardContent,
+  activeBoard,
+  settingsMenu
+} from './reducers/boardReducers';
 import {
   handleBoardTitleChange,
   handleListTitleChange
@@ -21,12 +22,15 @@ import { moveComponent } from './reducers/moveComponentReducers';
 
 import './index.css';
 
+// redux middlewatre
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 const logger = createLogger();
 
 const rootReducers = combineReducers({
   userInfo,
   getUserBoards,
-  boardInfo,
+  activeBoard,
   boardContent,
   handleBoardTitleChange,
   handleListTitleChange,
