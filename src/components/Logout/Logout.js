@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => {
 
 const Logout = ({ userLogout }) => {
   userLogout();
+  localStorage.removeItem('jwt');
   return <Redirect to={`/login/`} />;
 };
 
