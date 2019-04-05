@@ -9,15 +9,34 @@ import goldStarIcon from './goldStarIcon.png';
 // import actions
 import { setBoardInfo } from '../../actions/activeBoardActions';
 import { setBoardContent } from '../../actions/boardContentActions';
+import { getUserBoards } from '../../actions/userInfoActions';
+
+import { postFetch } from '../../fetchRequests';
+
+const mapStateToProps = state => {
+  return {
+    userId: state.userInfo.userId,
+    username: state.userInfo.username,
+    favourite: state.setBoardContent
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     setBoardInfo: activeBoard => dispatch(setBoardInfo(activeBoard)),
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch)
+    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
+    getUserBoards: userId => dispatch(getUserBoards(userId))
   };
 };
 
-const Board = ({ board, setBoardInfo, setBoardContent }) => {
+const Board = ({
+  board,
+  userId,
+  username,
+  setBoardInfo,
+  setBoardContent,
+  getUserBoards
+}) => {
   const boardTitle = board.title;
 
   const starIcon = board.favourite ? goldStarIcon : emptyStarIcon;
@@ -33,6 +52,15 @@ const Board = ({ board, setBoardInfo, setBoardContent }) => {
     parsedTitle += '...';
   }
 
+  const handleFavouriteClick = event => {
+    event.stopPropagation();
+
+    const body = { boardId: board.id, favourite: !board.favourite };
+    postFetch('/board/favourite/', body).then(() => {
+      getUserBoards(userId);
+    });
+  };
+
   return (
     <Route
       render={({ history }) => (
@@ -41,7 +69,12 @@ const Board = ({ board, setBoardInfo, setBoardContent }) => {
           onClick={() => handleBoardClick(history)}
         >
           {parsedTitle}
-          <img className="favouriteStar" src={starIcon} alt="favourite star" />
+          <img
+            onClick={event => handleFavouriteClick(event)}
+            className="favouriteStar"
+            src={starIcon}
+            alt="favourite star"
+          />
         </div>
       )}
     />
@@ -49,6 +82,6 @@ const Board = ({ board, setBoardInfo, setBoardContent }) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Board);
