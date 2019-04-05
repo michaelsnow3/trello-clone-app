@@ -23,7 +23,8 @@ const mapDispatchToProps = dispatch => {
 const Home = ({ setUserInfo, redirectPath }) => {
   useEffect(() => {
     let userToken = localStorage.getItem('jwt');
-    if (!userToken) {
+
+    if (!userToken || userToken === 'undefined') {
       setUserInfo(null, null, `/login/`);
       return;
     }
@@ -31,11 +32,13 @@ const Home = ({ setUserInfo, redirectPath }) => {
     getFetch(`/user/verify/${userToken}`)
       .then(data => data.json())
       .then(userInfo => {
-        setUserInfo(
-          userInfo.userId,
-          userInfo.username,
-          `/${userInfo.username}/boards/`
-        );
+        if (userInfo) {
+          setUserInfo(
+            userInfo.userId,
+            userInfo.username,
+            `/${userInfo.username}/boards/`
+          );
+        }
       })
       .catch(() => {
         setUserInfo(null, null, `/login/`);

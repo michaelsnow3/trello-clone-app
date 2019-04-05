@@ -56,6 +56,7 @@ const AddBoard = ({
         className="addBoardInput"
         value={boardTitleValue}
         onChange={handleTextChange}
+        placeholder="Board Title"
       />
       <button onClick={handleAddBoard}>add board</button>
     </div>

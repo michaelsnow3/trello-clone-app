@@ -9,7 +9,7 @@ import './userForm.css';
 import { userLogin } from '../../actions/userInfoActions';
 
 const mapStateToProps = state => {
-  return { username: state.userInfo.username };
+  return { username: state.userInfo.username, error: state.userInfo.error };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-function LoginForm({ userLogin, username, cookies }) {
+function LoginForm({ userLogin, username }) {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [showAlert, setShowAlert] = useState(false);

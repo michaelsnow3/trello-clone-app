@@ -19,11 +19,13 @@ export const userLogin = (username, password) => dispatch => {
     .then(data => data.json())
     .then(data => {
       localStorage.setItem('jwt', data.token);
+      let usernameExists = data.userId ? true : false;
       dispatch({
         type: REQUEST_USER_INFO_SUCCESS,
         payload: {
           userId: data.userId,
-          username: data.username
+          username: data.username,
+          usernameExists
         }
       });
     })

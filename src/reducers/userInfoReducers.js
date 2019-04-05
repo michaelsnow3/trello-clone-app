@@ -14,7 +14,8 @@ const initialStateUserInfo = {
   username: null,
   redirectPath: null,
   error: null,
-  isPending: true
+  isPending: true,
+  usernameExists: false
 };
 
 export const userInfo = (state = initialStateUserInfo, action = {}) => {
@@ -35,7 +36,8 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
         ...state,
         userId: action.payload.userId,
         username: action.payload.username,
-        redirectPath: action.payload.redirectPath
+        redirectPath: action.payload.redirectPath,
+        usernameExists: action.payload.usernameExists
       };
     case USER_LOGOUT:
       return { ...state, userId: null, username: null };
