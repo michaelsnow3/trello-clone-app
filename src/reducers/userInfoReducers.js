@@ -6,7 +6,8 @@ import {
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
   SET_USER_INFO,
-  USER_LOGOUT
+  USER_LOGOUT,
+  SET_INCORRECT_LOGIN
 } from '../constants/userInfoConstants';
 
 const initialStateUserInfo = {
@@ -15,7 +16,7 @@ const initialStateUserInfo = {
   redirectPath: null,
   error: null,
   isPending: true,
-  usernameExists: false
+  incorrectLogin: false
 };
 
 export const userInfo = (state = initialStateUserInfo, action = {}) => {
@@ -27,7 +28,8 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
         ...state,
         isPending: false,
         userId: action.payload.userId,
-        username: action.payload.username
+        username: action.payload.username,
+        incorrectLogin: action.payload.incorrectLogin
       };
     case REQUEST_USER_INFO_FAILED:
       return { ...state, error: action.payload };
@@ -36,11 +38,12 @@ export const userInfo = (state = initialStateUserInfo, action = {}) => {
         ...state,
         userId: action.payload.userId,
         username: action.payload.username,
-        redirectPath: action.payload.redirectPath,
-        usernameExists: action.payload.usernameExists
+        redirectPath: action.payload.redirectPath
       };
     case USER_LOGOUT:
       return { ...state, userId: null, username: null };
+    case SET_INCORRECT_LOGIN:
+      return { ...state, incorrectLogin: action.payload.incorrectLogin };
     default:
       return state;
   }

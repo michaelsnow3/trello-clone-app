@@ -6,7 +6,8 @@ import {
   REQUEST_BOARD_INFO_SUCCESS,
   REQUEST_BOARD_INFO_FAILED,
   SET_USER_INFO,
-  USER_LOGOUT
+  USER_LOGOUT,
+  SET_INCORRECT_LOGIN
 } from '../constants/userInfoConstants';
 
 import { getFetch, postFetch } from '../fetchRequests';
@@ -19,13 +20,12 @@ export const userLogin = (username, password) => dispatch => {
     .then(data => data.json())
     .then(data => {
       localStorage.setItem('jwt', data.token);
-      let usernameExists = data.userId ? true : false;
       dispatch({
         type: REQUEST_USER_INFO_SUCCESS,
         payload: {
           userId: data.userId,
           username: data.username,
-          usernameExists
+          incorrectLogin: data.incorrectLogin
         }
       });
     })
@@ -59,4 +59,8 @@ export const setUserInfo = (userId, username, redirectPath) => {
 
 export const userLogout = () => {
   return { type: USER_LOGOUT };
+};
+
+export const setIncorrectLogin = incorrectLogin => {
+  return { type: SET_INCORRECT_LOGIN, payload: { incorrectLogin } };
 };
