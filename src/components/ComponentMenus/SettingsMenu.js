@@ -12,7 +12,8 @@ import { toggleSettingsMenu } from '../../actions/boardActions';
 
 const mapStateToProps = state => {
   return {
-    menuType: state.settingsMenu.menuType
+    menuType: state.settingsMenu.menuType,
+    targetId: state.settingsMenu.targetId
   };
 };
 
