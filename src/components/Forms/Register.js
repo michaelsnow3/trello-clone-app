@@ -47,6 +47,7 @@ function Register({ setUserInfo, username }) {
           setShowAlert('Username Exists');
           return;
         }
+        localStorage.setItem('jwt', userInfo.token);
         setUserInfo(userInfo.userId, userInfo.username);
       });
   };
