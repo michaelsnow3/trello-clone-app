@@ -16,7 +16,6 @@ import { postFetch } from '../../fetchRequests';
 const mapStateToProps = state => {
   return {
     userId: state.userInfo.userId,
-    username: state.userInfo.username,
     favourite: state.setBoardContent
   };
 };
@@ -32,7 +31,6 @@ const mapDispatchToProps = dispatch => {
 const Board = ({
   board,
   userId,
-  username,
   setBoardInfo,
   setBoardContent,
   getUserBoards

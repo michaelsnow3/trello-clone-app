@@ -22,7 +22,13 @@ const mapDispatchToProps = dispatch => {
 
 const Home = ({ setUserInfo, redirectPath }) => {
   useEffect(() => {
-    getFetch(`/user/verify/${localStorage.getItem('jwt')}`)
+    let userToken = localStorage.getItem('jwt');
+    if (!userToken) {
+      setUserInfo(null, null, `/login/`);
+      return;
+    }
+
+    getFetch(`/user/verify/${userToken}`)
       .then(data => data.json())
       .then(userInfo => {
         setUserInfo(

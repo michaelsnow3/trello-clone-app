@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './DisplayBoard.css';
 import editIcon from '../componentSettings/editIcon.png';
+import emptyStarIcon from '../Board/emptyStarIcon.png';
+import goldStarIcon from '../Board/goldStarIcon.png';
+
+import { postFetch } from '../../fetchRequests';
 
 // import components
 import List from '../List/List';
@@ -35,17 +39,20 @@ function DisplayBoard({
 }) {
   let boardTitle = activeBoard && activeBoard.title;
   let boardId = activeBoard && activeBoard.id;
+  let boardFavourite = activeBoard && activeBoard.favourite;
+
+  let [favourite, setFavourite] = useState(boardFavourite);
 
   const sortedBoardLists = boardLists.sort((a, b) => {
     return a.listPosition - b.listPosition;
-  })
+  });
 
   let boardListComponents = sortedBoardLists.reduce((acc, list, i) => {
     acc.push(<List key={i} list={list} boardId={boardId} />);
     return acc;
   }, []);
 
-  boardListComponents.push(<AddList key={-1} boardId={boardId} />)
+  boardListComponents.push(<AddList key={-1} boardId={boardId} />);
 
   const settingsMenuComponent = () => {
     if (showMenu) {
@@ -53,19 +60,42 @@ function DisplayBoard({
     }
   };
 
+  let starIcon = emptyStarIcon;
+
+  if (favourite) {
+    starIcon = goldStarIcon;
+  }
+  const handleFavouriteClick = () => {
+    const body = { boardId, favourite: !favourite };
+    postFetch('/board/favourite/', body)
+      .then(data => data.json())
+      .then(newFavourite => {
+        setFavourite(newFavourite);
+      })
+      .catch(error => console.log('error toggling favourite'));
+  };
+
   return (
     <div className="displayBoardContainer">
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
-        <img
-          onClick={() => toggleSettingsMenu(BOARD, boardId)}
-          src={editIcon}
-          className="boardEditIcon"
-          alt="edit icon"
-        />
+        <div className="boardSettings">
+          <img
+            onClick={() => toggleSettingsMenu(BOARD, boardId)}
+            src={editIcon}
+            className="boardEditIcon"
+            alt="edit icon"
+          />
+          <img
+            onClick={handleFavouriteClick}
+            className="boardFavouriteStar"
+            src={starIcon}
+            alt="favourite star"
+          />
+        </div>
       </div>
       {settingsMenuComponent()}
-        <div className="boardLists">{boardListComponents}</div>
+      <div className="boardLists">{boardListComponents}</div>
     </div>
   );
 }

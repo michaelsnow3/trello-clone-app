@@ -3,40 +3,54 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 4rem;
+  padding-top: 6rem;
   height: 100%;
 }
 
 .boardTitle {
   margin-right: 1rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .boardHeader {
   margin-top: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.boardSettings {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
 }
 
-.boardSettings {
-  height: 1.5rem;
-  width: 1.5rem;
+.boardFavouriteStar {
+  height: 2rem;
+  width: 2rem;
+  padding: 0.25rem;
   align-self: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0rem 1rem;
 }
 
 .boardEditIcon {
   height: 2rem;
   width: 2rem;
+  padding: 0.25rem;
   align-self: center;
+  margin-left: 2rem;
 }
 
 .boardEditIcon:hover {
   cursor: pointer;
+}
+
+.boardSettings img:hover {
+  background-color: rgb(145, 203, 224);
 }
