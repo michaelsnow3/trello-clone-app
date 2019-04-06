@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 import './AddBoard.css';
 import closeIcon from './closeIcon.png';
@@ -84,7 +85,9 @@ const AddBoard = ({
       <Scroll>
         <BoardColourOptions setBoardColour={setBoardColour} />
       </Scroll>
-      <button onClick={handleAddBoard}>add board</button>
+      <Button className="addBoardButton" onClick={handleAddBoard}>
+        add board
+      </Button>
     </div>
   );
 };

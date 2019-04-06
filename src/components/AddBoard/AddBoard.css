@@ -16,6 +16,7 @@
 
 .addBoardInput {
   width: 90%;
+  border-radius: 5px;
 }
 
 .addBoardCloseIcon {
@@ -25,4 +26,19 @@
   right: 0;
   margin: 0.5rem;
   position: absolute;
+}
+
+.addBoardHeader {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.addBoardButton {
+  background-color: rgb(221, 221, 221);
+  color: black;
+}
+
+.addBoardButton:hover {
+  background-color: rgb(184, 184, 184);
+  color: black;
 }
