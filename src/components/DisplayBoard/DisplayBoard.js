@@ -40,6 +40,7 @@ function DisplayBoard({
   let boardTitle = activeBoard && activeBoard.title;
   let boardId = activeBoard && activeBoard.id;
   let boardFavourite = activeBoard && activeBoard.favourite;
+  let colour = activeBoard && (activeBoard.colour || 'white');
 
   let [favourite, setFavourite] = useState(boardFavourite);
 
@@ -76,7 +77,7 @@ function DisplayBoard({
   };
 
   return (
-    <div className="displayBoardContainer">
+    <div style={{ backgroundColor: colour }} className="displayBoardContainer">
       <div className="boardHeader">
         <div className="boardTitle">{boardTitle}</div>
         <div className="boardSettings">
