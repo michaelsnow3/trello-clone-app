@@ -2,7 +2,7 @@ import React from 'react';
 
 import './BoardColourOptions.css';
 
-const BoardColourOptions = () => {
+const BoardColourOptions = ({ setActiveBoardColour }) => {
   const boardColourOptions = [
     'blue',
     'red',
@@ -14,17 +14,13 @@ const BoardColourOptions = () => {
     'white'
   ];
 
-  const handleColourClick = colour => {
-    console.log(colour);
-  };
-
   const boardColourComponents = boardColourOptions.reduce((acc, colour, i) => {
     const backgroundColourStyle = { backgroundColor: colour };
     acc.push(
       <div
         style={backgroundColourStyle}
         className="boardColour"
-        onClick={() => handleColourClick(colour)}
+        onClick={() => setActiveBoardColour(colour)}
         key={i}
       />
     );

@@ -11,20 +11,23 @@ import BoardColourOptions from '../BoardColourOptions/BoardColourOptions';
 // import actions
 import { handleBoardTitleChange } from '../../actions/onValueChangeActions';
 import { getUserBoards } from '../../actions/userInfoActions';
+import { setActiveBoardColour } from '../../actions/boardActions';
 
 import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
     boardTitleValue: state.handleBoardTitleChange.value,
-    userId: state.userInfo.userId
+    userId: state.userInfo.userId,
+    colour: state.activeBoard.colour
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     handleBoardTitleChange: value => dispatch(handleBoardTitleChange(value)),
-    getUserBoards: userId => getUserBoards(userId)(dispatch)
+    getUserBoards: userId => getUserBoards(userId)(dispatch),
+    setActiveBoardColour: colour => dispatch(setActiveBoardColour(colour))
   };
 };
 
@@ -32,7 +35,9 @@ const AddBoard = ({
   boardTitleValue,
   handleBoardTitleChange,
   userId,
-  getUserBoards
+  colour,
+  getUserBoards,
+  setActiveBoardColour
 }) => {
   const handleAddBoard = () => {
     // return if board has no title
@@ -56,7 +61,7 @@ const AddBoard = ({
   };
 
   return (
-    <div className="addBoardContainer">
+    <div className="addBoardContainer" style={{ backgroundColor: colour }}>
       <img className="addBoardCloseIcon" src={closeIcon} alt="close icon" />
       <div className="addBoardHeader">Add Board</div>
       <input
@@ -67,7 +72,7 @@ const AddBoard = ({
       />
       <div>Background Colour</div>
       <Scroll>
-        <BoardColourOptions />
+        <BoardColourOptions setActiveBoardColour={setActiveBoardColour} />
       </Scroll>
       <button onClick={handleAddBoard}>add board</button>
     </div>
