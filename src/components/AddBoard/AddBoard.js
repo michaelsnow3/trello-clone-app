@@ -67,7 +67,12 @@ const AddBoard = ({
 
   return (
     <div className="addBoardContainer" style={{ backgroundColor: boardColour }}>
-      <img className="addBoardCloseIcon" src={closeIcon} alt="close icon" />
+      <img
+        className="addBoardCloseIcon"
+        src={closeIcon}
+        alt="close icon"
+        onClick={() => setDisplayAddBoard(false)}
+      />
       <div className="addBoardHeader">Add Board</div>
       <input
         className="addBoardInput"
