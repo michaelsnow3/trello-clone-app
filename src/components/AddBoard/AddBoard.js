@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './AddBoard.css';
@@ -11,23 +11,20 @@ import BoardColourOptions from '../BoardColourOptions/BoardColourOptions';
 // import actions
 import { handleBoardTitleChange } from '../../actions/onValueChangeActions';
 import { getUserBoards } from '../../actions/userInfoActions';
-import { setActiveBoardColour } from '../../actions/boardActions';
 
 import { postFetch } from '../../fetchRequests';
 
 const mapStateToProps = state => {
   return {
     boardTitleValue: state.handleBoardTitleChange.value,
-    userId: state.userInfo.userId,
-    colour: state.activeBoard.colour
+    userId: state.userInfo.userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     handleBoardTitleChange: value => dispatch(handleBoardTitleChange(value)),
-    getUserBoards: userId => getUserBoards(userId)(dispatch),
-    setActiveBoardColour: colour => dispatch(setActiveBoardColour(colour))
+    getUserBoards: userId => getUserBoards(userId)(dispatch)
   };
 };
 
@@ -35,25 +32,33 @@ const AddBoard = ({
   boardTitleValue,
   handleBoardTitleChange,
   userId,
-  colour,
   getUserBoards,
-  setActiveBoardColour
+  setDisplayAddBoard
 }) => {
+  const [boardColour, setBoardColour] = useState('white');
   const handleAddBoard = () => {
     // return if board has no title
-    if (!boardTitleValue.length) return;
+    if (!boardTitleValue.length) {
+      setDisplayAddBoard(false);
+      return;
+    }
 
     let body = {
       boardTitleValue,
-      userId
+      userId,
+      boardColour
     };
     postFetch('/board/new/', body)
       .then(data => data.json())
       .then(() => {
         getUserBoards(userId);
         handleBoardTitleChange('');
+        setDisplayAddBoard(false);
       })
-      .catch(error => console.log('error adding/fetching user boards', error));
+      .catch(error => {
+        console.log('error adding/fetching user boards', error);
+        setDisplayAddBoard(false);
+      });
   };
 
   const handleTextChange = event => {
@@ -61,7 +66,7 @@ const AddBoard = ({
   };
 
   return (
-    <div className="addBoardContainer" style={{ backgroundColor: colour }}>
+    <div className="addBoardContainer" style={{ backgroundColor: boardColour }}>
       <img className="addBoardCloseIcon" src={closeIcon} alt="close icon" />
       <div className="addBoardHeader">Add Board</div>
       <input
@@ -72,7 +77,7 @@ const AddBoard = ({
       />
       <div>Background Colour</div>
       <Scroll>
-        <BoardColourOptions setActiveBoardColour={setActiveBoardColour} />
+        <BoardColourOptions setBoardColour={setBoardColour} />
       </Scroll>
       <button onClick={handleAddBoard}>add board</button>
     </div>

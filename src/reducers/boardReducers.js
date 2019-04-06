@@ -38,16 +38,13 @@ export const boardContent = (state = initialStateUserInfo, action = {}) => {
 };
 
 const initialStateActiveBoard = {
-  board: null,
-  colour: 'white'
+  board: null
 };
 
 export const activeBoard = (state = initialStateActiveBoard, action = {}) => {
   switch (action.type) {
     case SET_ACTIVE_BOARD:
       return { ...state, board: action.payload.board };
-    case SET_ACTIVE_BOARD_COLOUR:
-      return { ...state, colour: action.payload.colour };
     default:
       return state;
   }

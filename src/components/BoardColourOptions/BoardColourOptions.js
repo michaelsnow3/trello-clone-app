@@ -2,7 +2,7 @@ import React from 'react';
 
 import './BoardColourOptions.css';
 
-const BoardColourOptions = ({ setActiveBoardColour }) => {
+const BoardColourOptions = ({ setBoardColour }) => {
   const boardColourOptions = [
     'blue',
     'red',
@@ -20,7 +20,7 @@ const BoardColourOptions = ({ setActiveBoardColour }) => {
       <div
         style={backgroundColourStyle}
         className="boardColour"
-        onClick={() => setActiveBoardColour(colour)}
+        onClick={() => setBoardColour(colour)}
         key={i}
       />
     );

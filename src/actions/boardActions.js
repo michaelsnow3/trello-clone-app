@@ -4,8 +4,7 @@ import {
   REQUEST_BOARD_CONTENT_FAILED,
   UPDATE_LIST_POSITION,
   SET_ACTIVE_BOARD,
-  TOGGLE_SETTINGS_MENU,
-  SET_ACTIVE_BOARD_COLOUR
+  TOGGLE_SETTINGS_MENU
 } from '../constants/boardConstants';
 
 import { getFetch } from '../fetchRequests';
@@ -35,8 +34,4 @@ export const setBoardInfo = board => {
 
 export const toggleSettingsMenu = (menuType, targetId) => {
   return { type: TOGGLE_SETTINGS_MENU, payload: { menuType, targetId } };
-};
-
-export const setActiveBoardColour = colour => {
-  return { type: SET_ACTIVE_BOARD_COLOUR, payload: { colour } };
 };
