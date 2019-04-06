@@ -58,12 +58,15 @@ const Board = ({
     });
   };
 
+  const boardColour = board.colour || 'white';
+
   return (
     <Route
       render={({ history }) => (
         <div
           className="boardContainer"
           onClick={() => handleBoardClick(history)}
+          style={{ backgroundColor: boardColour }}
         >
           {parsedTitle}
           <img

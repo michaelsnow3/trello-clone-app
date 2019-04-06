@@ -4,8 +4,7 @@ import {
   REQUEST_BOARD_CONTENT_FAILED,
   UPDATE_LIST_POSITION,
   SET_ACTIVE_BOARD,
-  TOGGLE_SETTINGS_MENU,
-  SET_ACTIVE_BOARD_COLOUR
+  TOGGLE_SETTINGS_MENU
 } from '../constants/boardConstants';
 
 const initialStateUserInfo = {
