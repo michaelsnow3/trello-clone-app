@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './AddBoard.css';
+import closeIcon from './closeIcon.png';
+
+// import components
+import Scroll from '../Scroll/Scroll';
+import BoardColourOptions from '../BoardColourOptions/BoardColourOptions';
 
 // import actions
 import { handleBoardTitleChange } from '../../actions/onValueChangeActions';
@@ -52,12 +57,18 @@ const AddBoard = ({
 
   return (
     <div className="addBoardContainer">
+      <img className="addBoardCloseIcon" src={closeIcon} alt="close icon" />
+      <div className="addBoardHeader">Add Board</div>
       <input
         className="addBoardInput"
         value={boardTitleValue}
         onChange={handleTextChange}
         placeholder="Board Title"
       />
+      <div>Background Colour</div>
+      <Scroll>
+        <BoardColourOptions />
+      </Scroll>
       <button onClick={handleAddBoard}>add board</button>
     </div>
   );

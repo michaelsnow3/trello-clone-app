@@ -1,0 +1,10 @@
+.boardColourOptionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boardColour {
+  height: 3rem;
+  width: 3rem;
+  margin: 0.5rem;
+}

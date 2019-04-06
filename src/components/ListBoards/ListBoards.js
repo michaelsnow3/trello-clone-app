@@ -28,6 +28,7 @@ function ListBoards({ boards, getUserBoards, userId, isPending }) {
     getUserBoards(userId);
   }, [userId, getUserBoards]);
   let [redirect, setRedirect] = useState(false);
+  let [displayAddBoard, setDisplayAddBoard] = useState(false);
 
   // redirect to login if no userId exists
   if (!userId && !redirect) {
@@ -45,19 +46,34 @@ function ListBoards({ boards, getUserBoards, userId, isPending }) {
     return <div>Loading...</div>;
   }
 
-  let userBoards = [<AddBoard key={-1} />];
+  let userBoards = [
+    <div
+      onClick={() => setDisplayAddBoard(true)}
+      className="addBoardPlaceholder"
+      key={-1}
+    >
+      Add Board
+    </div>
+  ];
 
   if (userId && !isPending) {
     boards.forEach((board, i) => {
       userBoards.push(<Board board={board} key={i} />);
     });
   }
-  return (
-    <div>
-      {renderRedirect()}
-      <div className="boardListContainer">{userBoards}</div>
-    </div>
-  );
+
+  const pageContent = () => {
+    if (displayAddBoard) {
+      return <AddBoard setDisplayAddBoard={setDisplayAddBoard} />;
+    } else
+      return (
+        <div>
+          {renderRedirect()}
+          <div className="boardListContainer">{userBoards}</div>
+        </div>
+      );
+  };
+  return <div>{pageContent()}</div>;
 }
 
 export default connect(

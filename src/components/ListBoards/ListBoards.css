@@ -6,4 +6,14 @@
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-} 
+}
+
+.addBoardPlaceholder {
+  height: 5rem;
+  width: 150px;
+  border: 1px solid black;
+  background-color: rgb(161, 226, 238);
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 25px;
+}
