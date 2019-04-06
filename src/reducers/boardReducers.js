@@ -4,7 +4,8 @@ import {
   REQUEST_BOARD_CONTENT_FAILED,
   UPDATE_LIST_POSITION,
   SET_ACTIVE_BOARD,
-  TOGGLE_SETTINGS_MENU
+  TOGGLE_SETTINGS_MENU,
+  SET_ACTIVE_BOARD_COLOUR
 } from '../constants/boardConstants';
 
 const initialStateUserInfo = {
@@ -37,13 +38,16 @@ export const boardContent = (state = initialStateUserInfo, action = {}) => {
 };
 
 const initialStateActiveBoard = {
-  board: null
+  board: null,
+  colour: 'white'
 };
 
 export const activeBoard = (state = initialStateActiveBoard, action = {}) => {
   switch (action.type) {
     case SET_ACTIVE_BOARD:
       return { ...state, board: action.payload.board };
+    case SET_ACTIVE_BOARD_COLOUR:
+      return { ...state, colour: action.payload.colour };
     default:
       return state;
   }
