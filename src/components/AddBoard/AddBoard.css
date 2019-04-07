@@ -5,9 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 5rem auto;
-  position: relative;
+  padding: 1rem;
 }
 
 .addBoardContainer:hover {
@@ -25,7 +25,7 @@
   top: 0;
   right: 0;
   margin: 0.5rem;
-  position: absolute;
+  align-self: flex-end;
 }
 
 .addBoardHeader {

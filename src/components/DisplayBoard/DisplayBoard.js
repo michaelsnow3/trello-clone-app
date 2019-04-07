@@ -42,6 +42,20 @@ function DisplayBoard({
   let boardFavourite = activeBoard && activeBoard.favourite;
   let colour = activeBoard && (activeBoard.colour || 'white');
 
+  // get total height of page and add buffer for add card addition input height
+
+  let body = document.body,
+    html = document.documentElement;
+
+  let height =
+    Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    ) + 50;
+
   let [favourite, setFavourite] = useState(boardFavourite);
 
   const sortedBoardLists = boardLists.sort((a, b) => {
@@ -49,11 +63,19 @@ function DisplayBoard({
   });
 
   let boardListComponents = sortedBoardLists.reduce((acc, list, i) => {
-    acc.push(<List key={i} list={list} boardId={boardId} />);
+    acc.push(
+      <div style={{ backgroundColor: colour, height }}>
+        <List key={i} list={list} boardId={boardId} />
+      </div>
+    );
     return acc;
   }, []);
 
-  boardListComponents.push(<AddList key={-1} boardId={boardId} />);
+  boardListComponents.push(
+    <div style={{ backgroundColor: colour, height }}>
+      <AddList key={-1} boardId={boardId} height={height} colour={colour} />
+    </div>
+  );
 
   const settingsMenuComponent = () => {
     if (showMenu) {
@@ -77,8 +99,11 @@ function DisplayBoard({
   };
 
   return (
-    <div style={{ backgroundColor: colour }} className="displayBoardContainer">
-      <div className="boardHeader">
+    <div
+      style={{ backgroundColor: colour, height }}
+      className="displayBoardContainer"
+    >
+      <div className="boardHeader" style={{ backgroundColor: colour }}>
         <div className="boardTitle">{boardTitle}</div>
         <div className="boardSettings">
           <img
@@ -96,7 +121,9 @@ function DisplayBoard({
         </div>
       </div>
       {settingsMenuComponent()}
-      <div className="boardLists">{boardListComponents}</div>
+      <div style={{ height }} className="boardLists">
+        {boardListComponents}
+      </div>
     </div>
   );
 }

@@ -24,15 +24,13 @@
   left: 30%;
   top: 15%;
   width: 40%;
-  height: 10%;
+  height: 8rem;
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   z-index: 10000;
-  padding: 1rem 0;
-  position: relative;
 }
 
 .settingsOption {
@@ -58,7 +56,7 @@
   top: 0;
   right: 0;
   margin: 0.5rem;
-  position: absolute;
+  align-self: flex-end;
 }
 
 .closeIcon:hover {

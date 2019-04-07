@@ -1,11 +1,14 @@
+.displayBoardContainer {
+  height: 100%;
+}
+
 .boardLists {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 85%;
-  position: absolute;
-  top: 15%;
+  height: 100%;
 }
 
 .boardTitle {
@@ -14,11 +17,13 @@
 }
 
 .boardHeader {
-  margin-top: 1rem;
+  padding-top: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
   position: fixed;
+  height: 5rem;
   display: flex;
+  top: 2.5rem;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
