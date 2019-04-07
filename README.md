@@ -9,7 +9,6 @@ The purpose of building Trello-Clone was to practice using redux, hooks, and rea
 - react-router
 
 ## Dependencies
-  - bootstrap
   - react
   - react-bootstrap
   - react-dom
