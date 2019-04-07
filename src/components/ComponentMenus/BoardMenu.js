@@ -38,10 +38,12 @@ const BoardMenu = ({
   username,
   userId,
   getUserBoards,
-  toggleSettingsMenu
+  toggleSettingsMenu,
+  showAlert,
+  setShowAlert
 }) => {
   let [redirect, setRedirect] = useState(false);
-  let [showAlert, setShowAlert] = useState(false);
+
   let [showInput, setShowInput] = useState('');
 
   const boardId = activeBoard.id;
@@ -100,7 +102,7 @@ const BoardMenu = ({
       );
     } else {
       return (
-        <div>
+        <div className="boardMenuContainer">
           <img
             className="closeIcon"
             src={closeIcon}

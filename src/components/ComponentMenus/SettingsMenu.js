@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { BOARD, LIST, CARD } from '../../constants/settingsMenuConstants';
 
@@ -17,9 +17,14 @@ const mapStateToProps = state => {
 const SettingsMenu = ({ menuType }) => {
   // set active menu to selected menu type
   let activeMenu = false;
+  const [showAlert, setShowAlert] = useState(false);
+  const alertStyle = showAlert ? { backgroundColor: 'red' } : {};
+
   switch (menuType) {
     case BOARD:
-      activeMenu = <BoardMenu />;
+      activeMenu = (
+        <BoardMenu showAlert={showAlert} setShowAlert={setShowAlert} />
+      );
       break;
     case LIST:
       activeMenu = <ListMenu />;
@@ -32,7 +37,11 @@ const SettingsMenu = ({ menuType }) => {
       break;
   }
 
-  return <div className="settingsMenu">{activeMenu}</div>;
+  return (
+    <div style={alertStyle} className="settingsMenu">
+      {activeMenu}
+    </div>
+  );
 };
 
 export default connect(
