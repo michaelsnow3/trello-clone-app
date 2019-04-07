@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './menus.css';
@@ -9,11 +8,13 @@ import { postFetch } from '../../fetchRequests';
 // import actions
 import { setBoardContent } from '../../actions/boardActions';
 import { toggleSettingsMenu } from '../../actions/boardActions';
+
 // import constants
 import { EDIT_LIST_TITLE } from '../../constants/editOptionConstants';
 
 // import components
 import EditList from '../EditList/EditList';
+import Alert from './Alert';
 
 const mapStateToProps = state => {
   return {
@@ -33,13 +34,14 @@ const ListMenu = ({
   listId,
   activeBoard,
   setBoardContent,
-  toggleSettingsMenu
+  toggleSettingsMenu,
+  showAlert,
+  setShowAlert
 }) => {
   let boardId = activeBoard.id;
-  let [showAlert, setShowAlert] = useState(false);
   let [showInput, setShowInput] = useState('');
 
-  const handleDeleteList = () => {
+  const handleListDelete = () => {
     let body = {
       listId
     };
@@ -72,27 +74,16 @@ const ListMenu = ({
     );
   };
 
+  const alertMessage = 'Delete List?';
+
   const showAlertComponent = () => {
     if (showAlert) {
       return (
         <Alert
-          className="listAlert"
-          dismissible
-          variant="danger"
-          onClose={toggleShowAlert}
-        >
-          <Alert.Heading className="alertHeaderText">
-            Delete List?
-          </Alert.Heading>
-          <div className="alertOptions">
-            <div onClick={handleDeleteList} className="alertText">
-              Yes
-            </div>
-            <div onClick={toggleShowAlert} className="alertText">
-              No
-            </div>
-          </div>
-        </Alert>
+          message={alertMessage}
+          confirmCallback={handleListDelete}
+          denyCallback={toggleShowAlert}
+        />
       );
     } else {
       return (

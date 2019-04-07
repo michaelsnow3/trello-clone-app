@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { BOARD, LIST, CARD } from '../../constants/settingsMenuConstants';
 
+import './menus.css';
+import closeIcon from '../../images/closeIcon.png';
+
 // import components
 import BoardMenu from '../ComponentMenus/BoardMenu';
 import ListMenu from '../ComponentMenus/ListMenu';
@@ -14,11 +17,13 @@ const mapStateToProps = state => {
   };
 };
 
-const SettingsMenu = ({ menuType }) => {
+const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
   // set active menu to selected menu type
   let activeMenu = false;
   const [showAlert, setShowAlert] = useState(false);
-  const alertStyle = showAlert ? { backgroundColor: 'red' } : {};
+  const alertStyle = showAlert
+    ? { backgroundColor: 'red', color: 'white' }
+    : {};
 
   switch (menuType) {
     case BOARD:
@@ -27,7 +32,9 @@ const SettingsMenu = ({ menuType }) => {
       );
       break;
     case LIST:
-      activeMenu = <ListMenu />;
+      activeMenu = (
+        <ListMenu showAlert={showAlert} setShowAlert={setShowAlert} />
+      );
       break;
     case CARD:
       activeMenu = <CardMenu />;
@@ -39,6 +46,12 @@ const SettingsMenu = ({ menuType }) => {
 
   return (
     <div style={alertStyle} className="settingsMenu">
+      <img
+        className="closeIcon"
+        src={closeIcon}
+        alt="close icon"
+        onClick={() => toggleSettingsMenu(false)}
+      />
       {activeMenu}
     </div>
   );

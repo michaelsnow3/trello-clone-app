@@ -57,7 +57,7 @@ function DisplayBoard({
 
   const settingsMenuComponent = () => {
     if (showMenu) {
-      return <SettingsMenu />;
+      return <SettingsMenu toggleSettingsMenu={toggleSettingsMenu} />;
     }
   };
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './menus.css';
-import closeIcon from '../../images/closeIcon.png';
 
 // import components
 import EditBoard from '../EditBoard/EditBoard';
@@ -103,12 +102,6 @@ const BoardMenu = ({
     } else {
       return (
         <div className="boardMenuContainer">
-          <img
-            className="closeIcon"
-            src={closeIcon}
-            alt="close icon"
-            onClick={toggleSettingsMenu}
-          />
           <div className="settingsOption" onClick={handleShowDeleteBoard}>
             Delete Board
           </div>
