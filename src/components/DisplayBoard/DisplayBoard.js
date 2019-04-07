@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './DisplayBoard.css';
@@ -42,19 +42,12 @@ function DisplayBoard({
   let boardFavourite = activeBoard && activeBoard.favourite;
   let colour = activeBoard && (activeBoard.colour || 'white');
 
-  // get total height of page and add buffer for add card addition input height
-
-  let body = document.body,
-    html = document.documentElement;
-
-  let height =
-    Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    ) + 50;
+  useEffect(() => {
+    document.body.style.background = colour;
+    return () => {
+      document.body.style.background = 'white';
+    };
+  });
 
   let [favourite, setFavourite] = useState(boardFavourite);
 
@@ -63,19 +56,11 @@ function DisplayBoard({
   });
 
   let boardListComponents = sortedBoardLists.reduce((acc, list, i) => {
-    acc.push(
-      <div style={{ backgroundColor: colour, height }}>
-        <List key={i} list={list} boardId={boardId} />
-      </div>
-    );
+    acc.push(<List key={i} list={list} boardId={boardId} />);
     return acc;
   }, []);
 
-  boardListComponents.push(
-    <div style={{ backgroundColor: colour, height }}>
-      <AddList key={-1} boardId={boardId} height={height} colour={colour} />
-    </div>
-  );
+  boardListComponents.push(<AddList key={-1} boardId={boardId} />);
 
   const settingsMenuComponent = () => {
     if (showMenu) {
@@ -99,10 +84,7 @@ function DisplayBoard({
   };
 
   return (
-    <div
-      style={{ backgroundColor: colour, height }}
-      className="displayBoardContainer"
-    >
+    <div className="displayBoardContainer">
       <div className="boardHeader" style={{ backgroundColor: colour }}>
         <div className="boardTitle">{boardTitle}</div>
         <div className="boardSettings">
@@ -121,9 +103,7 @@ function DisplayBoard({
         </div>
       </div>
       {settingsMenuComponent()}
-      <div style={{ height }} className="boardLists">
-        {boardListComponents}
-      </div>
+      <div className="boardLists">{boardListComponents}</div>
     </div>
   );
 }

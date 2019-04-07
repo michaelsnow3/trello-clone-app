@@ -18,3 +18,7 @@ select,
 textarea {
   max-width: 80%;
 }
+
+html {
+  min-height: 100%;
+}
