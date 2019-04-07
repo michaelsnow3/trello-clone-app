@@ -1,3 +1,9 @@
+.alertContainer {
+  height: 100%;
+  width: 100%;
+  background-color: red;
+}
+
 .alertOptions {
   display: flex;
   flex-direction: row;
@@ -13,12 +19,8 @@
   font-weight: bold;
 }
 
-.alertHeaderText {
+.alertHeader {
   font-size: 1.5em;
-}
-
-.listAlert {
-  z-index: 10;
 }
 
 .settingsMenu {
@@ -27,8 +29,9 @@
   border-radius: 3px;
   position: fixed;
   left: 30%;
+  top: 15%;
   width: 40%;
-  margin-top: 15%;
+  height: 10%;
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -36,6 +39,7 @@
   align-items: center;
   z-index: 10000;
   padding-top: 1rem;
+  position: relative;
 }
 
 .settingsOption {
@@ -53,4 +57,13 @@
 
 .settingsClose:hover {
   font-weight: bold;
+}
+
+.closeIcon {
+  height: 1rem;
+  width: 1rem;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+  position: absolute;
 }

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 import './menus.css';
+import closeIcon from '../../images/closeIcon.png';
 
 // import components
 import EditBoard from '../EditBoard/EditBoard';
+import Alert from './Alert';
 
 // import actions
 import { getUserBoards } from '../../actions/userInfoActions';
@@ -82,27 +83,26 @@ const BoardMenu = ({
     );
 
   // display alert message or button
+  const alertMessage = 'Delete Board?';
+
+  const handleShowDeleteBoard = () => {
+    setShowAlert(true);
+  };
+
   const deleteVerification = () => {
     if (showAlert) {
       return (
-        <div className="boardAlertContainer">
-          <Alert dismissible variant="danger" onClose={handleAlertClose}>
-            <Alert.Heading>Delete Board?</Alert.Heading>
-            <div className="alertOptions">
-              <div onClick={handleBoardDelete} className="alertText">
-                Yes
-              </div>
-              <div onClick={handleAlertClose} className="alertText">
-                No
-              </div>
-            </div>
-          </Alert>
-        </div>
+        <Alert
+          message={alertMessage}
+          confirmCallback={handleBoardDelete}
+          denyCallback={handleAlertClose}
+        />
       );
     } else {
       return (
         <div>
-          <div className="settingsOption" onClick={() => setShowAlert(true)}>
+          <img className="closeIcon" src={closeIcon} alt="close icon" />
+          <div className="settingsOption" onClick={handleShowDeleteBoard}>
             Delete Board
           </div>
           {editBoardTitleOption}

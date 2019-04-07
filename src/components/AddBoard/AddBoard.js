@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 import './AddBoard.css';
-import closeIcon from './closeIcon.png';
+import closeIcon from '../../images/closeIcon.png';
 
 // import components
 import Scroll from '../Scroll/Scroll';
@@ -40,7 +40,6 @@ const AddBoard = ({
   const handleAddBoard = () => {
     // return if board has no title
     if (!boardTitleValue.length) {
-      setDisplayAddBoard(false);
       return;
     }
 

@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BOARD, LIST, CARD } from '../../constants/boardConstants';
+import { BOARD, LIST, CARD } from '../../constants/settingsMenuConstants';
 
 // import components
 import BoardMenu from '../ComponentMenus/BoardMenu';
 import ListMenu from '../ComponentMenus/ListMenu';
 import CardMenu from '../ComponentMenus/CardMenu';
-
-// import actions
-import { toggleSettingsMenu } from '../../actions/boardActions';
 
 const mapStateToProps = state => {
   return {
@@ -17,13 +14,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleSettingsMenu: () => dispatch(toggleSettingsMenu())
-  };
-};
-
-const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
+const SettingsMenu = ({ menuType }) => {
   // set active menu to selected menu type
   let activeMenu = false;
   switch (menuType) {
@@ -40,17 +31,11 @@ const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
       activeMenu = false;
       break;
   }
-  return (
-    <div className="settingsMenu">
-      {activeMenu}
-      <div className="settingsClose" onClick={() => toggleSettingsMenu(false)}>
-        close
-      </div>
-    </div>
-  );
+
+  return <div className="settingsMenu">{activeMenu}</div>;
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(SettingsMenu);

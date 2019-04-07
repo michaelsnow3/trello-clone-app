@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './DisplayBoard.css';
-import editIcon from '../ComponentMenus/editIcon.png';
-import emptyStarIcon from '../Board/emptyStarIcon.png';
-import goldStarIcon from '../Board/goldStarIcon.png';
+import editIcon from '../../images/editIcon.png';
+import emptyStarIcon from '../../images/emptyStarIcon.png';
+import goldStarIcon from '../../images/goldStarIcon.png';
 
 import { postFetch } from '../../fetchRequests';
 
@@ -17,7 +17,7 @@ import AddList from '../AddList/AddList';
 import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import { BOARD } from '../../constants/boardConstants';
+import { BOARD } from '../../constants/settingsMenuConstants';
 
 const mapStateToProps = state => ({
   activeBoard: state.activeBoard.board,

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './List.css';
-import editIcon from '../ComponentMenus/editIcon.png';
+import editIcon from '../../images/editIcon.png';
 
 // import components
 import Card from '../Card/Card';
@@ -17,7 +17,7 @@ import { setTargetComponent } from '../../actions/moveComponentActions';
 import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import constants
-import { LIST } from '../../constants/boardConstants';
+import { LIST } from '../../constants/settingsMenuConstants';
 import { DRAG_CARD, DRAG_LIST } from '../../constants/moveComponentConstants';
 
 import { postFetch } from '../../fetchRequests';

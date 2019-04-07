@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import './Board.css';
-import emptyStarIcon from './emptyStarIcon.png';
-import goldStarIcon from './goldStarIcon.png';
+import emptyStarIcon from '../../images/emptyStarIcon.png';
+import goldStarIcon from '../../images/goldStarIcon.png';
 
 // import actions
 import { setBoardInfo, setBoardContent } from '../../actions/boardActions';
