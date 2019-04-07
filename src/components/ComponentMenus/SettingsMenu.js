@@ -37,7 +37,9 @@ const SettingsMenu = ({ menuType, toggleSettingsMenu }) => {
       );
       break;
     case CARD:
-      activeMenu = <CardMenu />;
+      activeMenu = (
+        <CardMenu showAlert={showAlert} setShowAlert={setShowAlert} />
+      );
       break;
     default:
       activeMenu = false;

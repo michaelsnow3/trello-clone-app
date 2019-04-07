@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './menus.css';
@@ -12,6 +11,7 @@ import { toggleSettingsMenu } from '../../actions/boardActions';
 
 // import components
 import EditCard from '../EditCard/EditCard';
+import Alert from './Alert';
 
 const mapStateToProps = state => {
   return {
@@ -31,13 +31,14 @@ const CardMenu = ({
   cardId,
   activeBoard,
   setBoardContent,
-  toggleSettingsMenu
+  toggleSettingsMenu,
+  setShowAlert,
+  showAlert
 }) => {
   let boardId = activeBoard.id;
-  let [showAlert, setShowAlert] = useState(false);
   let [showInput, setShowInput] = useState(false);
 
-  const handleDeleteCard = () => {
+  const handleCardDelete = () => {
     let body = {
       cardId
     };
@@ -67,27 +68,15 @@ const CardMenu = ({
     );
   };
 
+  const alertMessage = 'Delete Card?';
   const showAlertComponent = () => {
     if (showAlert) {
       return (
         <Alert
-          className="cardAlert"
-          dismissible
-          variant="danger"
-          onClose={toggleShowAlert}
-        >
-          <Alert.Heading className="alertHeaderText">
-            Delete Card?
-          </Alert.Heading>
-          <div className="alertOptions">
-            <div onClick={handleDeleteCard} className="alertText">
-              Yes
-            </div>
-            <div onClick={toggleShowAlert} className="alertText">
-              No
-            </div>
-          </div>
-        </Alert>
+          message={alertMessage}
+          confirmCallback={handleCardDelete}
+          denyCallback={toggleShowAlert}
+        />
       );
     } else {
       return (
