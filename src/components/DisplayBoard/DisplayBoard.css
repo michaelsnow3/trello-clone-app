@@ -3,7 +3,9 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 90%;
+  height: 85%;
+  position: absolute;
+  top: 15%;
 }
 
 .boardTitle {

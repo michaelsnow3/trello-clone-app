@@ -101,7 +101,12 @@ const BoardMenu = ({
     } else {
       return (
         <div>
-          <img className="closeIcon" src={closeIcon} alt="close icon" />
+          <img
+            className="closeIcon"
+            src={closeIcon}
+            alt="close icon"
+            onClick={toggleSettingsMenu}
+          />
           <div className="settingsOption" onClick={handleShowDeleteBoard}>
             Delete Board
           </div>

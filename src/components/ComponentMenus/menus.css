@@ -38,7 +38,7 @@
   justify-content: space-around;
   align-items: center;
   z-index: 10000;
-  padding-top: 1rem;
+  padding: 1rem 0;
   position: relative;
 }
 
