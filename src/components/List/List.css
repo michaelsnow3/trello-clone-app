@@ -4,6 +4,7 @@
   flex: 1, auto;
   border-radius: 5px;
   min-height: 5rem;
+  width: 14rem;
 }
 .listTitle {
   font-weight: bold;
