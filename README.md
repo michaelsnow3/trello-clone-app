@@ -8,6 +8,10 @@ The purpose of building Trello-Clone was to practice using redux, hooks, and rea
 - react-redux
 - react-router-dom
 
+
+## Final Product
+!["Screenshot of display board page"](https://github.com/michaelsnow3/trello-clone-app/blob/master/docs/Screenshot%20from%202019-04-08%2015-12-00.png)
+
 ## Dependencies
 - bootstrap
 - react
