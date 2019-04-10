@@ -25,7 +25,6 @@ import { postFetch } from '../../fetchRequests';
 const mapStateToProps = state => {
   return {
     targetComponent: state.moveComponent.targetComponent,
-    hoveredComponent: state.moveComponent.hoveredComponent,
     componentType: state.moveComponent.componentType,
     activeBoard: state.activeBoard.board,
     boardLists: state.boardContent.boardLists
@@ -36,10 +35,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setBoardContent: boardId => setBoardContent(boardId)(dispatch),
 
-    setTargetComponent: (targetComponent, hoveredComponent, componentType) =>
-      dispatch(
-        setTargetComponent(targetComponent, hoveredComponent, componentType)
-      ),
+    setTargetComponent: (targetComponent, componentType) =>
+      dispatch(setTargetComponent(targetComponent, componentType)),
 
     toggleSettingsMenu: (menuType, targetId) =>
       dispatch(toggleSettingsMenu(menuType, targetId)),
@@ -53,7 +50,6 @@ const mapDispatchToProps = dispatch => {
 const List = ({
   list,
   targetComponent,
-  hoveredComponent,
   componentType,
   updateListPosition,
   setBoardContent,
@@ -66,17 +62,37 @@ const List = ({
     event.preventDefault();
     if (
       componentType === DRAG_CARD &&
-      hoveredComponent.listId !== list.listId
+      targetComponent.list_id !== list.listId
     ) {
-      let body = {
-        newList: list,
-        targetCard: targetComponent
-      };
+      let updatedBoardLists = boardLists.reduce((acc, boardList) => {
+        if (boardList.listId === targetComponent.list_id) {
+          let updatedListCards = boardList.listCards.filter(card => {
+            return card.id !== targetComponent.id;
+          });
+          acc.push({ ...boardList, listCards: updatedListCards });
+        } else if (boardList.listId === list.listId) {
+          let updatedListCards = [...boardList.listCards, targetComponent];
+          acc.push({ ...boardList, listCards: updatedListCards });
+        } else {
+          acc.push(boardList);
+        }
+        return acc;
+      }, []);
 
-      postFetch('/card/move', body).then(() => {
-        setBoardContent(activeBoard.id);
-        setTargetComponent(targetComponent, list, DRAG_CARD);
-      });
+      let updatedTargetCard = { ...targetComponent, list_id: list.listId };
+      setTargetComponent(updatedTargetCard, DRAG_CARD);
+
+      updateListPosition(updatedBoardLists);
+
+      // let body = {
+      //   newList: list,
+      //   targetCard: targetComponent
+      // };
+
+      // postFetch('/card/move', body).then(() => {
+      //   setBoardContent(activeBoard.id);
+      //   setTargetComponent(targetComponent, list, DRAG_CARD);
+      // });
     } else if (
       componentType === DRAG_LIST &&
       targetComponent.listPosition !== list.listPosition
@@ -96,7 +112,7 @@ const List = ({
       }, []);
 
       let updatedTargetList = { ...targetComponent, listPosition: newPosition };
-      setTargetComponent(updatedTargetList, list, DRAG_LIST);
+      setTargetComponent(updatedTargetList, DRAG_LIST);
 
       updateListPosition(updatedBoardLists);
     }

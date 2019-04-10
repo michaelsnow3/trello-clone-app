@@ -1,13 +1,10 @@
-import {
-  SET_TARGET
-} from '../constants/moveComponentConstants';
+import { SET_TARGET } from '../constants/moveComponentConstants';
 
-export const setTargetComponent = (targetComponent, hoveredComponent, componentType) => {
+export const setTargetComponent = (targetComponent, componentType) => {
   return {
     type: SET_TARGET,
     payload: {
       targetComponent,
-      hoveredComponent,
       componentType
     }
   };

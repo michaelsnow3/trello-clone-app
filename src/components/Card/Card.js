@@ -14,10 +14,8 @@ import { DRAG_CARD } from '../../constants/moveComponentConstants';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setTargetComponent: (targetComponent, hoveredComponent, componentType) =>
-      dispatch(
-        setTargetComponent(targetComponent, hoveredComponent, componentType)
-      ),
+    setTargetComponent: (targetComponent, componentType) =>
+      dispatch(setTargetComponent(targetComponent, componentType)),
     toggleSettingsMenu: (menuType, targetId) =>
       dispatch(toggleSettingsMenu(menuType, targetId))
   };
@@ -26,7 +24,7 @@ const mapDispatchToProps = dispatch => {
 const Card = ({ card, list, setTargetComponent, toggleSettingsMenu }) => {
   let handleCardClick = event => {
     event.stopPropagation();
-    setTargetComponent(card, list, DRAG_CARD);
+    setTargetComponent(card, DRAG_CARD);
   };
 
   const handleEditClick = () => {
@@ -34,7 +32,7 @@ const Card = ({ card, list, setTargetComponent, toggleSettingsMenu }) => {
   };
 
   const handleMouseUp = () => {
-    setTargetComponent(null, null, null);
+    setTargetComponent(null, null);
   };
 
   return (

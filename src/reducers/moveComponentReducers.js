@@ -6,13 +6,15 @@ const moveComponentInitialState = {
   componentType: null
 };
 
-export const moveComponent = (state = moveComponentInitialState, action = {}) => {
+export const moveComponent = (
+  state = moveComponentInitialState,
+  action = {}
+) => {
   switch (action.type) {
     case SET_TARGET:
       return {
         ...state,
         targetComponent: action.payload.targetComponent,
-        hoveredComponent: action.payload.hoveredComponent,
         componentType: action.payload.componentType
       };
     default:
