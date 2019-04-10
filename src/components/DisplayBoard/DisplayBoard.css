@@ -8,9 +8,9 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 85%;
+  min-height: 88%;
   position: absolute;
-  top: 15%;
+  top: 12%;
   bottom: 0;
   z-index: -5;
 }
