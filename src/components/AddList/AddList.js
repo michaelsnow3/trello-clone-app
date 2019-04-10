@@ -58,7 +58,6 @@ const AddList = ({
       <div>
         <input
           className="addListInput"
-          autoFocus
           value={listTitleValue}
           onChange={handleTextChange}
           placeholder="list title"

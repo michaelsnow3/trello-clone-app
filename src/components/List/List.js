@@ -9,10 +9,7 @@ import Card from '../Card/Card';
 import AddCard from '../AddCard/AddCard';
 
 // import actions
-import {
-  setBoardContent,
-  updateListPosition
-} from '../../actions/boardActions';
+import { updateListPosition } from '../../actions/boardActions';
 import { setTargetComponent } from '../../actions/moveComponentActions';
 import { toggleSettingsMenu } from '../../actions/boardActions';
 
@@ -33,8 +30,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setBoardContent: boardId => setBoardContent(boardId)(dispatch),
-
     setTargetComponent: (targetComponent, componentType) =>
       dispatch(setTargetComponent(targetComponent, componentType)),
 
@@ -52,7 +47,6 @@ const List = ({
   targetComponent,
   componentType,
   updateListPosition,
-  setBoardContent,
   activeBoard,
   setTargetComponent,
   toggleSettingsMenu,
@@ -83,16 +77,6 @@ const List = ({
       setTargetComponent(updatedTargetCard, DRAG_CARD);
 
       updateListPosition(updatedBoardLists);
-
-      // let body = {
-      //   newList: list,
-      //   targetCard: targetComponent
-      // };
-
-      // postFetch('/card/move', body).then(() => {
-      //   setBoardContent(activeBoard.id);
-      //   setTargetComponent(targetComponent, list, DRAG_CARD);
-      // });
     } else if (
       componentType === DRAG_LIST &&
       targetComponent.listPosition !== list.listPosition
@@ -125,12 +109,24 @@ const List = ({
     postFetch('/list/update/', body);
   };
 
+  const handleDrop = () => {
+    if (componentType === DRAG_LIST) {
+      updateListDatabase();
+    } else if (componentType === DRAG_CARD) {
+      let body = {
+        targetCard: targetComponent,
+        newList: list
+      };
+      postFetch('/card/move', body);
+    }
+  };
+
   const handleEditClick = () => {
     toggleSettingsMenu(LIST, list.listId);
   };
 
   const handleListClick = () => {
-    setTargetComponent(list, list, DRAG_LIST);
+    setTargetComponent(list, DRAG_LIST);
   };
 
   const listCards = list.listCards.reduce((acc, card, i) => {
@@ -146,7 +142,7 @@ const List = ({
     <div
       className="listDropZone"
       onDragOver={event => handleListDragOver(list, event)}
-      onDropCapture={updateListDatabase}
+      onDropCapture={handleDrop}
     >
       <div className="listContainer" onMouseDown={handleListClick} draggable>
         <div className="listHeader">

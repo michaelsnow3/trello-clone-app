@@ -2,7 +2,6 @@ import { SET_TARGET } from '../constants/moveComponentConstants';
 
 const moveComponentInitialState = {
   targetComponent: null,
-  hoveredComponent: null,
   componentType: null
 };
 
